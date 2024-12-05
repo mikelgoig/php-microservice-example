@@ -1,0 +1,21 @@
+@startuml ContextMap
+rectangle "Catalog Context" #lightyellow {
+    rectangle Product #lightblue
+    rectangle Category #lightblue
+    rectangle Stock #lightblue
+}
+
+rectangle "Reservation Context" #lightyellow {
+    rectangle Reservation #lightblue
+    rectangle Customer #lightblue
+}
+
+rectangle "Payment Context" #lightyellow {
+    rectangle Payment #lightblue
+    rectangle Transaction #lightblue
+}
+
+"Catalog Context" ..> "Reservation Context" : Publishes stock updates
+"Reservation Context" ..> "Payment Context" : Sends reservation details
+"Payment Context" --> "Catalog Context" : Fetches pricing data
+@enduml

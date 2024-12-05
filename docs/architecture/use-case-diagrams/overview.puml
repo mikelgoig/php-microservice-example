@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+actor Customer
+actor Admin
+
+rectangle "Bookshop System" {
+    usecase "Search Books" as UC1
+    usecase "Purchase Book" as UC2
+    usecase "View Order History" as UC3
+    usecase "Add New Book" as UC4
+    usecase "Update Book Details" as UC5
+    usecase "Remove Book" as UC6
+}
+
+Customer --> UC1
+Customer --> UC2
+Customer --> UC3
+
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+@enduml

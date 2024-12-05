@@ -74,11 +74,7 @@ _TO DO_
 
 ## 👩‍💻 Project explanation
 
-### ⛱️ Bounded Contexts
-
-* [Catalog](service/src/Catalog): A service to manage the book catalog.
-* [Orders](service/src/Orders): A service to manage the book orders.
-* [Shared](service/src/Shared): Shared components.
+- [Architecture](docs/architecture.md)
 
 ## 🚀 Deployment
 
