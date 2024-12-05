@@ -22,7 +22,7 @@ build: ## Builds the Docker images
 	@$(DOCKER_COMP) build --pull --no-cache
 
 up: ## Start the docker hub in detached mode (no logs)
-	@$(DOCKER_COMP) up --detach
+	@HTTP_PORT=8005 HTTPS_PORT=4443 HTTP3_PORT=4443 $(DOCKER_COMP) up --detach
 
 start: build up ## Build and start the containers
 
