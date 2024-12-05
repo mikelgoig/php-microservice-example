@@ -36,7 +36,7 @@ The project runs on a [Docker](https://www.docker.com)-based installer and runti
 
 - [Docker Compose](https://docs.docker.com/compose/install) (v2.10+)
 
-### 🦊 Installation
+### 🦊 Code
 
 1. Clone this project:
 
@@ -55,13 +55,18 @@ The project runs on a [Docker](https://www.docker.com)-based installer and runti
 1. Start the project with Docker executing:
     
     ```bash
-    docker compose build --no-cache --pull
-    docker compose up -d
+    make start
     ```
 
 2. Then you'll have the application available at https://localhost.
 
 3. [Accept the auto-generated TLS certificate](https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate/15076602#15076602).
+
+4. Stop the Docker containers:
+
+    ```bash
+    make down
+    ```
 
 ### ✅ Tests
 
