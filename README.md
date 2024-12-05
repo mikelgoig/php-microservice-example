@@ -1,51 +1,87 @@
-# Symfony Docker
+<h1>
+Hexagonal Architecture, CQRS, DDD & Event Sourcing in PHP
+</h1>
 
-A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework,
-with [FrankenPHP](https://frankenphp.dev) and [Caddy](https://caddyserver.com/) inside!
+<p>
+Created by <a href="https://mikelgoig.com">Mikel Goig</a>.
+</p>
 
-![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
+<p>
+    <a href="https://symfony.com">
+        <img alt="Symfony 7" src="https://img.shields.io/badge/Symfony-7-purple.svg?style=flat-square&logo=symfony"/>
+    </a>
+</p>
 
-## Getting Started
+<p>
+    <a href="https://github.com/mikelgoig/php-sandbox-project">
+        View Repository
+    </a>
+</p>
 
-1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
-2. Run `docker compose build --no-cache` to build fresh images
-3. Run `docker compose up --pull always -d --wait` to set up and start a fresh Symfony project
-4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
-5. Run `docker compose down --remove-orphans` to stop the Docker containers.
+---
 
-## Features
+Sandbox project of a **PHP application using Hexagonal Architecture, CQRS, DDD and Event Sourcing**, keeping the code as
+simple as possible.
 
-* Production, development and CI ready
-* Just 1 service by default
-* Blazing-fast performance thanks to [the worker mode of FrankenPHP](https://github.com/dunglas/frankenphp/blob/main/docs/worker.md) (automatically enabled in prod mode)
-* [Installation of extra Docker Compose services](docs/extra-services.md) with Symfony Flex
-* Automatic HTTPS (in dev and prod)
-* HTTP/3 and [Early Hints](https://symfony.com/blog/new-in-symfony-6-3-early-hints) support
-* Real-time messaging thanks to a built-in [Mercure hub](https://symfony.com/doc/current/mercure.html)
-* [Vulcain](https://vulcain.rocks) support
-* Native [XDebug](docs/xdebug.md) integration
-* Super-readable configuration
+**The domain of our system will be a Bookshop.** With this system you can manage the books catalog, and the book orders,
+via a REST API.
 
-**Enjoy!**
+The project runs on a [Docker](https://www.docker.com)-based installer and runtime for the
+[Symfony](https://symfony.com) web framework, with [FrankenPHP](https://frankenphp.dev) and
+[Caddy](https://caddyserver.com) inside!
 
-## Docs
+## 😎 Getting started
 
-1. [Options available](docs/options.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Debugging with Xdebug](docs/xdebug.md)
-6. [TLS Certificates](docs/tls.md)
-7. [Using MySQL instead of PostgreSQL](docs/mysql.md)
-8. [Using Alpine Linux instead of Debian](docs/alpine.md)
-9. [Using a Makefile](docs/makefile.md)
-10. [Updating the template](docs/updating.md)
-11. [Troubleshooting](docs/troubleshooting.md)
+### 🐳 Needed tools
 
-## License
+- [Docker Compose](https://docs.docker.com/compose/install) (v2.10+)
 
-Symfony Docker is available under the MIT License.
+### 🦊 Installation
 
-## Credits
+1. Clone this project:
 
-Created by [Kévin Dunglas](https://dunglas.dev), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
+    ```bash
+    git clone https://github.com/mikelgoig/php-sandbox-project.git
+    ```
+   
+2. Move to the project folder:
+
+    ```bash
+    cd php-sandbox-project
+    ```
+
+### 🔥 Execution
+
+1. Start the project with Docker executing:
+    
+    ```bash
+    docker compose build --no-cache --pull
+    docker compose up -d
+    ```
+
+2. Then you'll have the application available at https://localhost.
+
+3. [Accept the auto-generated TLS certificate](https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate/15076602#15076602).
+
+### ✅ Tests
+
+_TO DO_
+
+## 👩‍💻 Project explanation
+
+### ⛱️ Bounded Contexts
+
+* [Catalog](service/src/Catalog): A service to manage the book catalog.
+* [Orders](service/src/Orders): A service to manage the book orders.
+* [Shared](service/src/Shared): Shared components.
+
+## 🚀 Deployment
+
+_TO DO_
+
+## 🤩 Extra
+
+This sandbox project has been created using both templates [symfony/skeleton](https://github.com/dunglas/symfony-docker)
+and [dunglas/symfony-docker](https://github.com/dunglas/symfony-docker).
+
+This README has been written using this [README checklist](https://github.com/ddbeck/readme-checklist).
