@@ -3,8 +3,7 @@
 ## Use Case Diagrams
 
 ### Overview
-![Use Case Overview](architecture/use-case-diagrams/rendered/overview.png)
-
+![Use Case Overview](use-case-diagrams/rendered/overview.png)
 
 ## Bounded Contexts
 
@@ -12,7 +11,7 @@
 
 The following map illustrates the relationships between the Bounded Contexts in the system.
 
-![Context Map](architecture/bounded-context-diagrams/rendered/context-map.png)
+![Context Map](bounded-context-diagrams/rendered/context-map.png)
 
 ### Catalog Context
 

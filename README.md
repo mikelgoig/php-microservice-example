@@ -74,7 +74,7 @@ _TO DO_
 
 ## 👩‍💻 Project explanation
 
-- [Architecture](docs/architecture.md)
+- [Architecture](docs/architecture/architecture.md)
 
 ## 🚀 Deployment
 

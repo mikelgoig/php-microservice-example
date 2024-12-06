@@ -1,23 +1,46 @@
-@startuml
+@startuml overview
 left to right direction
 
 actor Customer
 actor Admin
 
-rectangle "Bookshop System" {
-    usecase "Search Books" as UC1
-    usecase "Purchase Book" as UC2
-    usecase "View Order History" as UC3
-    usecase "Add New Book" as UC4
-    usecase "Update Book Details" as UC5
-    usecase "Remove Book" as UC6
+package "Bookshop System" {
+    rectangle "Backoffice Service" {
+        usecase "Add New Book"
+        usecase "Update Book Details"
+        usecase "Remove Book"
+        usecase "Manage Categories"
+        usecase "Check Stock"
+        usecase "Book Out Of Stock" #lightyellow
+        "Book Out Of Stock" .right.> "Check Stock" : <<extend>>
+    }
+    rectangle "Catalog Service" {
+        usecase "Search Books"
+        usecase "Search Books By Category"
+        "Search Books By Category" -right-|> "Search Books"
+    }
+
+    rectangle "Reservation Service" {
+        usecase "Purchase Book"
+        usecase "View Order History"
+    }
+
+    rectangle "Payment Service" {
+        usecase "Make Payment"
+        usecase "Payment Error" #lightyellow
+        "Payment Error" .right.> "Make Payment" : <<extend>>
+    }
 }
 
-Customer --> UC1
-Customer --> UC2
-Customer --> UC3
+Admin --> "Add New Book"
+Admin --> "Update Book Details"
+Admin --> "Remove Book"
+Admin --> "Manage Categories"
 
-Admin --> UC4
-Admin --> UC5
-Admin --> UC6
+Customer --> "Search Books"
+
+Customer --> "Purchase Book"
+"Purchase Book" ..> "Check Stock" : <<include>>
+"Purchase Book" ..> "Make Payment" : <<include>>
+Customer --> "View Order History"
 @enduml
