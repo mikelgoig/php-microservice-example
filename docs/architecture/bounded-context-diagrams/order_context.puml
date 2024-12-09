@@ -1,0 +1,6 @@
+@startuml order_context
+rectangle "Order Context" #lightyellow {
+    rectangle Order #lightblue
+    rectangle Customer #lightblue
+}
+@enduml

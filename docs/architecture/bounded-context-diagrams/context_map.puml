@@ -1,0 +1,10 @@
+@startuml context_map
+!include inventory_context.puml
+!include order_context.puml
+!include payment_context.puml
+
+"Stock" <..> "Order" : Stock updates
+"Order" --> "Product" : Pricing data
+"Order" ..> "Payment" : Order details
+"Payment" ..> "Order" : Payment status
+@enduml

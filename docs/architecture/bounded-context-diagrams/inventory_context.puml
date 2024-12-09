@@ -1,0 +1,7 @@
+@startuml inventory_context
+rectangle "Inventory Context" #lightyellow {
+    rectangle Product #lightblue
+    rectangle Category #lightblue
+    rectangle Stock #lightblue
+}
+@enduml

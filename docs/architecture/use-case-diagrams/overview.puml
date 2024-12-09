@@ -5,27 +5,29 @@ actor Customer
 actor Admin
 
 package "Bookshop System" {
-    rectangle "Backoffice Service" {
+    rectangle "Inventory Context" {
         usecase "Add New Book"
         usecase "Update Book Details"
         usecase "Remove Book"
         usecase "Manage Categories"
+        usecase "Add New Stock"
         usecase "Check Stock"
         usecase "Book Out Of Stock" #lightyellow
         "Book Out Of Stock" .right.> "Check Stock" : <<extend>>
     }
-    rectangle "Catalog Service" {
+
+    rectangle "Catalog Context" {
         usecase "Search Books"
         usecase "Search Books By Category"
         "Search Books By Category" -right-|> "Search Books"
     }
 
-    rectangle "Reservation Service" {
+    rectangle "Order Context" {
         usecase "Purchase Book"
         usecase "View Order History"
     }
 
-    rectangle "Payment Service" {
+    rectangle "Payment Context" {
         usecase "Make Payment"
         usecase "Payment Error" #lightyellow
         "Payment Error" .right.> "Make Payment" : <<extend>>
@@ -35,6 +37,7 @@ package "Bookshop System" {
 Admin --> "Add New Book"
 Admin --> "Update Book Details"
 Admin --> "Remove Book"
+Admin --> "Add New Stock"
 Admin --> "Manage Categories"
 
 Customer --> "Search Books"

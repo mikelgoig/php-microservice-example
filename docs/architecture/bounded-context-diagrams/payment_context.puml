@@ -1,0 +1,7 @@
+@startuml payment_context
+rectangle "Payment Context" #lightyellow {
+    rectangle Payment #lightblue
+    rectangle Transaction #lightblue
+    rectangle Invoice #lightblue
+}
+@enduml
