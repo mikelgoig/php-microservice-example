@@ -74,7 +74,13 @@ _TO DO_
 
 ## 👩‍💻 Project explanation
 
-- [Architecture](docs/architecture/architecture.md)
+### Architecture
+
+- [System Architecture Style](docs/architecture/architecture-style.md)
+- [Architecture Diagrams](docs/architecture/architecture-diagrams.md)
+- [Tech Stack](docs/architecture/tech-stack.md)
+- [Bounded Contexts](docs/architecture/bounded-contexts.md)
+- [Use Cases](docs/architecture/use-cases.md)
 
 ## 🚀 Deployment
 
