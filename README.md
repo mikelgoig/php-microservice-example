@@ -82,9 +82,13 @@ _TO DO_
 - [Bounded Contexts](docs/architecture/bounded-contexts.md)
 - [Use Cases](docs/architecture/use-cases.md)
 
-## 🚀 Deployment
+### Version Control
 
-_TO DO_
+- [Branching Strategy](docs/version-control/branching-strategy.md)
+
+### Deployment
+
+- [Deployment Model](docs/deployment/deployment-model.md)
 
 ## 🤩 Extra
 
