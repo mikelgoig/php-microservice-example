@@ -10,6 +10,8 @@ Communication between these contexts is handled using **Integration Events** (as
 (synchronous). This approach allows for modular development within the monolith, supporting scalability and
 maintainability.
 
+---
+
 ## Hexagonal Architecture
 
 The system follows a **Hexagonal Architecture (Ports and Adapters)** style to promote flexibility, testability, and

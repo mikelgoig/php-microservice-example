@@ -6,6 +6,8 @@ The following map illustrates the relationships between the Bounded Contexts in 
 
 ![Context Map](bounded-context-diagrams/rendered/context_map.png)
 
+---
+
 ## Inventory Context
 
 The Inventory Context is responsible for managing the books, including their categories, and their stock levels. It
@@ -38,6 +40,8 @@ ensures accurate and up-to-date information about available books and their pric
 - Synchronizing stock levels with concurrent reservations and cancellations.
 - Handling large catalogs efficiently for quick searches and updates.
 - Ensuring pricing information is always accurate across contexts.
+
+---
 
 ## Order Context
 
@@ -72,6 +76,8 @@ provided by the Inventory Context.
 ### Challenges
 - Handling concurrent orders to avoid overbuying.
 - Managing cancellations and stock releases in real-time.
+
+---
 
 ## Payment Context
 
