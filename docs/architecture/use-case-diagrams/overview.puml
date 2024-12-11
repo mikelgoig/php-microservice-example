@@ -2,7 +2,7 @@
 left to right direction
 
 actor Customer
-actor Admin
+actor Manager
 
 package "Bookshop System" {
     rectangle "Inventory Context" {
@@ -34,11 +34,11 @@ package "Bookshop System" {
     }
 }
 
-Admin --> "Add New Book"
-Admin --> "Update Book Details"
-Admin --> "Remove Book"
-Admin --> "Add New Stock"
-Admin --> "Manage Categories"
+Manager --> "Add New Book"
+Manager --> "Update Book Details"
+Manager --> "Remove Book"
+Manager --> "Add New Stock"
+Manager --> "Manage Categories"
 
 Customer --> "Search Books"
 
