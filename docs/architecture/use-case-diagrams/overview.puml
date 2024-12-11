@@ -5,7 +5,7 @@ actor Customer
 actor Manager
 
 package "Bookshop System" {
-    rectangle "Inventory Context" {
+    rectangle Catalog {
         usecase "Add New Book"
         usecase "Update Book Details"
         usecase "Remove Book"
@@ -13,21 +13,18 @@ package "Bookshop System" {
         usecase "Add New Stock"
         usecase "Check Stock"
         usecase "Book Out Of Stock" #lightyellow
-        "Book Out Of Stock" .right.> "Check Stock" : <<extend>>
-    }
-
-    rectangle "Catalog Context" {
         usecase "Search Books"
         usecase "Search Books By Category"
         "Search Books By Category" -right-|> "Search Books"
+        "Book Out Of Stock" .right.> "Check Stock" : <<extend>>
     }
 
-    rectangle "Order Context" {
+    rectangle Orders {
         usecase "Purchase Book"
         usecase "View Order History"
     }
 
-    rectangle "Payment Context" {
+    rectangle Payments {
         usecase "Make Payment"
         usecase "Payment Error" #lightyellow
         "Payment Error" .right.> "Make Payment" : <<extend>>

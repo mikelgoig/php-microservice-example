@@ -1,7 +1,7 @@
 # Branching Strategy
 
-The project follows the [**Trunk-Based Development**](https://trunkbaseddevelopment.com) strategy, which emphasizes continuous integration of small, frequent
-changes into a single, shared branch, `main`.
+The project follows the [**Trunk-Based Development**](https://trunkbaseddevelopment.com) strategy, which emphasizes
+continuous integration of small, frequent changes into a single, shared branch, `main`.
 
 This strategy minimizes branching and focuses on collaboration, speed, and simplicity, ensuring that the `main` branch
 is always in a deployable state.

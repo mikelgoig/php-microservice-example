@@ -20,19 +20,18 @@ Created by <a href="https://mikelgoig.com">Mikel Goig</a>.
 
 ---
 
-Sandbox project of a **PHP application using Hexagonal Architecture, CQRS, DDD and Event Sourcing**, keeping the code as
-simple as possible.
+Sandbox project of a **PHP microservice using Hexagonal Architecture, CQRS, DDD and Event Sourcing**, keeping the code
+as simple as possible.
 
-**The domain of our system will be a Bookshop.** With this system you can manage the books catalog, and the book orders,
-via a REST API.
+This microservice is just a component of a **Bookshop System**, which is in charge of managing the book catalog.
 
 The project runs on a [Docker](https://www.docker.com)-based installer and runtime for the
 [Symfony](https://symfony.com) web framework, with [FrankenPHP](https://frankenphp.dev) and
 [Caddy](https://caddyserver.com) inside!
 
-## 😎 Getting started
+## 😎 Getting Started
 
-### 🐳 Needed tools
+### 🐳 Needed Tools
 
 - [Docker Compose](https://docs.docker.com/compose/install) (v2.10+)
 
@@ -43,7 +42,7 @@ The project runs on a [Docker](https://www.docker.com)-based installer and runti
     ```bash
     git clone https://github.com/mikelgoig/php-sandbox-project.git
     ```
-   
+
 2. Move to the project folder:
 
     ```bash
@@ -53,7 +52,7 @@ The project runs on a [Docker](https://www.docker.com)-based installer and runti
 ### 🔥 Execution
 
 1. Start the project with Docker executing:
-    
+
     ```bash
     make start
     ```
@@ -72,7 +71,7 @@ The project runs on a [Docker](https://www.docker.com)-based installer and runti
 
 _TO DO_
 
-## 👩‍💻 Project explanation
+## 👩‍💻 Project Explanation
 
 ### Architecture
 

@@ -1,9 +1,5 @@
 # Tech Stack
 
-This document outlines the technologies and tools used in the project.
-
----
-
 ## Backend
 
 - **Programming Language:** PHP 8.2
@@ -13,8 +9,8 @@ This document outlines the technologies and tools used in the project.
 - **Message Queue:** [RabbitMQ](https://rabbitmq.com)
 - **Search Engine:** [Elasticsearch](https://elastic.co/elasticsearch)
 - **Libraries:**
-  - `league/openapi-psr7-validator`: API validation
-  - `phpstan`: static code analysis
+    - `league/openapi-psr7-validator`: API validation
+    - `phpstan`: static code analysis
 
 ---
 
@@ -35,6 +31,7 @@ This document outlines the technologies and tools used in the project.
 ---
 
 ## Rationale for Choices
+
 - **PHP and Symfony:** Chosen for robustness and rich ecosystem for backend development.
 - **RabbitMQ:** Supports reliable message processing in a distributed system.
 - **Docker:** Simplifies environment setup and ensures consistency across development and production.

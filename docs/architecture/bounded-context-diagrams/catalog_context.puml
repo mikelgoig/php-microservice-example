@@ -1,0 +1,7 @@
+@startuml catalog_context
+rectangle Catalog #lightyellow {
+    rectangle Book #lightblue
+    rectangle Category #lightblue
+    rectangle Stock #lightblue
+}
+@enduml

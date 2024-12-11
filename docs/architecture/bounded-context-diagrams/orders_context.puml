@@ -1,5 +1,5 @@
-@startuml order_context
-rectangle "Order Context" #lightyellow {
+@startuml orders_context
+rectangle Orders #lightyellow {
     rectangle Order #lightblue
     rectangle Customer #lightblue
 }
