@@ -75,6 +75,10 @@
     - `symfony/debug-bundle` (`symfony/debug-pack`):
         - Integrates debugging tools with Symfony's services in the framework.
         - Provides features like setting up a debug container and additional diagnostics.
+    - `symfony/maker-bundle`:
+        - Simplifies the process of generating common code and features.
+        - Provides interactive commands that developers can use to scaffold different parts of the application, such as
+          controllers, entities, form classes, tests, and more.
     - `symfony/stopwatch` (`symfony/debug-pack`):
         - Measures the performance or execution time of your application code.
         - It is useful for profiling and debugging code sections to determine their duration and performance impact.
