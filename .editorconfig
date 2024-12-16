@@ -32,6 +32,7 @@ indent_style = space
 indent_size = 4
 
 [*.{yaml,yml}]
+indent_size = 2
 trim_trailing_whitespace = false
 
 [.github/workflows/*.yml]
@@ -46,9 +47,6 @@ indent_size = 4
 
 [composer.json]
 indent_size = 4
-
-[{compose,docker-compose}.*.{yaml,yml}]
-indent_size = 2
 
 [*.*Dockerfile]
 indent_style = tab
