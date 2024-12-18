@@ -72,6 +72,16 @@
     - `symfony/yaml` (`symfony/skeleton`):
         - Offers tools to parse, dump, and use YAML configuration files.
 - **Dev Dependencies:**
+    - `codeception/codeception`:
+        - Codeception is a testing framework for PHP applications. It allows for creating unit, functional, and
+          acceptance tests.
+    - `codeception/module-rest`:
+        - A Codeception module which allows tests to communicate with REST APIs and validate responses.
+    - `codeception/module-symfony`:
+        - A Codeception module which integrates with Symfony internals, allowing deeper functional and integration
+          testing.
+    - `mikelgoig/codeception-gherkin-rest`:
+        - A Codeception module which simplifies REST API testing using Gherkin syntax.
     - `symfony/debug-bundle` (`symfony/debug-pack`):
         - Integrates debugging tools with Symfony's services in the framework.
         - Provides features like setting up a debug container and additional diagnostics.
