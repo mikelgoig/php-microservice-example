@@ -59,3 +59,8 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 
 cc: c=c:c ## Clear the cache
 cc: sf
+
+## —— Test 🧪 ——————————————————————————————————————————————————————————————————
+ct: ## Execute component tests. Pass the parameter "c=" to add options to codeception, example: make ct c="--skip-group=skip"
+	@$(eval c ?=)
+	@$(PHP_CONT) vendor/bin/codecept run component $(c)

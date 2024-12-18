@@ -1,0 +1,18 @@
+actor: ComponentTester
+path: ./Component
+suite_namespace: App\Tests\Component
+modules:
+  enabled:
+    - Symfony:
+        app_path: src
+        environment: test
+        kernel_class: App\Kernel
+    - REST:
+        depends: Symfony
+        part: Json
+    - Codeception\Module\Gherkin\REST:
+        depends: REST
+        multipart_boundary: mikelgoig
+extensions:
+  enabled:
+    - App\Tests\Support\Extension\Database
