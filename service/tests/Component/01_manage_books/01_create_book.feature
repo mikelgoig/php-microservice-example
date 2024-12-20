@@ -11,6 +11,7 @@ Feature: Create a book
             "Content-Type": "application/ld+json"
         },
         "body": {
+          "id": "0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
           "name": "Advanced Web Application Architecture"
         }
       }
@@ -20,9 +21,8 @@ Feature: Create a book
       """
       {
         "@context": "/api/contexts/Book",
-        "@id": "/api/books/1",
+        "@id": "/api/books/0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
         "@type": "Book",
-        "id": 1,
-        "name": "Advanced Web Application Architecture"
+        "id": "0193e440-4dd0-7ff9-b3a6-2eb050bcd635"
       }
       """

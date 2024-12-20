@@ -73,6 +73,8 @@
         - Validates objects or data values using Symfony's validation component based on constraints.
     - `symfony/yaml` (`symfony/skeleton`):
         - Offers tools to parse, dump, and use YAML configuration files.
+    - `webmozart/assert`:
+        - A lightweight PHP library used for making assertions in your application.
 - **Dev Dependencies:**
     - `codeception/codeception`:
         - Codeception is a testing framework for PHP applications. It allows for creating unit, functional, and

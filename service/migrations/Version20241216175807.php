@@ -11,17 +11,29 @@ final class Version20241216175807 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Create books table';
     }
 
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TABLE book (id SERIAL NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql(
+            <<<SQL
+            CREATE TABLE "books" (
+                "id_primary" SERIAL,
+                "id" UUID NOT NULL,
+                "name" VARCHAR(255) NOT NULL,
+                PRIMARY KEY("id_primary")
+            );
+            SQL
+        );
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP TABLE book');
+        $this->addSql(
+            <<<SQL
+            DROP TABLE "books";
+            SQL
+        );
     }
 }
