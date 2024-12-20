@@ -51,6 +51,8 @@
     - `symfony/framework-bundle` (`symfony/skeleton`):
         - Core Symfony framework tools, providing services like routing, HTTP handling, and other foundational
           capabilities.
+    - `symfony/messenger`:
+        - Provides tools to manage message-driven architectures in your application.
     - `symfony/monolog-bundle` (`symfony/debug-pack`):
         - Enables logging in Symfony applications using Monolog, a powerful logging library.
         - Lets you send logs to files, databases, emails, or third-party services (e.g., Slack or Loggly), which is
