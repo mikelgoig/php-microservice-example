@@ -4,9 +4,9 @@ suite_namespace: App\Tests\Component
 modules:
   enabled:
     - Symfony:
-        app_path: src
+        app_path: src/Shared/Infrastructure/Symfony
+        kernel_class: App\Shared\Infrastructure\Symfony\Kernel
         environment: test
-        kernel_class: App\Kernel
     - REST:
         depends: Symfony
         part: Json
