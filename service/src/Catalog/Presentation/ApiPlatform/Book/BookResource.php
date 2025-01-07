@@ -6,7 +6,9 @@ namespace App\Catalog\Presentation\ApiPlatform\Book;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
+use App\Catalog\Domain\Model\Book\Book;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
@@ -16,6 +18,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Post(
             validationContext: ['groups' => ['create']],
             processor: CreateBookProcessor::class,
+        ),
+        // queries
+        new Get(
+            provider: GetBookProvider::class,
         ),
     ],
 )]
@@ -35,5 +41,13 @@ final class BookResource
     public static function fromId(string $id): self
     {
         return new self($id);
+    }
+
+    public static function fromModel(Book $book): self
+    {
+        return new self(
+            $book->id(),
+            $book->name(),
+        );
     }
 }

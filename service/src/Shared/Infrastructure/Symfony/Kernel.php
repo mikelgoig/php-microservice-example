@@ -3,6 +3,7 @@
 namespace App\Shared\Infrastructure\Symfony;
 
 use App\Shared\Application\Bus\Command\AsCommandHandler;
+use App\Shared\Application\Bus\Query\AsQueryHandler;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -16,6 +17,10 @@ class Kernel extends BaseKernel
     {
         $container->registerAttributeForAutoconfiguration(AsCommandHandler::class, static function (ChildDefinition $definition): void {
             $definition->addTag('messenger.message_handler', ['bus' => 'command.bus']);
+        });
+
+        $container->registerAttributeForAutoconfiguration(AsQueryHandler::class, static function (ChildDefinition $definition): void {
+            $definition->addTag('messenger.message_handler', ['bus' => 'query.bus']);
         });
     }
 }
