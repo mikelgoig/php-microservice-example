@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace App\Catalog\Domain\Model\Book;
 
-interface BookRepository
+use App\Shared\Domain\Repository\RepositoryInterface;
+
+/**
+ * @extends RepositoryInterface<Book>
+ */
+interface BookRepository extends RepositoryInterface
 {
     public function save(Book $book): void;
 

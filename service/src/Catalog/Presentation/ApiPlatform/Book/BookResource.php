@@ -7,6 +7,7 @@ namespace App\Catalog\Presentation\ApiPlatform\Book;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Catalog\Domain\Model\Book\Book;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -22,6 +23,9 @@ use Symfony\Component\Validator\Constraints as Assert;
         // queries
         new Get(
             provider: GetBookProvider::class,
+        ),
+        new GetCollection(
+            provider: ListBooksProvider::class
         ),
     ],
 )]
