@@ -64,3 +64,7 @@ cc: sf
 ct: ## Execute component tests. Pass the parameter "c=" to add options to codeception, example: make ct c="--skip-group=skip"
 	@$(eval c ?=)
 	@$(PHP_CONT) vendor/bin/codecept run component $(c)
+
+ctff: ## Execute component tests with fail fast option
+ctff: c=--fail-fast
+ctff: ct
