@@ -18,7 +18,6 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         // commands
         new Post(
-            validationContext: ['groups' => ['create']],
             processor: CreateBookProcessor::class,
         ),
         // queries
@@ -36,8 +35,8 @@ final class BookResource
         #[ApiProperty(readable: false, writable: false, identifier: true)]
         public ?UuidV7 $id = null,
 
-        #[Assert\NotNull(groups: ['create'])]
-        #[Assert\Length(min: 1, max: 255, groups: ['create', 'Default'])]
+        #[Assert\NotNull]
+        #[Assert\Length(min: 1, max: 255)]
         public ?string $name = null,
     ) {
     }
