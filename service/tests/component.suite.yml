@@ -13,6 +13,11 @@ modules:
     - Codeception\Module\Gherkin\REST:
         depends: REST
         multipart_boundary: mikelgoig
+    - MikelGoig\Codeception\Module\OpenApi:
+        depends: [ REST, Symfony ]
+        openapi: var/data/openapi.json
+        part: gherkin
 extensions:
   enabled:
+    - App\Tests\Support\Extension\ApiPlatform
     - App\Tests\Support\Extension\Database

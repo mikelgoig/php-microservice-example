@@ -40,6 +40,7 @@
         "codeception/module-rest": "^3.4",
         "codeception/module-symfony": "^3.5",
         "mikelgoig/codeception-gherkin-rest": "^1.1",
+        "mikelgoig/codeception-openapi": "^1.0",
         "symfony/debug-bundle": "7.2.*",
         "symfony/maker-bundle": "^1.61",
         "symfony/stopwatch": "7.2.*",

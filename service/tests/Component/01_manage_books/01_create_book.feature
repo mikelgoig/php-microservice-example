@@ -24,6 +24,8 @@ Feature: Create book
         "name": "Advanced Web Application Architecture"
       }
       """
+    And I see that request matches the OpenAPI specification
+    And I see that response matches the OpenAPI specification
 
   Scenario: [KO] Some data is null
     When I send a "POST" request to "/api/books" with:
@@ -52,6 +54,7 @@ Feature: Create book
         ]
       }
       """
+    And I see that response matches the OpenAPI specification
 
   Scenario: [KO] Some data is blank
     When I send a "POST" request to "/api/books" with:
@@ -82,6 +85,7 @@ Feature: Create book
         ]
       }
       """
+    And I see that response matches the OpenAPI specification
 
   Scenario: [KO] The name is too long
     When I send a "POST" request to "/api/books" with:
@@ -112,3 +116,4 @@ Feature: Create book
         ]
       }
       """
+    And I see that response matches the OpenAPI specification

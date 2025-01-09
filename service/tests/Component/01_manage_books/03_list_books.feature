@@ -27,6 +27,8 @@ Feature: List books
         ]
       }
       """
+    And I see that request matches the OpenAPI specification
+    And I see that response matches the OpenAPI specification
 
   Scenario: [OK] Pagination
     Given I create the book AWAA
@@ -55,3 +57,5 @@ Feature: List books
         }
       }
       """
+    And I see that request matches the OpenAPI specification
+    And I see that response matches the OpenAPI specification
