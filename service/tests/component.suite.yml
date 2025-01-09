@@ -7,9 +7,6 @@ modules:
         app_path: src/Shared/Infrastructure/Symfony
         kernel_class: App\Shared\Infrastructure\Symfony\Kernel
         environment: test
-    - Doctrine:
-        depends: Symfony
-        cleanup: true
     - REST:
         depends: Symfony
         part: Json

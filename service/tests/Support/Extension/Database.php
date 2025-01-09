@@ -6,6 +6,7 @@ namespace App\Tests\Support\Extension;
 
 use Codeception\Events;
 use Codeception\Extension;
+use Codeception\Module\Symfony;
 
 final class Database extends Extension
 {
@@ -19,8 +20,14 @@ final class Database extends Extension
     /** @noinspection PhpUnused */
     public function beforeTest(): void
     {
-        exec('bin/console doctrine:database:drop --env=test --force');
-        exec('bin/console doctrine:database:create --env=test');
-        exec('bin/console doctrine:migrations:migrate --env=test --no-interaction');
+        /** @var Symfony $symfony */
+        $symfony = $this->getModule('Symfony');
+        $entityManager = $symfony->_getEntityManager();
+        $entityManager->flush();
+        $entityManager->clear();
+        $entityManager->getConnection()->close();
+        $symfony->runSymfonyConsoleCommand('doctrine:database:drop', ['--if-exists' => true, '--force' => true]);
+        $symfony->runSymfonyConsoleCommand('doctrine:database:create');
+        $symfony->runSymfonyConsoleCommand('doctrine:migrations:migrate', ['--no-interaction' => true]);
     }
 }

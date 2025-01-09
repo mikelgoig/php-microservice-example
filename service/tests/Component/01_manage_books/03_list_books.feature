@@ -43,7 +43,7 @@ Feature: List books
         "member": [
           {
             "@type": "Book",
-            "name": "Advanced Web Application Architecture"
+            "name": "Domain-Driven Design in PHP"
           }
         ],
         "view": {

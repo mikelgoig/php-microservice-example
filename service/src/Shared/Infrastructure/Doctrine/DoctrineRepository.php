@@ -28,7 +28,8 @@ abstract class DoctrineRepository implements RepositoryInterface
     ) {
         $this->queryBuilder = $this->entityManager->createQueryBuilder()
             ->select($alias)
-            ->from($entityClass, $alias);
+            ->from($entityClass, $alias)
+            ->orderBy($alias . '.id', 'DESC');
     }
 
     public function paginator(): ?PaginatorInterface
