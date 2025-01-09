@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Catalog\Domain\Model\Book\Book;
+use Symfony\Component\Uid\UuidV7;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
@@ -32,9 +33,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class BookResource
 {
     public function __construct(
-        #[ApiProperty(identifier: true)]
-        #[Assert\Uuid(versions: Assert\Uuid::V7_MONOTONIC, groups: ['create', 'Default'])]
-        public ?string $id = null,
+        #[ApiProperty(readable: false, writable: false, identifier: true)]
+        public ?UuidV7 $id = null,
 
         #[Assert\NotNull(groups: ['create'])]
         #[Assert\Length(min: 1, max: 255, groups: ['create', 'Default'])]
@@ -42,15 +42,10 @@ final class BookResource
     ) {
     }
 
-    public static function fromId(string $id): self
-    {
-        return new self($id);
-    }
-
     public static function fromModel(Book $book): self
     {
         return new self(
-            $book->id(),
+            UuidV7::fromString($book->id()),
             $book->name(),
         );
     }

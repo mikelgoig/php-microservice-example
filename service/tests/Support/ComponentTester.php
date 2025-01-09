@@ -42,10 +42,9 @@ class ComponentTester extends Actor
             '/api/books',
             [
                 'headers' => [
-                    'Content-Type' => 'application/ld+json',
+                    'Content-Type' => 'application/json',
                 ],
                 'body' => [
-                    'id' => '0193e440-4dd0-7ff9-b3a6-2eb050bcd635',
                     'name' => 'Advanced Web Application Architecture',
                 ],
             ],
@@ -64,10 +63,9 @@ class ComponentTester extends Actor
             '/api/books',
             [
                 'headers' => [
-                    'Content-Type' => 'application/ld+json',
+                    'Content-Type' => 'application/json',
                 ],
                 'body' => [
-                    'id' => '0194462f-3a79-7556-a2d7-9fa7db847708',
                     'name' => 'Domain-Driven Design in PHP',
                 ],
             ],

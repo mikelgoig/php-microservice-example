@@ -17,15 +17,11 @@ Feature: List books
         "totalItems": 2,
         "member": [
           {
-            "@id": "/api/books/0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
             "@type": "Book",
-            "id": "0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
             "name": "Advanced Web Application Architecture"
           },
           {
-            "@id": "/api/books/0194462f-3a79-7556-a2d7-9fa7db847708",
             "@type": "Book",
-            "id": "0194462f-3a79-7556-a2d7-9fa7db847708",
             "name": "Domain-Driven Design in PHP"
           }
         ]
@@ -46,9 +42,7 @@ Feature: List books
         "totalItems": 2,
         "member": [
           {
-            "@id": "/api/books/0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
             "@type": "Book",
-            "id": "0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
             "name": "Advanced Web Application Architecture"
           }
         ],

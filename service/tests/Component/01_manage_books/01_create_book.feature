@@ -8,10 +8,9 @@ Feature: Create a book
       """
       {
         "headers": {
-          "Content-Type": "application/ld+json"
+          "Content-Type": "application/json"
         },
         "body": {
-          "id": "0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
           "name": "Advanced Web Application Architecture"
         }
       }
@@ -21,19 +20,7 @@ Feature: Create a book
       """
       {
         "@context": "/api/contexts/Book",
-        "@id": "/api/books/0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
         "@type": "Book",
-        "id": "0193e440-4dd0-7ff9-b3a6-2eb050bcd635"
-      }
-      """
-    And I send a "GET" request to "/api/books/0193e440-4dd0-7ff9-b3a6-2eb050bcd635"
-    And I should receive a JSON response that contains:
-      """
-      {
-        "@context": "/api/contexts/Book",
-        "@id": "/api/books/0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
-        "@type": "Book",
-        "id": "0193e440-4dd0-7ff9-b3a6-2eb050bcd635",
         "name": "Advanced Web Application Architecture"
       }
       """
