@@ -84,8 +84,10 @@
     - `codeception/module-symfony`:
         - A Codeception module which integrates with Symfony internals, allowing deeper functional and integration
           testing.
-    - `mikelgoig/codeception-gherkin-rest`:
-        - A Codeception module which simplifies REST API testing using Gherkin syntax.
+    - `mikelgoig/codeception-openapi`:
+        - A Codeception module for contract testing with OpenAPI.
+    - `mikelgoig/codeception-rest`:
+        - A Codeception module for testing REST services.
     - `symfony/debug-bundle` (`symfony/debug-pack`):
         - Integrates debugging tools with Symfony's services in the framework.
         - Provides features like setting up a debug container and additional diagnostics.

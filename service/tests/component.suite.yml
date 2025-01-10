@@ -10,9 +10,9 @@ modules:
     - REST:
         depends: Symfony
         part: Json
-    - Codeception\Module\Gherkin\REST:
+    - MikelGoig\Codeception\Module\Rest:
         depends: REST
-        multipart_boundary: mikelgoig
+        part: gherkin
     - MikelGoig\Codeception\Module\OpenApi:
         depends: [ REST, Symfony ]
         openapi: var/data/openapi.json
