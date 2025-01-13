@@ -28,6 +28,8 @@ class ComponentTester extends Actor
 {
     use _generated\ComponentTesterActions;
 
+    private ?string $bookId = null;
+
     /**************************************************************************/
     /* Books                                                              */
     /**************************************************************************/
@@ -51,6 +53,7 @@ class ComponentTester extends Actor
         );
 
         $this->seeResponseCodeIsSuccessful();
+        $this->bookId = json_decode($this->grabResponse(), true)['@id'];
     }
 
     /**
@@ -72,5 +75,13 @@ class ComponentTester extends Actor
         );
 
         $this->seeResponseCodeIsSuccessful();
+    }
+
+    /**
+     * @When /^I get the last book created$/
+     */
+    public function stepGetLastBookCreated(): void
+    {
+        $this->sendGet($this->bookId);
     }
 }
