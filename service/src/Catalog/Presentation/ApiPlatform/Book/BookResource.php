@@ -9,7 +9,12 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
+use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use App\Catalog\Domain\Model\Book\Book;
+use App\Catalog\Domain\Model\Book\BookAlreadyExists;
+use App\Catalog\Domain\Model\Book\CouldNotFindBook;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -18,10 +23,17 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         // commands
         new Post(
+            openapi: new OpenApiOperation(
+                responses: [
+                    Response::HTTP_CONFLICT => new OpenApiResponse('Book resource already exists'),
+                ]
+            ),
+            exceptionToStatus: [BookAlreadyExists::class => Response::HTTP_CONFLICT],
             processor: CreateBookProcessor::class,
         ),
         // queries
         new Get(
+            exceptionToStatus: [CouldNotFindBook::class => Response::HTTP_NOT_FOUND],
             provider: GetBookProvider::class,
         ),
         new GetCollection(

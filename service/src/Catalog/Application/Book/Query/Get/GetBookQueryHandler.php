@@ -6,6 +6,7 @@ namespace App\Catalog\Application\Book\Query\Get;
 
 use App\Catalog\Domain\Model\Book\Book;
 use App\Catalog\Domain\Model\Book\BookRepository;
+use App\Catalog\Domain\Model\Book\CouldNotFindBook;
 use App\Shared\Application\Bus\Query\AsQueryHandler;
 
 #[AsQueryHandler]
@@ -21,7 +22,7 @@ final readonly class GetBookQueryHandler
         $book = $this->books->ofId($query->id);
 
         if ($book === null) {
-            throw new \RuntimeException('Book not found');
+            throw CouldNotFindBook::withId($query->id);
         }
 
         return $book;

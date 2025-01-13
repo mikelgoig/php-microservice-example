@@ -15,7 +15,8 @@ Feature: Create book
         }
       }
       """
-    Then I should receive a "201" response code
+    Then I see that request matches the OpenAPI specification
+    And I should receive a "201" response code
     And I should receive a JSON response that contains:
       """
       {
@@ -24,7 +25,6 @@ Feature: Create book
         "name": "Advanced Web Application Architecture"
       }
       """
-    And I see that request matches the OpenAPI specification
     And I see that response matches the OpenAPI specification
 
   Scenario: [KO] The data is null
@@ -114,6 +114,34 @@ Feature: Create book
             "message": "This value is too long. It should have 255 characters or less."
           }
         ]
+      }
+      """
+    And I see that response matches the OpenAPI specification
+
+  Scenario: [KO] Already exists a book with the given name
+    Given I create the book AWAA
+    When I send a "POST" request to "/api/books" with:
+      """
+      {
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Advanced Web Application Architecture"
+        }
+      }
+      """
+    Then I should receive a "409" response code
+    And I should receive a JSON response that contains:
+      """
+      {
+        "@context": "/api/contexts/Error",
+        "@id": "/api/errors/409",
+        "@type": "Error",
+        "title": "An error occurred",
+        "description": "Book with name <Advanced Web Application Architecture> already exists.",
+        "type": "/errors/409",
+        "status": 409
       }
       """
     And I see that response matches the OpenAPI specification
