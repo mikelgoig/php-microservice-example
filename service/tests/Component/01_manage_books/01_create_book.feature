@@ -27,7 +27,7 @@ Feature: Create book
     And I see that request matches the OpenAPI specification
     And I see that response matches the OpenAPI specification
 
-  Scenario: [KO] Some data is null
+  Scenario: [KO] The data is null
     When I send a "POST" request to "/api/books" with:
       """
       {
@@ -56,7 +56,7 @@ Feature: Create book
       """
     And I see that response matches the OpenAPI specification
 
-  Scenario: [KO] Some data is blank
+  Scenario: [KO] The data is blank
     When I send a "POST" request to "/api/books" with:
       """
       {
