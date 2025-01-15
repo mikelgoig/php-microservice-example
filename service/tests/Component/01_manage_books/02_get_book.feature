@@ -6,8 +6,8 @@ Feature: Get book
   Scenario: [OK] The book exists
     Given I create the book AWAA
     When I get the last book created
-    Then I should receive a "200" response code
-    And I should receive a JSON response that contains:
+    Then the response code is "200"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/Book",
@@ -20,8 +20,8 @@ Feature: Get book
 
   Scenario: [OK] The book does not exist
     When I send a "GET" request to "/api/books/019461ba-a46e-722d-8ea4-09832f35a713"
-    Then I should receive a "404" response code
-    And I should receive a JSON response that contains:
+    Then the response code is "404"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/Error",

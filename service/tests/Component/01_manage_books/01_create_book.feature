@@ -16,8 +16,8 @@ Feature: Create book
       }
       """
     Then I see that request matches the OpenAPI specification
-    And I should receive a "201" response code
-    And I should receive a JSON response that contains:
+    And the response code is "201"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/Book",
@@ -37,8 +37,8 @@ Feature: Create book
         "body": {}
       }
       """
-    Then I should receive a "422" response code
-    And I should receive a JSON response that contains:
+    Then the response code is "422"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/ConstraintViolationList",
@@ -68,8 +68,8 @@ Feature: Create book
         }
       }
       """
-    Then I should receive a "422" response code
-    And I should receive a JSON response that contains:
+    Then the response code is "422"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/ConstraintViolationList",
@@ -99,8 +99,8 @@ Feature: Create book
         }
       }
       """
-    Then I should receive a "422" response code
-    And I should receive a JSON response that contains:
+    Then the response code is "422"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/ConstraintViolationList",
@@ -131,8 +131,8 @@ Feature: Create book
         }
       }
       """
-    Then I should receive a "409" response code
-    And I should receive a JSON response that contains:
+    Then the response code is "409"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/Error",

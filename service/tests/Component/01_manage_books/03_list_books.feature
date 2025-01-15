@@ -7,8 +7,8 @@ Feature: List books
     Given I create the book AWAA
     And I create the book DDD
     When I send a "GET" request to "/api/books"
-    Then I should receive a "200" response code
-    And I should receive a JSON response that contains:
+    Then the response code is "200"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/Book",
@@ -34,8 +34,8 @@ Feature: List books
     Given I create the book AWAA
     And I create the book DDD
     When I send a "GET" request to "/api/books?itemsPerPage=1&page=1"
-    Then I should receive a "200" response code
-    And I should receive a JSON response that contains:
+    Then the response code is "200"
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/Book",
