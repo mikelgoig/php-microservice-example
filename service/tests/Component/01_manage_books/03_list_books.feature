@@ -7,7 +7,8 @@ Feature: List books
     Given I create the book AWAA
     And I create the book DDD
     When I send a "GET" request to "/api/books"
-    Then the response code is "200"
+    Then the request matches the OpenAPI specification
+    And the response code is "200"
     And the response body contains JSON:
       """
       {
@@ -27,14 +28,14 @@ Feature: List books
         ]
       }
       """
-    And I see that request matches the OpenAPI specification
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification
 
   Scenario: [OK] Pagination
     Given I create the book AWAA
     And I create the book DDD
     When I send a "GET" request to "/api/books?itemsPerPage=1&page=1"
-    Then the response code is "200"
+    Then the request matches the OpenAPI specification
+    And the response code is "200"
     And the response body contains JSON:
       """
       {
@@ -57,5 +58,4 @@ Feature: List books
         }
       }
       """
-    And I see that request matches the OpenAPI specification
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification

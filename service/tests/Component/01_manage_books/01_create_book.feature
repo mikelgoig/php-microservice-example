@@ -15,7 +15,7 @@ Feature: Create book
         }
       }
       """
-    Then I see that request matches the OpenAPI specification
+    Then the request matches the OpenAPI specification
     And the response code is "201"
     And the response body contains JSON:
       """
@@ -25,7 +25,7 @@ Feature: Create book
         "name": "Advanced Web Application Architecture"
       }
       """
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification
 
   Scenario: [KO] The data is null
     When I send a "POST" request to "/api/books" with:
@@ -54,7 +54,7 @@ Feature: Create book
         ]
       }
       """
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification
 
   Scenario: [KO] The data is blank
     When I send a "POST" request to "/api/books" with:
@@ -85,7 +85,7 @@ Feature: Create book
         ]
       }
       """
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification
 
   Scenario: [KO] The name is too long
     When I send a "POST" request to "/api/books" with:
@@ -116,7 +116,7 @@ Feature: Create book
         ]
       }
       """
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification
 
   Scenario: [KO] Already exists a book with the given name
     Given I create the book AWAA
@@ -144,4 +144,4 @@ Feature: Create book
         "status": 409
       }
       """
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification

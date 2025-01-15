@@ -6,7 +6,8 @@ Feature: Get book
   Scenario: [OK] The book exists
     Given I create the book AWAA
     When I get the last book created
-    Then the response code is "200"
+    Then the request matches the OpenAPI specification
+    And the response code is "200"
     And the response body contains JSON:
       """
       {
@@ -15,8 +16,7 @@ Feature: Get book
         "name": "Advanced Web Application Architecture"
       }
       """
-    And I see that request matches the OpenAPI specification
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification
 
   Scenario: [OK] The book does not exist
     When I send a "GET" request to "/api/books/019461ba-a46e-722d-8ea4-09832f35a713"
@@ -33,5 +33,4 @@ Feature: Get book
         "status": 404
       }
       """
-    And I see that request matches the OpenAPI specification
-    And I see that response matches the OpenAPI specification
+    And the response matches the OpenAPI specification
