@@ -39,7 +39,7 @@
         "codeception/codeception": "^5.1.2",
         "codeception/module-rest": "^3.4",
         "codeception/module-symfony": "^3.5",
-        "mikelgoig/codeception-openapi": "^1.0.2",
+        "mikelgoig/codeception-openapi": "^2.0.0",
         "mikelgoig/codeception-rest": "^3.0",
         "symfony/debug-bundle": "7.2.*",
         "symfony/maker-bundle": "^1.62.1",

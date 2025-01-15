@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a478754b1ef59a8660686384b0f771f4",
+    "content-hash": "463aa0c1799ce1d3cbb8dedcac4fd3e4",
     "packages": [
         {
             "name": "api-platform/doctrine-common",
@@ -8706,16 +8706,16 @@
         },
         {
             "name": "mikelgoig/codeception-openapi",
-            "version": "1.0.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikelgoig/codeception-openapi.git",
-                "reference": "968ae1b717c77f822856004668ebdde6b695c1fd"
+                "reference": "658e7aa6aec2877b1137686ad0f133b2d4e15043"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikelgoig/codeception-openapi/zipball/968ae1b717c77f822856004668ebdde6b695c1fd",
-                "reference": "968ae1b717c77f822856004668ebdde6b695c1fd",
+                "url": "https://api.github.com/repos/mikelgoig/codeception-openapi/zipball/658e7aa6aec2877b1137686ad0f133b2d4e15043",
+                "reference": "658e7aa6aec2877b1137686ad0f133b2d4e15043",
                 "shasum": ""
             },
             "require": {
@@ -8755,9 +8755,9 @@
                 "testing"
             ],
             "support": {
-                "source": "https://github.com/mikelgoig/codeception-openapi/tree/v1.0.2"
+                "source": "https://github.com/mikelgoig/codeception-openapi/tree/v2.0.0"
             },
-            "time": "2025-01-10T12:09:52+00:00"
+            "time": "2025-01-15T20:38:48+00:00"
         },
         {
             "name": "mikelgoig/codeception-rest",
