@@ -45,11 +45,6 @@ sh: ## Connect to the FrankenPHP container
 bash: ## Connect to the FrankenPHP container via bash so up and down arrows go to previous commands
 	@$(PHP_CONT) bash
 
-.PHONY: test
-test: ## Start tests with phpunit, pass the parameter "c=" to add options to phpunit, example: make test c="--group e2e --stop-on-failure"
-	@$(eval c ?=)
-	@$(DOCKER_COMP) exec -e APP_ENV=test php bin/phpunit $(c)
-
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 .PHONY: composer
 composer: ## Run composer, pass the parameter "c=" to run a given command, example: make composer c='req symfony/orm-pack'
@@ -111,10 +106,26 @@ db-validate: c = doctrine:schema:validate --no-interaction
 db-validate: sf
 
 ## —— Test 🧪 ——————————————————————————————————————————————————————————————————
+.PHONY: test
+test: ## Execute all tests with Codeception. Pass the parameter "c=" to add options to codecept
+	@$(eval c ?=)
+	@$(PHP_CONT) vendor/bin/codecept run --skip-group=skip $(c)
+
+.PHONY: test-ff
+test-ff: ## Execute all tests with Codeception, with fail fast option
+test-ff: c = --fail-fast
+test-ff: test
+
+.PHONY: ct
 ct: ## Execute component tests. Pass the parameter "c=" to add options to codeception, example: make ct c="--skip-group=skip"
 	@$(eval c ?=)
 	@$(PHP_CONT) vendor/bin/codecept run component $(c)
 
-ctff: ## Execute component tests with fail fast option
+.PHONY: ctff
+ctff: ## Execute component tests, with fail fast option
 ctff: c = --fail-fast
 ctff: ct
+
+.PHONY: codecept-build
+codecept-build: ## Build Codeception generated actions
+	@$(PHP_CONT) vendor/bin/codecept build
