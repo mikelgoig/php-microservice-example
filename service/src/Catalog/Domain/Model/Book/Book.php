@@ -13,28 +13,18 @@ final readonly class Book
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private int $idPrimary;
+    protected int $idPrimary;
 
     private function __construct(
         #[ORM\Column(type: 'uuid', unique: true)]
-        private string $id,
+        protected string $id,
         #[ORM\Column(length: 255)]
-        private string $name,
+        protected string $name,
     ) {
     }
 
     public static function create(string $id, string $name): self
     {
         return new self($id, $name);
-    }
-
-    public function id(): string
-    {
-        return $this->id;
-    }
-
-    public function name(): string
-    {
-        return $this->name;
     }
 }
