@@ -18,12 +18,16 @@ doctrine:
             Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
         auto_mapping: true
         mappings:
-            Catalog:
+            Aggregates:
                 type: attribute
-                is_bundle: false
                 dir: '%kernel.project_dir%/src/Catalog/Domain/Model'
                 prefix: 'App\Catalog\Domain\Model'
-                alias: Catalog
+                is_bundle: false
+            Projections:
+                type: attribute
+                dir: '%kernel.project_dir%/src/Catalog/Presentation/ApiPlatform'
+                prefix: 'App\Catalog\Presentation\ApiPlatform'
+                is_bundle: false
         controller_resolver:
             auto_mapping: false
 
