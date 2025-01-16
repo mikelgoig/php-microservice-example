@@ -17,10 +17,11 @@ Feature: Create book
       """
     Then the request matches the OpenAPI specification
     And the response code is "201"
-    And the response body contains JSON:
+    And the response body matches JSON:
       """
       {
         "@context": "/api/contexts/Book",
+        "@id": "/api/books/@uuid@",
         "@type": "Book",
         "name": "Advanced Web Application Architecture"
       }
@@ -38,18 +39,22 @@ Feature: Create book
       }
       """
     Then the response code is "422"
-    And the response body contains JSON:
+    And the response body matches JSON:
       """
       {
         "@context": "/api/contexts/ConstraintViolationList",
+        "@id": "/api/validation_errors/@uuid@",
         "@type": "ConstraintViolationList",
         "title": "An error occurred",
         "description": "name: This value should not be null.",
+        "detail": "name: This value should not be null.",
+        "type": "/validation_errors/@uuid@",
         "status": 422,
         "violations": [
           {
             "propertyPath": "name",
-            "message": "This value should not be null."
+            "message": "This value should not be null.",
+            "code": "@uuid@"
           }
         ]
       }
@@ -74,9 +79,6 @@ Feature: Create book
       {
         "@context": "/api/contexts/ConstraintViolationList",
         "@type": "ConstraintViolationList",
-        "title": "An error occurred",
-        "description": "name: This value is too short. It should have 1 character or more.",
-        "status": 422,
         "violations": [
           {
             "propertyPath": "name",
@@ -105,9 +107,6 @@ Feature: Create book
       {
         "@context": "/api/contexts/ConstraintViolationList",
         "@type": "ConstraintViolationList",
-        "title": "An error occurred",
-        "description": "name: This value is too long. It should have 255 characters or less.",
-        "status": 422,
         "violations": [
           {
             "propertyPath": "name",

@@ -9,7 +9,7 @@ Feature: List books
     When I send a "GET" request to "/api/books"
     Then the request matches the OpenAPI specification
     And the response code is "200"
-    And the response body contains JSON:
+    And the response body matches JSON:
       """
       {
         "@context": "/api/contexts/Book",
@@ -18,12 +18,14 @@ Feature: List books
         "totalItems": 2,
         "member": [
           {
-            "@type": "Book",
-            "name": "Advanced Web Application Architecture"
-          },
-          {
+            "@id": "/api/books/@uuid@",
             "@type": "Book",
             "name": "Domain-Driven Design in PHP"
+          },
+          {
+            "@id": "/api/books/@uuid@",
+            "@type": "Book",
+            "name": "Advanced Web Application Architecture"
           }
         ]
       }
@@ -36,7 +38,7 @@ Feature: List books
     When I send a "GET" request to "/api/books?itemsPerPage=1&page=1"
     Then the request matches the OpenAPI specification
     And the response code is "200"
-    And the response body contains JSON:
+    And the response body matches JSON:
       """
       {
         "@context": "/api/contexts/Book",
@@ -45,6 +47,7 @@ Feature: List books
         "totalItems": 2,
         "member": [
           {
+            "@id": "/api/books/@uuid@",
             "@type": "Book",
             "name": "Domain-Driven Design in PHP"
           }

@@ -8,10 +8,11 @@ Feature: Get book
     When I get the last book created
     Then the request matches the OpenAPI specification
     And the response code is "200"
-    And the response body contains JSON:
+    And the response body matches JSON:
       """
       {
         "@context": "/api/contexts/Book",
+        "@id": "/api/books/@uuid@",
         "@type": "Book",
         "name": "Advanced Web Application Architecture"
       }
