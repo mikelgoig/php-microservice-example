@@ -19,8 +19,7 @@ final readonly class GetBookProvider implements ProviderInterface
     public function __construct(
         #[Autowire(service: 'api_platform.doctrine.orm.state.item_provider')]
         private ProviderInterface $itemProvider,
-    ) {
-    }
+    ) {}
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): BookQueryResource
     {

@@ -10,7 +10,7 @@ use Codeception\Actor;
 
 /**
  * @SuppressWarnings(PHPMD)
-*/
+ */
 class ComponentTester extends Actor
 {
     use _generated\ComponentTesterActions;

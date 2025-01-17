@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
             openapi: new OpenApiOperation(
                 responses: [
                     Response::HTTP_CONFLICT => new OpenApiResponse('Book resource already exists'),
-                ]
+                ],
             ),
             exceptionToStatus: [
                 BookAlreadyExists::class => Response::HTTP_CONFLICT,

@@ -7,6 +7,4 @@ namespace App\Shared\Application\Bus\Query;
 /**
  * @template T
  */
-interface Query
-{
-}
+interface Query {}

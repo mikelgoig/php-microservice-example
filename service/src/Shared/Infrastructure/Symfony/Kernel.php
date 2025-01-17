@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Infrastructure\Symfony;
 
 use App\Shared\Application\Bus\Command\AsCommandHandler;
@@ -15,12 +17,22 @@ class Kernel extends BaseKernel
 
     protected function build(ContainerBuilder $container): void
     {
-        $container->registerAttributeForAutoconfiguration(AsCommandHandler::class, static function (ChildDefinition $definition): void {
-            $definition->addTag('messenger.message_handler', ['bus' => 'command.bus']);
-        });
+        $container->registerAttributeForAutoconfiguration(
+            AsCommandHandler::class,
+            static function (ChildDefinition $definition): void {
+                $definition->addTag('messenger.message_handler', [
+                    'bus' => 'command.bus',
+                ]);
+            },
+        );
 
-        $container->registerAttributeForAutoconfiguration(AsQueryHandler::class, static function (ChildDefinition $definition): void {
-            $definition->addTag('messenger.message_handler', ['bus' => 'query.bus']);
-        });
+        $container->registerAttributeForAutoconfiguration(
+            AsQueryHandler::class,
+            static function (ChildDefinition $definition): void {
+                $definition->addTag('messenger.message_handler', [
+                    'bus' => 'query.bus',
+                ]);
+            },
+        );
     }
 }

@@ -17,8 +17,7 @@ final readonly class DoctrineBookRepository implements BookRepository, BookReadM
 
     public function __construct(
         private EntityManagerInterface $entityManager,
-    ) {
-    }
+    ) {}
 
     public function save(Book $book): void
     {
@@ -28,7 +27,7 @@ final readonly class DoctrineBookRepository implements BookRepository, BookReadM
     public function exists(Criteria $criteria): bool
     {
         $result = $this->entityManager->createQueryBuilder()
-            ->select(self::ALIAS.'.id')
+            ->select(self::ALIAS . '.id')
             ->from(self::ENTITY_CLASS, self::ALIAS)
             ->addCriteria($criteria)
             ->getQuery()

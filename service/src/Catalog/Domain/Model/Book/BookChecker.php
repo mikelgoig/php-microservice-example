@@ -15,10 +15,8 @@ final readonly class BookChecker
     /**
      * @throws BookAlreadyExists
      */
-    public function ensureThatThereIsNoBookWithName(
-        string $name,
-        ?string $excludingId = null,
-    ): void {
+    public function ensureThatThereIsNoBookWithName(string $name, ?string $excludingId = null): void
+    {
         $criteria = Criteria::create()
             ->where(Criteria::expr()->eq('name', $name));
 

@@ -14,12 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
 
-#[ORM\Entity(
-    readOnly: true,
-)]
-#[ORM\Table(
-    name: 'books',
-)]
+#[ORM\Entity(readOnly: true)]
+#[ORM\Table(name: 'books')]
 #[ApiResource(
     shortName: 'Book',
     operations: [
@@ -30,7 +26,9 @@ use Symfony\Component\Uid\UuidV7;
             provider: GetBookProvider::class,
         ),
         new GetCollection(
-            order: ['id' => 'DESC'],
+            order: [
+                'id' => 'DESC',
+            ],
         ),
     ],
 )]

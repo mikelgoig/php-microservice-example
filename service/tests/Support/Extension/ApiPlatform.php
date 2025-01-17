@@ -12,14 +12,14 @@ final class ApiPlatform extends Extension
 {
     private const OPENAPI_FILE_PATH = 'var/data/openapi.json';
 
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> */
     public static array $events = [
         Events::SUITE_BEFORE => 'beforeSuite',
     ];
 
-    /** @noinspection PhpUnused */
+    /**
+     * @noinspection PhpUnused
+     */
     public function beforeSuite(): void
     {
         $this->exportOpenApiFile();
@@ -29,6 +29,8 @@ final class ApiPlatform extends Extension
     {
         /** @var Symfony $symfony */
         $symfony = $this->getModule('Symfony');
-        $symfony->runSymfonyConsoleCommand('api:openapi:export', ['--output' => self::OPENAPI_FILE_PATH]);
+        $symfony->runSymfonyConsoleCommand('api:openapi:export', [
+            '--output' => self::OPENAPI_FILE_PATH,
+        ]);
     }
 }

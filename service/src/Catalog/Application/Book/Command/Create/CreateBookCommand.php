@@ -14,6 +14,5 @@ final readonly class CreateBookCommand implements Command
     public function __construct(
         public string $id,
         public string $name,
-    ) {
-    }
+    ) {}
 }

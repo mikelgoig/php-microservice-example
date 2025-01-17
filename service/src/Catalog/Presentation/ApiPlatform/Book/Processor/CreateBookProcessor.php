@@ -22,11 +22,14 @@ final readonly class CreateBookProcessor implements ProcessorInterface
     public function __construct(
         private CommandBus $commandBus,
         private EntityManagerInterface $entityManager,
-    ) {
-    }
+    ) {}
 
-    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): BookQueryResource
-    {
+    public function process(
+        mixed $data,
+        Operation $operation,
+        array $uriVariables = [],
+        array $context = [],
+    ): BookQueryResource {
         \assert($data instanceof BookCommandResource);
         Assert::notNull($data->name);
 
