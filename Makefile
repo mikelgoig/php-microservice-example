@@ -27,7 +27,7 @@ up: ## Start the docker hub in detached mode (no logs)
 	@HTTP_PORT=8000 HTTPS_PORT=4443 HTTP3_PORT=4443 $(DOCKER_COMP) up --detach
 
 .PHONY: start
-start: build up ## Build and start the containers
+start: build up git-hooks-install ## Build and start the containers
 
 .PHONY: down
 down: ## Stop the docker hub
@@ -51,10 +51,15 @@ composer: ## Run composer, pass the parameter "c=" to run a given command, examp
 	@$(eval c ?=)
 	@$(COMPOSER) $(c)
 
-.PHONY: vendor
-vendor: ## Install vendors according to the current composer.lock file
-vendor: c = install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction
-vendor: composer
+.PHONY: composer-install
+composer-install: ## Install Composer dependencies according to the current composer.lock file
+composer-install: c = install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction
+composer-install: composer
+
+.PHONY: composer-update
+composer-update: ## Update Composer dependencies
+composer-update: c = update
+composer-update: composer
 
 ## —— Symfony 🎵 ———————————————————————————————————————————————————————————————
 .PHONY: sf
@@ -109,7 +114,7 @@ db-validate: sf
 .PHONY: test
 test: ## Execute all tests with Codeception. Pass the parameter "c=" to add options to codecept
 	@$(eval c ?=)
-	@$(PHP_CONT) vendor/bin/codecept run --skip-group=skip $(c)
+	@$(PHP) vendor/bin/codecept run --skip-group=skip $(c)
 
 .PHONY: test-ff
 test-ff: ## Execute all tests with Codeception, with fail fast option
@@ -119,7 +124,7 @@ test-ff: test
 .PHONY: ct
 ct: ## Execute component tests. Pass the parameter "c=" to add options to codeception, example: make ct c="--skip-group=skip"
 	@$(eval c ?=)
-	@$(PHP_CONT) vendor/bin/codecept run component $(c)
+	@$(PHP) vendor/bin/codecept run component $(c)
 
 .PHONY: ctff
 ctff: ## Execute component tests, with fail fast option
@@ -128,4 +133,29 @@ ctff: ct
 
 .PHONY: codecept-build
 codecept-build: ## Build Codeception generated actions
-	@$(PHP_CONT) vendor/bin/codecept build
+	@$(PHP) vendor/bin/codecept build
+
+## —— Analysis 🔎 ——————————————————————————————————————————————————————————————
+.PHONY: lint
+lint: ecs ## Analyze code and show errors (ECS)
+
+.PHONY: lint-fix
+lint-fix: ecs-fix ## Analyze code and fix errors (ECS)
+
+.PHONY: ecs
+ecs: ## Run Easy Coding Standard (ECS) and show errors
+	@$(eval c ?=)
+	@$(PHP) vendor/bin/ecs check --memory-limit=-1 $(c)
+
+.PHONY: ecs-fix
+ecs-fix: ## Run Easy Coding Standard (ECS) and fix errors
+	@$(PHP) vendor/bin/ecs check --fix --memory-limit=-1
+
+.PHONY: ecs-list
+ecs-list: ## List Easy Coding Standard (ECS) used rules
+	@$(PHP) vendor/bin/ecs list-checkers
+
+## —— Git Hooks ☠️ ————————————————————————————————————————————————————————————
+.PHONY: git-hooks-install
+git-hooks-install: ## Install git hooks using Captainhook
+	php service/vendor/bin/captainhook install --configuration=service/captainhook.json --force

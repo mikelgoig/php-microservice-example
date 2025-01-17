@@ -1,0 +1,29 @@
+{
+  "config": {
+    "git-directory": "../.git"
+  },
+  "commit-msg": {
+    "enabled": true,
+    "actions": [
+      {
+        "action": "\\Ramsey\\CaptainHook\\ValidateConventionalCommit"
+      }
+    ]
+  },
+  "pre-commit": {
+    "enabled": true,
+    "actions": [
+      {
+        "action": "make ecs"
+      }
+    ]
+  },
+  "pre-push": {
+    "enabled": true,
+    "actions": [
+      {
+        "action": "make lint"
+      }
+    ]
+  }
+}

@@ -1,8 +1,6 @@
 {
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "stable",
-    "prefer-stable": true,
     "require": {
         "php": ">=8.2",
         "ext-ctype": "*",
@@ -36,24 +34,32 @@
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
+        "captainhook/captainhook-phar": "^5.24",
         "codeception/codeception": "^5.1.2",
         "codeception/module-rest": "^3.4",
         "codeception/module-symfony": "^3.5",
         "mikelgoig/codeception-openapi": "^2.0.0",
         "mikelgoig/codeception-rest": "^3.1.0",
+        "mikelgoig/easy-coding-standard-rules": "^1.0",
+        "ramsey/conventional-commits": "^1.5",
         "symfony/debug-bundle": "7.2.*",
         "symfony/maker-bundle": "^1.62.1",
         "symfony/stopwatch": "7.2.*",
-        "symfony/web-profiler-bundle": "7.2.*"
+        "symfony/web-profiler-bundle": "7.2.*",
+        "symplify/easy-coding-standard": "^12.5"
     },
-    "config": {
-        "allow-plugins": {
-            "php-http/discovery": true,
-            "symfony/flex": true,
-            "symfony/runtime": true
-        },
-        "bump-after-update": true,
-        "sort-packages": true
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*",
+        "symfony/polyfill-php82": "*"
     },
     "autoload": {
         "psr-4": {
@@ -65,15 +71,17 @@
             "App\\Tests\\": "tests/"
         }
     },
-    "replace": {
-        "symfony/polyfill-ctype": "*",
-        "symfony/polyfill-iconv": "*",
-        "symfony/polyfill-php72": "*",
-        "symfony/polyfill-php73": "*",
-        "symfony/polyfill-php74": "*",
-        "symfony/polyfill-php80": "*",
-        "symfony/polyfill-php81": "*",
-        "symfony/polyfill-php82": "*"
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "captainhook/captainhook-phar": true,
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "bump-after-update": true,
+        "sort-packages": true
     },
     "scripts": {
         "auto-scripts": {
@@ -86,9 +94,6 @@
         "post-update-cmd": [
             "@auto-scripts"
         ]
-    },
-    "conflict": {
-        "symfony/symfony": "*"
     },
     "extra": {
         "symfony": {
