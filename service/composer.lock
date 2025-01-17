@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d2817b0536d31ec21268a3d02f6b1e4",
+    "content-hash": "e07879087d2e517d93a7559e09228143",
     "packages": [
         {
             "name": "api-platform/doctrine-common",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/doctrine-common.git",
@@ -89,13 +89,13 @@
                 "rest"
             ],
             "support": {
-                "source": "https://github.com/api-platform/doctrine-common/tree/v4.0.15"
+                "source": "https://github.com/api-platform/doctrine-common/tree/v4.0.16"
             },
             "time": "2024-09-21T11:01:16+00:00"
         },
         {
             "name": "api-platform/doctrine-orm",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/doctrine-orm.git",
@@ -173,13 +173,13 @@
                 "rest"
             ],
             "support": {
-                "source": "https://github.com/api-platform/doctrine-orm/tree/v4.0.15"
+                "source": "https://github.com/api-platform/doctrine-orm/tree/v4.0.16"
             },
             "time": "2024-12-13T13:34:25+00:00"
         },
         {
             "name": "api-platform/documentation",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/documentation.git",
@@ -234,13 +234,13 @@
             ],
             "description": "API Platform documentation controller.",
             "support": {
-                "source": "https://github.com/api-platform/documentation/tree/v4.1.0-alpha.1"
+                "source": "https://github.com/api-platform/documentation/tree/v4.1.0-alpha.2"
             },
             "time": "2024-09-21T11:01:16+00:00"
         },
         {
             "name": "api-platform/http-cache",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/http-cache.git",
@@ -311,13 +311,13 @@
                 "rest"
             ],
             "support": {
-                "source": "https://github.com/api-platform/http-cache/tree/v4.1.0-alpha.1"
+                "source": "https://github.com/api-platform/http-cache/tree/v4.1.0-alpha.2"
             },
             "time": "2024-10-28T09:21:17+00:00"
         },
         {
             "name": "api-platform/hydra",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/hydra.git",
@@ -395,13 +395,13 @@
                 "rest"
             ],
             "support": {
-                "source": "https://github.com/api-platform/hydra/tree/v4.0.15"
+                "source": "https://github.com/api-platform/hydra/tree/v4.0.16"
             },
             "time": "2024-11-06T10:50:57+00:00"
         },
         {
             "name": "api-platform/json-schema",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/json-schema.git",
@@ -473,13 +473,13 @@
                 "swagger"
             ],
             "support": {
-                "source": "https://github.com/api-platform/json-schema/tree/v4.0.15"
+                "source": "https://github.com/api-platform/json-schema/tree/v4.1.0-alpha.2"
             },
             "time": "2025-01-17T09:55:19+00:00"
         },
         {
             "name": "api-platform/jsonld",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/jsonld.git",
@@ -550,13 +550,13 @@
                 "rest"
             ],
             "support": {
-                "source": "https://github.com/api-platform/jsonld/tree/v4.1.0-alpha.1"
+                "source": "https://github.com/api-platform/jsonld/tree/v4.1.0-alpha.2"
             },
             "time": "2024-12-19T16:01:35+00:00"
         },
         {
             "name": "api-platform/metadata",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/metadata.git",
@@ -646,13 +646,13 @@
                 "swagger"
             ],
             "support": {
-                "source": "https://github.com/api-platform/metadata/tree/v4.0.15"
+                "source": "https://github.com/api-platform/metadata/tree/v4.0.16"
             },
             "time": "2025-01-10T14:24:27+00:00"
         },
         {
             "name": "api-platform/openapi",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/openapi.git",
@@ -731,13 +731,13 @@
                 "swagger"
             ],
             "support": {
-                "source": "https://github.com/api-platform/openapi/tree/v4.0.15"
+                "source": "https://github.com/api-platform/openapi/tree/v4.0.16"
             },
             "time": "2025-01-09T14:23:11+00:00"
         },
         {
             "name": "api-platform/serializer",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/serializer.git",
@@ -821,13 +821,13 @@
                 "serializer"
             ],
             "support": {
-                "source": "https://github.com/api-platform/serializer/tree/v4.1.0-alpha.1"
+                "source": "https://github.com/api-platform/serializer/tree/v4.1.0-alpha.2"
             },
             "time": "2024-12-01T10:27:17+00:00"
         },
         {
             "name": "api-platform/state",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/state.git",
@@ -911,22 +911,22 @@
                 "swagger"
             ],
             "support": {
-                "source": "https://github.com/api-platform/state/tree/v4.0.15"
+                "source": "https://github.com/api-platform/state/tree/v4.0.16"
             },
             "time": "2025-01-13T10:20:09+00:00"
         },
         {
             "name": "api-platform/symfony",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/symfony.git",
-                "reference": "e5956e32b5af1cee39e22a9e7820cc6a2a8a69e7"
+                "reference": "868d38f02f44abd446dcc5a397aeb665a6ad88cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/symfony/zipball/e5956e32b5af1cee39e22a9e7820cc6a2a8a69e7",
-                "reference": "e5956e32b5af1cee39e22a9e7820cc6a2a8a69e7",
+                "url": "https://api.github.com/repos/api-platform/symfony/zipball/868d38f02f44abd446dcc5a397aeb665a6ad88cf",
+                "reference": "868d38f02f44abd446dcc5a397aeb665a6ad88cf",
                 "shasum": ""
             },
             "require": {
@@ -1034,13 +1034,13 @@
                 "symfony"
             ],
             "support": {
-                "source": "https://github.com/api-platform/symfony/tree/v4.0.15"
+                "source": "https://github.com/api-platform/symfony/tree/v4.0.16"
             },
-            "time": "2025-01-17T08:54:48+00:00"
+            "time": "2025-01-17T14:20:33+00:00"
         },
         {
             "name": "api-platform/validator",
-            "version": "v4.0.15",
+            "version": "v4.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/validator.git",
@@ -9639,16 +9639,16 @@
         },
         {
             "name": "mikelgoig/codeception-openapi",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikelgoig/codeception-openapi.git",
-                "reference": "da8b5ef25b08a5801a9309c2e40285a257d35b13"
+                "reference": "01ce319d50ed599797e5eb976723d8b4722f656a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikelgoig/codeception-openapi/zipball/da8b5ef25b08a5801a9309c2e40285a257d35b13",
-                "reference": "da8b5ef25b08a5801a9309c2e40285a257d35b13",
+                "url": "https://api.github.com/repos/mikelgoig/codeception-openapi/zipball/01ce319d50ed599797e5eb976723d8b4722f656a",
+                "reference": "01ce319d50ed599797e5eb976723d8b4722f656a",
                 "shasum": ""
             },
             "require": {
@@ -9658,16 +9658,31 @@
                 "guzzlehttp/psr7": "^2.7",
                 "league/openapi-psr7-validator": "^0.22.0",
                 "php": "8.3.*",
-                "symfony/browser-kit": "^7.2"
+                "symfony/browser-kit": "^7.2",
+                "symfony/http-foundation": "^7.2",
+                "symfony/http-kernel": "^7.2",
+                "webmozart/assert": "^1.11"
             },
             "require-dev": {
                 "captainhook/captainhook-phar": "^5.24",
                 "captainhook/hook-installer": "^1.0",
                 "mikelgoig/easy-coding-standard-rules": "^1.0",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpstan/phpstan-webmozart-assert": "^2.0",
                 "ramsey/conventional-commits": "^1.5",
                 "symplify/easy-coding-standard": "^12.5"
             },
             "type": "library",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "MikelGoig\\Codeception\\Module\\": "src/"
@@ -9695,38 +9710,52 @@
                 "testing"
             ],
             "support": {
-                "source": "https://github.com/mikelgoig/codeception-openapi/tree/v2.1.0"
+                "source": "https://github.com/mikelgoig/codeception-openapi/tree/v2.2.0"
             },
-            "time": "2025-01-17T12:57:33+00:00"
+            "time": "2025-01-17T23:51:28+00:00"
         },
         {
             "name": "mikelgoig/codeception-rest",
-            "version": "3.2.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikelgoig/codeception-rest.git",
-                "reference": "ff09cd54ecedc24bf86dfe0a516839e0821e46f0"
+                "reference": "768100479bffaf50c16974bddfc5fbb933cb0eba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikelgoig/codeception-rest/zipball/ff09cd54ecedc24bf86dfe0a516839e0821e46f0",
-                "reference": "ff09cd54ecedc24bf86dfe0a516839e0821e46f0",
+                "url": "https://api.github.com/repos/mikelgoig/codeception-rest/zipball/768100479bffaf50c16974bddfc5fbb933cb0eba",
+                "reference": "768100479bffaf50c16974bddfc5fbb933cb0eba",
                 "shasum": ""
             },
             "require": {
                 "codeception/codeception": "^5.1",
                 "codeception/module-rest": "^3.4",
                 "coduo/php-matcher": "^6.0",
-                "php": "8.3.*"
+                "php": "8.3.*",
+                "webmozart/assert": "^1.11"
             },
             "require-dev": {
                 "captainhook/captainhook-phar": "^5.24",
                 "captainhook/hook-installer": "^1.0",
-                "mikelgoig/easy-coding-standard-rules": "^1.0",
+                "jetbrains/phpstorm-attributes": "^1.2",
+                "mikelgoig/easy-coding-standard-rules": "^1.1",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpstan/phpstan-webmozart-assert": "^2.0",
                 "ramsey/conventional-commits": "^1.5",
                 "symplify/easy-coding-standard": "^12.5"
             },
             "type": "library",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "MikelGoig\\Codeception\\Module\\": "src/"
@@ -9751,9 +9780,9 @@
                 "testing"
             ],
             "support": {
-                "source": "https://github.com/mikelgoig/codeception-rest/tree/v3.2.0"
+                "source": "https://github.com/mikelgoig/codeception-rest/tree/v3.3.0"
             },
-            "time": "2025-01-17T13:11:31+00:00"
+            "time": "2025-01-17T23:03:31+00:00"
         },
         {
             "name": "mikelgoig/easy-coding-standard-rules",
