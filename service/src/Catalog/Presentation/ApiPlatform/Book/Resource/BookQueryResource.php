@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use App\Catalog\Domain\Model\Book\CouldNotFindBook;
+use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +21,7 @@ use Symfony\Component\Uid\UuidV7;
     operations: [
         new Get(
             exceptionToStatus: [
-                CouldNotFindBook::class => Response::HTTP_NOT_FOUND,
+                CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
             ],
             provider: GetBookProvider::class,
         ),

@@ -6,7 +6,7 @@ namespace App\Catalog\Presentation\ApiPlatform\Book\Provider;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
-use App\Catalog\Domain\Model\Book\CouldNotFindBook;
+use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Uid\Uuid;
@@ -26,7 +26,7 @@ final readonly class GetBookProvider implements ProviderInterface
     ) {}
 
     /**
-     * @throws CouldNotFindBook
+     * @throws CouldNotFindBookException
      */
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): BookQueryResource
     {
@@ -36,7 +36,7 @@ final readonly class GetBookProvider implements ProviderInterface
         if ($book === null) {
             $bookId = $uriVariables['id'];
             \assert($bookId instanceof Uuid);
-            throw CouldNotFindBook::withId($bookId->toString());
+            throw CouldNotFindBookException::withId($bookId->toString());
         }
 
         return $book;

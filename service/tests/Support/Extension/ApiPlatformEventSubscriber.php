@@ -8,7 +8,7 @@ use Codeception\Events;
 use Codeception\Extension;
 use Codeception\Module\Symfony;
 
-final class ApiPlatform extends Extension
+final class ApiPlatformEventSubscriber extends Extension
 {
     private const OPENAPI_FILE_PATH = 'var/data/openapi.json';
 

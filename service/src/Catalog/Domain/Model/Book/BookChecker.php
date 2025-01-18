@@ -13,7 +13,7 @@ final readonly class BookChecker
     ) {}
 
     /**
-     * @throws BookAlreadyExists
+     * @throws BookAlreadyExistsException
      */
     public function ensureThatThereIsNoBookWithName(string $name, ?string $excludingId = null): void
     {
@@ -25,7 +25,7 @@ final readonly class BookChecker
         }
 
         if ($this->bookReadModels->exists($criteria)) {
-            throw BookAlreadyExists::withName($name);
+            throw BookAlreadyExistsException::withName($name);
         }
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Catalog\Application\Book\Command\Create;
 
 use App\Catalog\Domain\Model\Book\Book;
-use App\Catalog\Domain\Model\Book\BookAlreadyExists;
+use App\Catalog\Domain\Model\Book\BookAlreadyExistsException;
 use App\Catalog\Domain\Model\Book\BookChecker;
 use App\Catalog\Domain\Model\Book\BookReadModelRepository;
 use App\Catalog\Domain\Model\Book\BookRepository;
@@ -24,7 +24,7 @@ final readonly class CreateBookCommandHandler
     }
 
     /**
-     * @throws BookAlreadyExists
+     * @throws BookAlreadyExistsException
      */
     public function __invoke(CreateBookCommand $command): void
     {

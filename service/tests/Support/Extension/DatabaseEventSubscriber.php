@@ -8,7 +8,7 @@ use Codeception\Events;
 use Codeception\Extension;
 use Codeception\Module\Symfony;
 
-final class Database extends Extension
+final class DatabaseEventSubscriber extends Extension
 {
     /** @var array<string, string> */
     public static array $events = [

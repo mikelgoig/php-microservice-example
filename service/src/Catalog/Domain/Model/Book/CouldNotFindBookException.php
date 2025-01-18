@@ -6,7 +6,7 @@ namespace App\Catalog\Domain\Model\Book;
 
 use App\Shared\Domain\Exception\DomainException;
 
-final class CouldNotFindBook extends DomainException
+final class CouldNotFindBookException extends DomainException
 {
     public static function withId(string $id): self
     {

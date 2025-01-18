@@ -1,0 +1,17 @@
+rules:
+    - Symplify\PHPStanRules\Rules\NoReturnSetterMethodRule
+    - Symplify\PHPStanRules\Rules\UppercaseConstantRule
+
+services:
+    -
+        class: Symplify\PHPStanRules\Rules\ClassNameRespectsParentSuffixRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            parentClasses:
+                - App\Shared\Application\Bus\Command\Command
+
+# unusedRules:
+#   Symplify\PHPStanRules\Rules\Explicit\ExplicitClassPrefixSuffixRule
+#       In general, we should avoid reflecting type information in names. For example: IShoppingCart,
+#       AbstractShoppingCart, ShoppingCartImpl, ...
+#       → Blé, Carlos. Código Sostenible. Savvily, 2022, p. 47

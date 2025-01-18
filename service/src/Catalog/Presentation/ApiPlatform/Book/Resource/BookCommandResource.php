@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
-use App\Catalog\Domain\Model\Book\BookAlreadyExists;
+use App\Catalog\Domain\Model\Book\BookAlreadyExistsException;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\CreateBookProcessor;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
                 ],
             ),
             exceptionToStatus: [
-                BookAlreadyExists::class => Response::HTTP_CONFLICT,
+                BookAlreadyExistsException::class => Response::HTTP_CONFLICT,
             ],
             output: BookQueryResource::class,
             processor: CreateBookProcessor::class,
