@@ -24,10 +24,10 @@ final class SymfonyCommandBus implements CommandBus
         try {
             $this->handle($command);
         } catch (HandlerFailedException $e) {
-            if ($exception = current($e->getWrappedExceptions())) {
+            $exception = current($e->getWrappedExceptions());
+            if ($exception !== false) {
                 throw $exception;
             }
-
             throw $e;
         }
     }

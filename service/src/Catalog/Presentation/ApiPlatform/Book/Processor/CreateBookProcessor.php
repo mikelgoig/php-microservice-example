@@ -12,10 +12,9 @@ use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
 use App\Shared\Application\Bus\Command\CommandBus;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Uid\Uuid;
-use Webmozart\Assert\Assert;
 
 /**
- * @implements<BookCommandResource, BookQueryResource>
+ * @implements ProcessorInterface<BookCommandResource, BookQueryResource>
  */
 final readonly class CreateBookProcessor implements ProcessorInterface
 {
@@ -30,9 +29,6 @@ final readonly class CreateBookProcessor implements ProcessorInterface
         array $uriVariables = [],
         array $context = [],
     ): BookQueryResource {
-        \assert($data instanceof BookCommandResource);
-        Assert::notNull($data->name);
-
         $bookId = Uuid::v7();
         $this->commandBus->dispatch(new CreateBookCommand($bookId->toString(), $data->name));
 

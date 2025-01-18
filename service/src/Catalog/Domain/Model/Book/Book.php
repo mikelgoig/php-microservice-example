@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'books')]
-final readonly class Book
+readonly class Book
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]

@@ -24,10 +24,10 @@ final class SymfonyQueryBus implements QueryBus
         try {
             return $this->handle($query);
         } catch (HandlerFailedException $e) {
-            if ($exception = current($e->getWrappedExceptions())) {
+            $exception = current($e->getWrappedExceptions());
+            if ($exception !== false) {
                 throw $exception;
             }
-
             throw $e;
         }
     }

@@ -32,7 +32,7 @@ use Symfony\Component\Uid\UuidV7;
         ),
     ],
 )]
-final class BookQueryResource
+class BookQueryResource
 {
     #[ApiProperty(readable: false, writable: false, identifier: true)]
     #[ORM\Id, ORM\Column(type: 'uuid', unique: true)]

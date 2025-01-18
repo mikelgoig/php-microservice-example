@@ -22,6 +22,8 @@ return ECSConfig::configure()
 
     ->withSkip([
         FinalClassFixer::class => [
+            __DIR__ . '/src/Catalog/Domain/Model/Book/Book.php',
+            __DIR__ . '/src/Catalog/Presentation/ApiPlatform/Book/Resource/BookQueryResource.php',
             __DIR__ . '/src/Shared/Infrastructure/Symfony/Kernel.php',
             __DIR__ . '/tests/Support/ComponentTester.php',
         ],

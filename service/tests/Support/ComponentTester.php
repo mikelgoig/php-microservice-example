@@ -7,6 +7,8 @@ declare(strict_types=1);
 namespace App\Tests\Support;
 
 use Codeception\Actor;
+use Codeception\Util\JsonArray;
+use Webmozart\Assert\Assert;
 
 /**
  * @SuppressWarnings(PHPMD)
@@ -40,7 +42,10 @@ class ComponentTester extends Actor
         );
 
         $this->seeResponseCodeIsSuccessful();
-        $this->bookId = json_decode($this->grabResponse(), true)['@id'];
+
+        $response = (new JsonArray($this->grabResponse()))->toArray();
+        Assert::string($response['@id'], 'The book must have an @id');
+        $this->bookId = $response['@id'];
     }
 
     /**
@@ -69,6 +74,7 @@ class ComponentTester extends Actor
      */
     public function stepGetLastBookCreated(): void
     {
+        Assert::notNull($this->bookId, 'The book must have been created.');
         $this->sendGet($this->bookId);
     }
 }

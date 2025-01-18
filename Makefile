@@ -137,10 +137,19 @@ codecept-build: ## Build Codeception generated actions
 
 ## —— Analysis 🔎 ——————————————————————————————————————————————————————————————
 .PHONY: lint
-lint: ecs ## Analyze code and show errors (ECS)
+lint: phpstan ecs ## Analyze code and show errors (PHPStan, ECS)
 
 .PHONY: lint-fix
 lint-fix: ecs-fix ## Analyze code and fix errors (ECS)
+
+.PHONY: phpstan
+phpstan: ## Run PHPStan and show errors
+	@$(eval c ?=)
+	@$(PHP) vendor/bin/phpstan analyse --memory-limit=-1 $(c)
+
+.PHONY: phpstan-cc
+phpstan-cc: ## Clear PHPStan cache
+	@$(PHP_CONT) rm -rf var/cache/phpstan
 
 .PHONY: ecs
 ecs: ## Run Easy Coding Standard (ECS) and show errors

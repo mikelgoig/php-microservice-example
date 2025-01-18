@@ -1,0 +1,18 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/Support/_generated/*
+    tmpDir: var/cache/phpstan
+    exceptions:
+        checkedExceptionRegexes:
+            - '#^App\\[a-zA-Z]+\\Domain#'
+        check:
+            missingCheckedExceptionInThrows: true
+            tooWideThrowType: true
+    symfony:
+        containerXmlPath: var/cache/dev/App_Shared_Infrastructure_Symfony_KernelDevDebugContainer.xml
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
