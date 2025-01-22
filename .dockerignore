@@ -1,7 +1,11 @@
-###> wildcards ###
 **/.git/
 **/.github/
 **/.idea/
+**/docs/
+**/public/bundles/
+**/tests/
+**/var/
+**/vendor/
 **/*.cache
 **/*.dist
 **/*.dist.php
@@ -29,11 +33,3 @@
 **/docker-compose.*.yml
 **/docker-compose.yaml
 **/docker-compose.yml
-###< wildcards ###
-
-###> symfony ###
-service/public/bundles/
-service/tests/
-service/var/
-service/vendor/
-###< symfony ###
