@@ -85,11 +85,14 @@ _TO DO_
 
 - [Branching Strategy](docs/version-control/branching-strategy.md)
 
+### API
+
+- [Health Check](docs/api/health-check.md)
+
 ### Operations
 
-- [Deployment](docs/operations/deployment.md): Explains the deployment model of the project, including infrastructure components,
-  environments, and the deployment process.
-- [Monitoring](docs/operations/monitoring.md): Explains the available mechanisms for monitoring the service.
+- [Deployment](docs/operations/deployment.md)
+- [Monitoring](docs/operations/monitoring.md)
 
 ## 🤩 Extra
 
