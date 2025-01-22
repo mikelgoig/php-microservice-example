@@ -57,7 +57,7 @@ The project runs on a [Docker](https://www.docker.com)-based installer and runti
     make start
     ```
 
-2. Then you'll have the application available at https://localhost.
+2. Then you'll have the application available at https://localhost:4443.
 
 3. [Accept the auto-generated TLS certificate](https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate/15076602#15076602).
 
