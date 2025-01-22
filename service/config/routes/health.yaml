@@ -1,0 +1,6 @@
+# This configuration tells Symfony to look for routes defined as attributes on controllers.
+controllers:
+  resource:
+    path: ../../src/Health/
+    namespace: App\Health
+  type: attribute
