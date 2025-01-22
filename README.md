@@ -73,6 +73,10 @@ _TO DO_
 
 ## 👩‍💻 Project Explanation
 
+### Reference
+
+- [Environment Variables](docs/reference/environment-variables.md)
+
 ### Architecture
 
 - [System Architecture Style](docs/architecture/architecture-style.md)

@@ -85,9 +85,13 @@ RUN set -eux; \
 # copy sources
 COPY --link service/ ./
 
+# optimize Composer autoload and setup Symfony for production
+# - the dump-autoload action improves Composer's autoloader performance significantly by building a "class map"
+# - the dump-env action generates an empty .env.local.php file to rely only on real environment variables
+# - the post-install-cmd scripts will clear and warm-ip the Symfony cache
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
 	composer dump-autoload --classmap-authoritative --no-dev; \
-	composer dump-env prod; \
+	composer dump-env prod --empty; \
 	composer run-script --no-dev post-install-cmd; \
 	chmod +x bin/console; sync;

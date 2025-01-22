@@ -3,7 +3,6 @@ support_namespace: Support
 params:
   - env
   - .env
-  - .env.dev
 paths:
   tests: tests
   data: tests/_data
