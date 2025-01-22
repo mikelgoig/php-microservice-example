@@ -17,6 +17,13 @@ SYMFONY  = $(PHP) bin/console
 help: ## Outputs this help screen
 	@grep -E '(^[a-zA-Z0-9\./_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
+## —— Template 📝 ——————————————————————————————————————————————————————————————
+
+.PHONY: template-sync-symfony-docker
+template-sync-symfony-docker: ## Import the changes made to the Symfony Docker template into your project
+	@curl -sSL https://raw.githubusercontent.com/coopTilleuls/template-sync/main/template-sync.sh | sh -s -- https://github.com/dunglas/symfony-docker
+	@echo 'Resolve conflicts, if any, and then run "git cherry-pick --continue"'
+
 ## —— Docker 🐳 ————————————————————————————————————————————————————————————————
 .PHONY: build
 build: ## Builds the Docker images
