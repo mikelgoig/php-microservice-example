@@ -152,6 +152,7 @@ lint-fix: ecs-fix ## Analyze code and fix errors (ECS)
 .PHONY: phpstan
 phpstan: ## Run PHPStan and show errors
 	@$(eval c ?=)
+	@$(SYMFONY) debug:container --quiet
 	@$(PHP) vendor/bin/phpstan analyse --memory-limit=-1 $(c)
 
 .PHONY: phpstan-cc
