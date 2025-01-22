@@ -1,4 +1,4 @@
-# Deployment Model
+# Deployment
 
 This document describes the deployment model for the project, including infrastructure components, environments, and the
 deployment process. The application is hosted on **AWS Cloud**, leveraging managed services for scalability,

@@ -29,7 +29,11 @@ final readonly class HealthCheckController
     public function __invoke(Request $request): Response
     {
         return $this->createResponse($request, [
-            new DoctrineConnectionHealthChecker(new CheckDetails('Database', true), $this->databaseConnection),
+            new DoctrineConnectionHealthChecker(new CheckDetails(
+                'postgresql',
+                true,
+                componentType: 'datastore',
+            ), $this->databaseConnection),
         ]);
     }
 

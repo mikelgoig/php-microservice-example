@@ -85,9 +85,11 @@ _TO DO_
 
 - [Branching Strategy](docs/version-control/branching-strategy.md)
 
-### Deployment
+### Operations
 
-- [Deployment Model](docs/deployment/deployment-model.md)
+- [Deployment](docs/operations/deployment.md): Explains the deployment model of the project, including infrastructure components,
+  environments, and the deployment process.
+- [Monitoring](docs/operations/monitoring.md): Explains the available mechanisms for monitoring the service.
 
 ## 🤩 Extra
 
