@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "703444791929263729ed7ae314ba86af",
+    "content-hash": "250c0917a9f5e426261e4ac8d6e04eb4",
     "packages": [
         {
             "name": "api-platform/doctrine-common",
@@ -8970,16 +8970,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.8.4",
+            "version": "2.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "112e37d1dca22b3fdb81cf3524ab4994f47fdb8c"
+                "reference": "ae208dc1e182bd45d99fcecb956501da212454a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/112e37d1dca22b3fdb81cf3524ab4994f47fdb8c",
-                "reference": "112e37d1dca22b3fdb81cf3524ab4994f47fdb8c",
+                "url": "https://api.github.com/repos/composer/composer/zipball/ae208dc1e182bd45d99fcecb956501da212454a1",
+                "reference": "ae208dc1e182bd45d99fcecb956501da212454a1",
                 "shasum": ""
             },
             "require": {
@@ -9064,7 +9064,7 @@
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
                 "security": "https://github.com/composer/composer/security/policy",
-                "source": "https://github.com/composer/composer/tree/2.8.4"
+                "source": "https://github.com/composer/composer/tree/2.8.5"
             },
             "funding": [
                 {
@@ -9080,7 +9080,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-11T10:57:47+00:00"
+            "time": "2025-01-21T14:23:40+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -11046,16 +11046,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "cd6e973e04b4c2b94c86e8612b5a65f0da0e08e7"
+                "reference": "7d08f569e582ade182a375c366cbd896eccadd3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/cd6e973e04b4c2b94c86e8612b5a65f0da0e08e7",
-                "reference": "cd6e973e04b4c2b94c86e8612b5a65f0da0e08e7",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7d08f569e582ade182a375c366cbd896eccadd3a",
+                "reference": "7d08f569e582ade182a375c366cbd896eccadd3a",
                 "shasum": ""
             },
             "require": {
@@ -11100,7 +11100,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-05T16:43:48+00:00"
+            "time": "2025-01-21T14:54:06+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -11222,16 +11222,16 @@
         },
         {
             "name": "phpstan/phpstan-strict-rules",
-            "version": "2.0.1",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-strict-rules.git",
-                "reference": "ed6fea0ad4ad9c7e25f3ad2e7c4d420cf1e67fe3"
+                "reference": "8b88b5f818bfa301e0c99154ab622dace071c3ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/ed6fea0ad4ad9c7e25f3ad2e7c4d420cf1e67fe3",
-                "reference": "ed6fea0ad4ad9c7e25f3ad2e7c4d420cf1e67fe3",
+                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/8b88b5f818bfa301e0c99154ab622dace071c3ba",
+                "reference": "8b88b5f818bfa301e0c99154ab622dace071c3ba",
                 "shasum": ""
             },
             "require": {
@@ -11264,28 +11264,28 @@
             "description": "Extra strict and opinionated rules for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-strict-rules/issues",
-                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/2.0.1"
+                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/2.0.3"
             },
-            "time": "2024-12-12T20:21:10+00:00"
+            "time": "2025-01-21T10:52:14+00:00"
         },
         {
             "name": "phpstan/phpstan-symfony",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-symfony.git",
-                "reference": "c08cd8e54a08d651bc402d304cfa161c3c3766c4"
+                "reference": "65f02c7e585f3c7372e42e14d3d87da034031553"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/c08cd8e54a08d651bc402d304cfa161c3c3766c4",
-                "reference": "c08cd8e54a08d651bc402d304cfa161c3c3766c4",
+                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/65f02c7e585f3c7372e42e14d3d87da034031553",
+                "reference": "65f02c7e585f3c7372e42e14d3d87da034031553",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
                 "php": "^7.4 || ^8.0",
-                "phpstan/phpstan": "^2.0"
+                "phpstan/phpstan": "^2.1.2"
             },
             "conflict": {
                 "symfony/framework-bundle": "<3.0"
@@ -11335,9 +11335,9 @@
             "description": "Symfony Framework extensions and rules for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-symfony/issues",
-                "source": "https://github.com/phpstan/phpstan-symfony/tree/2.0.1"
+                "source": "https://github.com/phpstan/phpstan-symfony/tree/2.0.2"
             },
-            "time": "2025-01-04T13:58:15+00:00"
+            "time": "2025-01-21T18:57:07+00:00"
         },
         {
             "name": "phpstan/phpstan-webmozart-assert",
