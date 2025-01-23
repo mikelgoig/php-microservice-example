@@ -31,7 +31,11 @@ build: ## Builds the Docker images
 
 .PHONY: up
 up: ## Start the docker hub in detached mode (no logs)
-	@HTTP_PORT=8000 HTTPS_PORT=4443 HTTP3_PORT=4443 $(DOCKER_COMP) up --detach
+	@HTTP_PORT=8000 \
+	HTTPS_PORT=4443 \
+	HTTP3_PORT=4443 \
+	POSTGRES_PORT=50357 \
+	$(DOCKER_COMP) up --detach
 
 .PHONY: start
 start: build up git-hooks-install ## Build and start the containers
