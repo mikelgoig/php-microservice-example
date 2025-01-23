@@ -53,3 +53,6 @@ indent_style = tab
 
 [*.*Caddyfile]
 indent_style = tab
+
+[.idea/*]
+indent_size = 2
