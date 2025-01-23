@@ -2,7 +2,7 @@
 
 ## Backend
 
-- **Programming Language:** PHP 8.2
+- **Programming Language:** [PHP 8.3](https://www.php.net)
 - **Framework:** [Symfony 7.2](https://symfony.com)
 - **Testing Framework:** [PHPUnit](https://phpunit.de) and [Codeception](https://codeception.com)
 - **Database:** [PostgreSQL 17.2](https://postgresql.org)
