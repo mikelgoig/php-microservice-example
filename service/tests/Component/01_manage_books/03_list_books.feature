@@ -4,8 +4,8 @@ Feature: List books
   I need to list a collection of books
 
   Scenario: [OK] List all
-    Given I create the book AWAA
-    And I create the book DDD
+    Given I create the book "Advanced Web Application Architecture"
+    And I create the book "Domain-Driven Design in PHP"
     When I send a "GET" request to "/api/books"
     Then the request matches the OpenAPI specification
     And the response code is "200"
@@ -20,11 +20,13 @@ Feature: List books
           {
             "@id": "/api/books/@uuid@",
             "@type": "Book",
+            "id": "@uuid@",
             "name": "Domain-Driven Design in PHP"
           },
           {
             "@id": "/api/books/@uuid@",
             "@type": "Book",
+            "id": "@uuid@",
             "name": "Advanced Web Application Architecture"
           }
         ]
@@ -33,8 +35,8 @@ Feature: List books
     And the response matches the OpenAPI specification
 
   Scenario: [OK] Pagination
-    Given I create the book AWAA
-    And I create the book DDD
+    Given I create the book "Advanced Web Application Architecture"
+    And I create the book "Domain-Driven Design in PHP"
     When I send a "GET" request to "/api/books?itemsPerPage=1&page=1"
     Then the request matches the OpenAPI specification
     And the response code is "200"
@@ -49,6 +51,7 @@ Feature: List books
           {
             "@id": "/api/books/@uuid@",
             "@type": "Book",
+            "id": "@uuid@",
             "name": "Domain-Driven Design in PHP"
           }
         ],

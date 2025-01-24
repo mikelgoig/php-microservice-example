@@ -7,19 +7,19 @@ namespace App\Tests\Support\Extension;
 use Codeception\Events;
 use Codeception\Extension;
 use Codeception\Module\Symfony;
+use Webmozart\Assert\Assert;
 
 final class ApiPlatformEventSubscriber extends Extension
 {
-    private const OPENAPI_FILE_PATH = 'var/data/openapi.json';
+    protected array $config = [
+        'openapi' => null,
+    ];
 
     /** @var array<string, string> */
-    public static array $events = [
+    protected static array $events = [
         Events::SUITE_BEFORE => 'beforeSuite',
     ];
 
-    /**
-     * @noinspection PhpUnused
-     */
     public function beforeSuite(): void
     {
         $this->exportOpenApiFile();
@@ -27,10 +27,12 @@ final class ApiPlatformEventSubscriber extends Extension
 
     private function exportOpenApiFile(): void
     {
+        Assert::string($this->config['openapi'], 'The <openapi> config must be set in the ApiPlatform extension.');
+
         /** @var Symfony $symfony */
         $symfony = $this->getModule('Symfony');
         $symfony->runSymfonyConsoleCommand('api:openapi:export', [
-            '--output' => self::OPENAPI_FILE_PATH,
+            '--output' => $this->config['openapi'],
         ]);
     }
 }

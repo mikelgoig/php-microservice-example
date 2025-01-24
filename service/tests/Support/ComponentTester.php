@@ -20,13 +20,13 @@ class ComponentTester extends Actor
     private ?string $bookId = null;
 
     /**************************************************************************/
-    /* Books                                                              */
+    /* Books                                                                  */
     /**************************************************************************/
 
     /**
-     * @Given /^I create the book AWAA$/
+     * @Given /^I create the book "([^"]*)"$/
      */
-    public function stepCreateBookAWAA(): void
+    public function stepCreateBook(string $name): void
     {
         $this->sendHttpRequestWithBodyAndHeaders(
             'POST',
@@ -36,7 +36,7 @@ class ComponentTester extends Actor
                     'Content-Type' => 'application/json',
                 ],
                 'body' => [
-                    'name' => 'Advanced Web Application Architecture',
+                    'name' => $name,
                 ],
             ],
         );
@@ -44,29 +44,8 @@ class ComponentTester extends Actor
         $this->seeResponseCodeIsSuccessful();
 
         $response = (new JsonArray($this->grabResponse()))->toArray();
-        Assert::string($response['@id'], 'The book must have an @id');
-        $this->bookId = $response['@id'];
-    }
-
-    /**
-     * @Given /^I create the book DDD/
-     */
-    public function stepCreateBookDDD(): void
-    {
-        $this->sendHttpRequestWithBodyAndHeaders(
-            'POST',
-            '/api/books',
-            [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                ],
-                'body' => [
-                    'name' => 'Domain-Driven Design in PHP',
-                ],
-            ],
-        );
-
-        $this->seeResponseCodeIsSuccessful();
+        Assert::string($response['id'], 'The book must have an ID.');
+        $this->bookId = $response['id'];
     }
 
     /**
@@ -75,6 +54,6 @@ class ComponentTester extends Actor
     public function stepGetLastBookCreated(): void
     {
         Assert::notNull($this->bookId, 'The book must have been created.');
-        $this->sendGet($this->bookId);
+        $this->sendGet(sprintf('/api/books/%s', $this->bookId));
     }
 }

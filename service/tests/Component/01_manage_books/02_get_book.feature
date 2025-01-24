@@ -4,7 +4,7 @@ Feature: Get book
   I need to retrieve an existing book
 
   Scenario: [OK] The book exists
-    Given I create the book AWAA
+    Given I create the book "Advanced Web Application Architecture"
     When I get the last book created
     Then the request matches the OpenAPI specification
     And the response code is "200"
@@ -14,6 +14,7 @@ Feature: Get book
         "@context": "/api/contexts/Book",
         "@id": "/api/books/@uuid@",
         "@type": "Book",
+        "id": "@uuid@",
         "name": "Advanced Web Application Architecture"
       }
       """
@@ -29,9 +30,7 @@ Feature: Get book
         "@id": "/api/errors/404",
         "@type": "Error",
         "title": "An error occurred",
-        "description": "Could not find book <019461ba-a46e-722d-8ea4-09832f35a713>.",
-        "type": "/errors/404",
-        "status": 404
+        "description": "Could not find book <019461ba-a46e-722d-8ea4-09832f35a713>."
       }
       """
     And the response matches the OpenAPI specification

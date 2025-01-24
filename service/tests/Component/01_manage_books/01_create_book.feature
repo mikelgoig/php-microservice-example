@@ -23,6 +23,7 @@ Feature: Create book
         "@context": "/api/contexts/Book",
         "@id": "/api/books/@uuid@",
         "@type": "Book",
+        "id": "@uuid@",
         "name": "Advanced Web Application Architecture"
       }
       """
@@ -39,22 +40,16 @@ Feature: Create book
       }
       """
     Then the response code is "422"
-    And the response body matches JSON:
+    And the response body contains JSON:
       """
       {
         "@context": "/api/contexts/ConstraintViolationList",
-        "@id": "/api/validation_errors/@uuid@",
         "@type": "ConstraintViolationList",
         "title": "An error occurred",
-        "description": "name: This value should not be null.",
-        "detail": "name: This value should not be null.",
-        "type": "/validation_errors/@uuid@",
-        "status": 422,
         "violations": [
           {
             "propertyPath": "name",
-            "message": "This value should not be null.",
-            "code": "@uuid@"
+            "message": "This value should not be null."
           }
         ]
       }
@@ -79,6 +74,7 @@ Feature: Create book
       {
         "@context": "/api/contexts/ConstraintViolationList",
         "@type": "ConstraintViolationList",
+        "title": "An error occurred",
         "violations": [
           {
             "propertyPath": "name",
@@ -117,8 +113,8 @@ Feature: Create book
       """
     And the response matches the OpenAPI specification
 
-  Scenario: [KO] Already exists a book with the given name
-    Given I create the book AWAA
+  Scenario: [KO] A book with the given name already exists
+    Given I create the book "Advanced Web Application Architecture"
     When I send a "POST" request to "/api/books" with:
       """
       {

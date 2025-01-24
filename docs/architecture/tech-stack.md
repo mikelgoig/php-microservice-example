@@ -97,6 +97,11 @@
 - [`codeception/codeception`](https://github.com/Codeception/Codeception):
     - Codeception is a testing framework for PHP applications. It allows for creating unit, functional, and
       acceptance tests.
+- [`codeception/module-doctrine`](https://github.com/Codeception/module-doctrine) (supplements
+  `codeception/codeception`):
+    - A Codeception module designed for integration testing in applications that use Doctrine ORM.
+    - Provides tools to interact with the database during tests, including features to control the Doctrine Entity
+      Manager, handle database transactions, clean the database, and populate it with fixtures.
 - [`codeception/module-rest`](https://github.com/Codeception/module-rest) (supplements `codeception/codeception`):
     - A Codeception module which allows tests to communicate with REST APIs and validate responses.
 - [`codeception/module-symfony`](https://github.com/Codeception/module-symfony) (supplements `codeception/codeception`):

@@ -10,6 +10,9 @@ modules:
     - REST:
         depends: Symfony
         part: Json
+    - Doctrine:
+        depends: Symfony
+        cleanup: true
     - MikelGoig\Codeception\Module\Rest:
         depends: REST
         part: gherkin
@@ -19,5 +22,5 @@ modules:
         part: gherkin
 extensions:
   enabled:
-    - App\Tests\Support\Extension\ApiPlatformEventSubscriber
-    - App\Tests\Support\Extension\DatabaseEventSubscriber
+    - App\Tests\Support\Extension\ApiPlatformEventSubscriber:
+        openapi: var/data/openapi.json

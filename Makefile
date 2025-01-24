@@ -104,6 +104,13 @@ db-migrate: ## Execute migrations
 db-fresh: ## Drop the database and create a new one with all migrations
 db-fresh: db-drop db-create db-migrate
 
+.PHONY: db-fresh-test
+db-fresh-test: ## Drop the test database and create a new one with all migrations
+db-fresh-test:
+	@$(SYMFONY) doctrine:database:drop --if-exists --force --no-interaction --env=test
+	@$(SYMFONY) doctrine:database:create --if-not-exists --no-interaction --env=test
+	@$(SYMFONY) doctrine:migrations:migrate --allow-no-migration --all-or-nothing --no-interaction --env=test
+
 .PHONY: db-diff
 db-diff: ## Generate a migration by comparing your database to your mapping information
 db-diff: db-fresh
@@ -125,16 +132,6 @@ test: ## Execute all tests with Codeception. Pass the parameter "c=" to add opti
 test-ff: ## Execute all tests with Codeception, with fail fast option
 test-ff: c = --fail-fast
 test-ff: test
-
-.PHONY: ct
-ct: ## Execute component tests. Pass the parameter "c=" to add options to codeception, example: make ct c="--skip-group=skip"
-	@$(eval c ?=)
-	@$(PHP) vendor/bin/codecept run component $(c)
-
-.PHONY: ctff
-ctff: ## Execute component tests, with fail fast option
-ctff: c = --fail-fast
-ctff: ct
 
 .PHONY: codecept-build
 codecept-build: ## Build Codeception generated actions

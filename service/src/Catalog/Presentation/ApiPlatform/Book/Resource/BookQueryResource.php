@@ -34,7 +34,7 @@ use Symfony\Component\Uid\UuidV7;
 )]
 class BookQueryResource
 {
-    #[ApiProperty(readable: false, writable: false, identifier: true)]
+    #[ApiProperty(writable: false, identifier: true)]
     #[ORM\Id, ORM\Column(type: 'uuid', unique: true)]
     public UuidV7 $id;
 

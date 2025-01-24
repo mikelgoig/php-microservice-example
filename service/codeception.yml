@@ -1,13 +1,21 @@
 namespace: App\Tests
 support_namespace: Support
+paths:
+  data: tests/Support/Data
+  envs: tests/_envs
+  output: tests/_output
+  support: tests/Support
+  tests: tests
+actor_suffix: Tester
+extensions:
+  enabled:
+    - Codeception\Extension\RunFailed
 params:
   - env
   - .env
-paths:
-  tests: tests
-  data: tests/_data
-  support: tests/Support
-  output: tests/_output
+  - .env.test
 settings:
-  shuffle: false
+  colors: true
   lint: true
+  report_useless_tests: true
+  shuffle: false
