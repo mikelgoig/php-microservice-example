@@ -90,21 +90,15 @@ db: sf
 
 .PHONY: db-create
 db-create: ## Create the database, if not exists
-db-create: c = doctrine:database:create --if-not-exists --no-interaction
-db-create:
-	@$(SYMFONY) $(c)
+	@$(SYMFONY) doctrine:database:create --if-not-exists --no-interaction
 
 .PHONY: db-drop
 db-drop: ## Drop the database, if exists
-db-drop: c = doctrine:database:drop --if-exists --force --no-interaction
-db-drop:
-	@$(SYMFONY) $(c)
+	@$(SYMFONY) doctrine:database:drop --if-exists --force --no-interaction
 
 .PHONY: db-migrate
 db-migrate: ## Execute migrations
-db-migrate: c = doctrine:migrations:migrate --no-interaction
-db-migrate:
-	@$(SYMFONY) $(c)
+	@$(SYMFONY) doctrine:migrations:migrate --allow-no-migration --all-or-nothing --no-interaction
 
 .PHONY: db-fresh
 db-fresh: ## Drop the database and create a new one with all migrations
