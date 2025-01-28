@@ -17,8 +17,8 @@
          shortenArraysForExportThreshold="10"
 >
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Catalog">
+            <directory>tests/Catalog</directory>
         </testsuite>
     </testsuites>
 
@@ -27,6 +27,10 @@
             <directory>src</directory>
         </include>
     </source>
+
+    <extensions>
+        <bootstrap class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension" />
+    </extensions>
 
     <php>
         <ini name="display_errors" value="1"/>

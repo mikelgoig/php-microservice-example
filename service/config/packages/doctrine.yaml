@@ -7,7 +7,13 @@ doctrine:
     #server_version: '16'
     
     profiling_collect_backtrace: '%kernel.debug%'
+    
+    ###> dama/doctrine-test-bundle
+    # Starting from version 8 and only when using DBAL < 4
+    # you need to make sure you have use_savepoints enabled for all relevant connections
     use_savepoints: true
+    ###< dama/doctrine-test-bundle ###
+
   orm:
     auto_generate_proxy_classes: true
     enable_lazy_ghost_objects: true

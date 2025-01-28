@@ -6,6 +6,9 @@ return [
     ApiPlatform\Symfony\Bundle\ApiPlatformBundle::class => [
         'all' => true,
     ],
+    DAMA\DoctrineTestBundle\DAMADoctrineTestBundle::class => [
+        'test' => true,
+    ],
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => [
         'all' => true,
     ],
