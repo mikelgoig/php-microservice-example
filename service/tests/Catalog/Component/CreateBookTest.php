@@ -4,19 +4,16 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Component;
 
-use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Tests\ComponentTestCase;
 use App\Tests\Factory\Book\Resource\BookFactory;
-use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
 #[CoversClass(BookCommandResource::class)]
-final class CreateBookTest extends ApiTestCase
+final class CreateBookTest extends ComponentTestCase
 {
-    use PHPMatcherAssertions;
-
     public function test_data_is_valid(): void
     {
         $response = self::createClient()->request('POST', '/api/books', [

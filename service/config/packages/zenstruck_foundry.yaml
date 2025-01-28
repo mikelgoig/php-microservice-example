@@ -1,5 +1,10 @@
 when@dev: &dev
   # See full configuration: https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#full-default-bundle-configuration
   zenstruck_foundry:
+    orm:
+      reset:
+        # When using migrate mode along with DamaDoctrineTestBundle,
+        # the database is dropped/created and migrated only once for the suite.
+        mode: migrate
 
 when@test: *dev
