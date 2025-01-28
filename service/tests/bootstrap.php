@@ -39,8 +39,8 @@ function freshDatabase(): void
 
     $application->run(new ArrayInput([
         'command' => 'doctrine:migrations:migrate',
-        '--allow-no-migration' => '1',
-        '--all-or-nothing' => '1',
+        '--allow-no-migration',
+        '--all-or-nothing',
         '--no-interaction' => '1',
     ]));
 

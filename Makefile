@@ -124,9 +124,9 @@ db-validate: sf
 
 ## —— Test 🧪 ——————————————————————————————————————————————————————————————————
 .PHONY: test
-test: ## Execute all tests with Codeception. Pass the parameter "c=" to add options to codecept
+test: ## Execute all tests with phpunit, pass the parameter "c=" to add options to phpunit, example: make test c="--group e2e --stop-on-failure"
 	@$(eval c ?=)
-	@$(PHP) vendor/bin/codecept run --skip-group=skip $(c)
+	@$(PHP) bin/phpunit $(c)
 
 .PHONY: test-ff
 test-ff: ## Execute all tests with Codeception, with fail fast option
