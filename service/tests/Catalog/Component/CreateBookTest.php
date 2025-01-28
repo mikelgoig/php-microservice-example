@@ -7,6 +7,7 @@ namespace App\Tests\Catalog\Component;
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Tests\Factory\Book\Resource\BookFactory;
 use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -105,13 +106,10 @@ final class CreateBookTest extends ApiTestCase
 
     public function test_book_with_the_given_name_already_exists(): void
     {
-        $client = self::createClient();
-        $client->request('POST', '/api/books', [
-            'json' => [
-                'name' => 'Advanced Web Application Architecture',
-            ],
+        BookFactory::new()->create([
+            'name' => 'Advanced Web Application Architecture',
         ]);
-        $client->request('POST', '/api/books', [
+        self::createClient()->request('POST', '/api/books', [
             'json' => [
                 'name' => 'Advanced Web Application Architecture',
             ],
