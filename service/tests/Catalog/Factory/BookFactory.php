@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Factory\Book\Resource;
+namespace App\Tests\Catalog\Factory;
 
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
 use Symfony\Component\Uid\Uuid;

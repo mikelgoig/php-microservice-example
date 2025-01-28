@@ -129,13 +129,9 @@ test: ## Execute all tests with phpunit, pass the parameter "c=" to add options 
 	@$(PHP) bin/phpunit $(c)
 
 .PHONY: test-ff
-test-ff: ## Execute all tests with Codeception, with fail fast option
-test-ff: c = --fail-fast
+test-ff: ## Execute all tests with phpunit, with stop on failure option
+test-ff: c = --stop-on-failure
 test-ff: test
-
-.PHONY: codecept-build
-codecept-build: ## Build Codeception generated actions
-	@$(PHP) vendor/bin/codecept build
 
 ## —— Analysis 🔎 ——————————————————————————————————————————————————————————————
 .PHONY: lint

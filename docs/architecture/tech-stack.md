@@ -4,7 +4,7 @@
 
 - **Programming Language:** [PHP 8.3](https://www.php.net)
 - **Framework:** [Symfony 7.2](https://symfony.com)
-- **Testing Framework:** [PHPUnit](https://phpunit.de) and [Codeception](https://codeception.com)
+- **Testing Framework:** [PHPUnit](https://phpunit.de)
 - **Database:** [PostgreSQL 17.2](https://postgresql.org)
 - **Message Queue:** [RabbitMQ](https://rabbitmq.com)
 - **Search Engine:** [Elasticsearch](https://elastic.co/elasticsearch)
@@ -94,24 +94,6 @@
     - A PHP tool for managing Git hooks.
     - Automates the setup and execution of Git hooks, allowing developers to define custom actions, such as code quality
       checks, tests, or formatting fixes, that run during Git events like commit or push.
-- [`codeception/codeception`](https://github.com/Codeception/Codeception):
-    - Codeception is a testing framework for PHP applications. It allows for creating unit, functional, and
-      acceptance tests.
-- [`codeception/module-doctrine`](https://github.com/Codeception/module-doctrine) (supplements
-  `codeception/codeception`):
-    - A Codeception module designed for integration testing in applications that use Doctrine ORM.
-    - Provides tools to interact with the database during tests, including features to control the Doctrine Entity
-      Manager, handle database transactions, clean the database, and populate it with fixtures.
-- [`codeception/module-rest`](https://github.com/Codeception/module-rest) (supplements `codeception/codeception`):
-    - A Codeception module which allows tests to communicate with REST APIs and validate responses.
-- [`codeception/module-symfony`](https://github.com/Codeception/module-symfony) (supplements `codeception/codeception`):
-    - A Codeception module which integrates with Symfony internals, allowing deeper functional and integration
-      testing.
-- [`mikelgoig/codeception-openapi`](https://github.com/mikelgoig/codeception-openapi) (supplements
-  `codeception/codeception`):
-    - A Codeception module for contract testing with OpenAPI.
-- [`mikelgoig/codeception-rest`](https://github.com/mikelgoig/codeception-rest) (supplements `codeception/codeception`):
-    - A Codeception module for testing REST services.
 - [`mikelgoig/easy-coding-standard-rules`](https://github.com/mikelgoig/easy-coding-standard-rules) (supplements
   `symplify/easy-coding-standard`):
     - Provides a collection of custom rules for use with Symplify's Easy Coding Standard (ECS).
