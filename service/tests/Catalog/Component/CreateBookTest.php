@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 #[CoversClass(BookCommandResource::class)]
 final class CreateBookTest extends ComponentTestCase
 {
-    public function test_data_is_valid(): void
+    public function test_can_create_book_using_valid_data(): void
     {
         $response = self::createClient()->request('POST', '/api/books', [
             'json' => [
@@ -34,7 +34,7 @@ final class CreateBookTest extends ComponentTestCase
         self::assertMatchesResourceItemJsonSchema(BookQueryResource::class);
     }
 
-    public function test_data_is_null(): void
+    public function test_cannot_create_book_providing_null_data(): void
     {
         self::createClient()->request('POST', '/api/books', [
             'json' => [],
@@ -55,7 +55,7 @@ final class CreateBookTest extends ComponentTestCase
         ]);
     }
 
-    public function test_data_is_blank(): void
+    public function test_cannot_create_book_providing_blank_data(): void
     {
         self::createClient()->request('POST', '/api/books', [
             'json' => [
@@ -78,7 +78,7 @@ final class CreateBookTest extends ComponentTestCase
         ]);
     }
 
-    public function test_name_is_too_long(): void
+    public function test_cannot_create_book_if_name_is_too_long(): void
     {
         self::createClient()->request('POST', '/api/books', [
             'json' => [
@@ -101,11 +101,12 @@ final class CreateBookTest extends ComponentTestCase
         ]);
     }
 
-    public function test_book_with_the_given_name_already_exists(): void
+    public function test_cannot_create_book_if_book_with_name_already_exists(): void
     {
-        BookFactory::new()->create([
+        BookFactory::createOne([
             'name' => 'Advanced Web Application Architecture',
         ]);
+
         self::createClient()->request('POST', '/api/books', [
             'json' => [
                 'name' => 'Advanced Web Application Architecture',
