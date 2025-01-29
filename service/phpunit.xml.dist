@@ -12,7 +12,6 @@
          failOnPhpunitDeprecation="true"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutCoverageMetadata="true"
-         executionOrder="depends,defects"
          displayDetailsOnPhpunitDeprecations="true"
          shortenArraysForExportThreshold="10"
 >
