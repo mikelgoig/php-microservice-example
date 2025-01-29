@@ -94,6 +94,19 @@
     - A PHP tool for managing Git hooks.
     - Automates the setup and execution of Git hooks, allowing developers to define custom actions, such as code quality
       checks, tests, or formatting fixes, that run during Git events like commit or push.
+- [`coduo/php-matcher`](https://github.com/coduo/php-matcher) (supplements `symfony/test-pack`):
+    - Used for matching patterns in more flexible ways.
+    - It's often employed in testing to verify if a certain structure or data matches some predefined format, especially
+      when exact values aren't required.
+    - It's useful for validating JSON or other complex data structures.
+- [`dama/doctrine-test-bundle`](https://github.com/dmaicher/doctrine-test-bundle) (supplements `symfony/test-pack`):
+    - Simplifies database testing by wrapping Doctrine's DBAL Connection in a transactional mode.
+    - Prevents database changes from persisting between tests, ensuring a clean and isolated database state for every
+      test run, significantly improving testing speed.
+- [`justinrainbow/json-schema`](https://github.com/justinrainbow/json-schema) (supplements `symfony/test-pack`):
+    - A PHP library for validating JSON data against a schema.
+    - This can be useful for ensuring that your data conforms to predefined structures, especially when working with
+      APIs where data format validation is critical.
 - [`mikelgoig/easy-coding-standard-rules`](https://github.com/mikelgoig/easy-coding-standard-rules) (supplements
   `symplify/easy-coding-standard`):
     - Provides a collection of custom rules for use with Symplify's Easy Coding Standard (ECS).
@@ -117,6 +130,10 @@
     - Adds specific PHPStan rules and features to analyze projects using Doctrine ORM and DBAL.
     - Provides deeper insights into Doctrine entities, repositories, and queries, helping to detect issues with
       annotations, mappings, repositories, and database interactions.
+- [`phpstan/phpstan-phpunit`](https://github.com/phpstan/phpstan-phpunit) (supplements `phpstan/phpstan`):
+    - Provides a PHPStan integration with PHPUnit.
+    - Helps by analyzing PHPUnit-specific code and test cases written in your application, identifying potential bugs or
+      inconsistencies in your tests.
 - [`phpstan/phpstan-strict-rules`](https://github.com/phpstan/phpstan-strict-rules) (supplements `phpstan/phpstan`):
     - Introduces strict rules for PHPStan, aiming to enforce stricter coding standards and reduce potential bugs.
     - Detects issues like redundant code, risky type assumptions, and enforces rigorous type safety, ensuring more
@@ -129,18 +146,34 @@
   `phpstan/phpstan`):
     - Provides PHPStan rules for analyzing and validating the proper usage of the `webmozart/assert` assertions library.
     - Ensures that assertions in the code are used correctly (e.g., proper types, arguments, and logic).
+- [`phpunit/phpunit`](https://github.com/sebastianbergmann/phpunit) (required by `symfony/test-pack`):
+    - The most popular PHP testing framework.
+    - It's integral for creating and executing unit tests, allowing you to write assertions to validate the behavior of
+      your application's code and ensure stability throughout development.
 - [`ramsey/conventional-commits`](https://github.com/ramsey/conventional-commits):
     - Helps validate and enforce the [Conventional Commits](https://www.conventionalcommits.org/) specification in a
       project.
     - It's typically used to ensure that commit messages follow a structured format, making it easier to generate
       changelogs and maintain consistent versioning.
+- [`symfony/browser-kit`](https://github.com/symfony/browser-kit) (required by `symfony/test-pack`):
+    - A Symfony component that simulates a web browser for testing purposes.
+    - It's often used in integration or functional testing, allowing you to programmatically navigate web pages and
+      interact with forms, links, etc.
 - [`symfony/debug-bundle`](https://github.com/symfony/debug-bundle) (required by `symfony/debug-pack`):
     - Integrates debugging tools with Symfony's services in the framework.
     - Provides features like setting up a debug container and additional diagnostics.
+- [`symfony/http-client`](https://github.com/symfony/http-client) (supplements `symfony/test-pack`):
+    - A robust HTTP client provided by Symfony for making HTTP requests.
+    - Supports features like asynchronous requests, HTTP/2, and handling responses, making integrations with APIs and
+      external services easier and more efficient.
 - [`symfony/maker-bundle`](https://github.com/symfony/maker-bundle):
     - Simplifies the process of generating common code and features.
     - Provides interactive commands that developers can use to scaffold different parts of the application, such as
       controllers, entities, form classes, tests, and more.
+- [`symfony/phpunit-bridge`](https://github.com/symfony/phpunit-bridge) (required by `symfony/test-pack`):
+    - A Symfony tool that enhances PHPUnit by providing better integration with Symfony applications.
+    - Includes features like deprecation warnings during tests, autoconfiguration of the testing environment, and easier
+      PHPUnit version upgrades.
 - [`symfony/stopwatch`](https://github.com/symfony/stopwatch) (required by `symfony/debug-pack`):
     - Measures the performance or execution time of your application code.
     - It is useful for profiling and debugging code sections to determine their duration and performance impact.
@@ -154,6 +187,11 @@
 - [`symplify/phpstan-rules`](https://github.com/symplify/phpstan-rules) (supplements `phpstan/phpstan`):
     - Provides a set of custom PHPStan rules aimed at improving code quality and maintaining best practices.
     - Adds additional checks for cleaner, more robust, and maintainable PHP code.
+- [`zenstruck/foundry`](https://github.com/zenstruck/foundry) (supplements `symfony/test-pack`):
+    - A library for generating and managing objects using factories.
+    - It's typically used to seed test databases or simplify test setup by creating entities, DTOs, or any objects with
+      predefined or randomized attributes.
+    - Great for functional or integration testing in Symfony projects.
 
 ---
 
