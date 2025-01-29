@@ -10,6 +10,6 @@ final class BookAlreadyExistsException extends DomainException
 {
     public static function withName(string $name): self
     {
-        return new self("Book with name <{$name}> already exists.");
+        return new self("Book with name <\"{$name}\"> already exists.");
     }
 }

@@ -46,7 +46,7 @@ final class GetBookTest extends ComponentTestCase
             '@id' => '/api/errors/404',
             '@type' => 'Error',
             'title' => 'An error occurred',
-            'description' => 'Could not find book <0194adb1-41b9-7ee2-9344-98ca0217ca03>.',
+            'detail' => 'Could not find book <"0194adb1-41b9-7ee2-9344-98ca0217ca03">.',
         ]);
     }
 }

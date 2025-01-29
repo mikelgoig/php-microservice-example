@@ -10,6 +10,6 @@ final class CouldNotFindBookException extends DomainException
 {
     public static function withId(string $id): self
     {
-        return new self("Could not find book <{$id}>.");
+        return new self("Could not find book <\"{$id}\">.");
     }
 }

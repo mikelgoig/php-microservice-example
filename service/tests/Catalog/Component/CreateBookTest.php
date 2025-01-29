@@ -120,7 +120,7 @@ final class CreateBookTest extends ComponentTestCase
             '@id' => '/api/errors/409',
             '@type' => 'Error',
             'title' => 'An error occurred',
-            'description' => 'Book with name <Advanced Web Application Architecture> already exists.',
+            'detail' => 'Book with name <"Advanced Web Application Architecture"> already exists.',
             'type' => '/errors/409',
             'status' => 409,
         ]);
