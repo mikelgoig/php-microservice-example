@@ -13,9 +13,11 @@ use App\Catalog\Presentation\ApiPlatform\Book\Processor\CreateBookProcessor;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/** A book. */
 #[ApiResource(
     shortName: 'Book',
     operations: [
+        // create book
         new Post(
             openapi: new OpenApiOperation(
                 responses: [
@@ -32,6 +34,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 final class BookCommandResource
 {
+    /** The name of the book. */
     #[Assert\NotNull]
     #[Assert\Length(min: 1, max: 255)]
     public string $name;

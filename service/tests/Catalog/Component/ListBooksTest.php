@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 #[CoversClass(BookQueryResource::class)]
 final class ListBooksTest extends ComponentTestCase
 {
-    public function test_can_list_books(): void
+    public function test_can_list_books_ordered_by_id_desc_by_default(): void
     {
         BookFactory::createOne([
             'name' => 'Advanced Web Application Architecture',
