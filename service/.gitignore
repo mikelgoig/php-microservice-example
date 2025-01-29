@@ -2,6 +2,11 @@
 phpstan.neon
 ###< phpstan/phpstan ###
 
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -11,8 +16,3 @@ phpstan.neon
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
