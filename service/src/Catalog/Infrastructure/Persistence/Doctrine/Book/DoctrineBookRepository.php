@@ -25,6 +25,16 @@ final readonly class DoctrineBookRepository implements BookRepository, BookReadM
         $this->entityManager->persist($book);
     }
 
+    public function remove(Book $book): void
+    {
+        $this->entityManager->remove($book);
+    }
+
+    public function ofId(string $id): ?Book
+    {
+        return $this->entityManager->find(self::ENTITY_CLASS, $id);
+    }
+
     public function exists(Criteria $criteria): bool
     {
         $result = $this->entityManager->createQueryBuilder()

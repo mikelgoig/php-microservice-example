@@ -10,12 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'books')]
 readonly class Book
 {
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue]
-    private int $idPrimary;
-
     private function __construct(
+        #[ORM\Id]
         #[ORM\Column(type: 'uuid', unique: true)]
         protected string $id,
         #[ORM\Column(length: 255)]

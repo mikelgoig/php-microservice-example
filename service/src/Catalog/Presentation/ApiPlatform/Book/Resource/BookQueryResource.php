@@ -38,8 +38,9 @@ use Symfony\Component\Uid\UuidV7;
 class BookQueryResource
 {
     /** The ID of the book. */
+    #[ORM\Id]
+    #[ORM\Column(type: 'uuid', unique: true)]
     #[ApiProperty(writable: false, identifier: true)]
-    #[ORM\Id, ORM\Column(type: 'uuid', unique: true)]
     public UuidV7 $id;
 
     /** The name of the book. */
