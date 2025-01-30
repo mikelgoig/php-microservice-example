@@ -55,6 +55,15 @@
     "ecotone/symfony-bundle": {
         "version": "1.244.0"
     },
+    "enqueue/dbal": {
+        "version": "0.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.4",
+            "ref": "4dd47013ecec8a158d186f63ec4b51f1defff897"
+        }
+    },
     "nelmio/cors-bundle": {
         "version": "2.5",
         "recipe": {
@@ -103,6 +112,18 @@
             ".env.test",
             "phpunit.xml.dist",
             "tests/bootstrap.php"
+        ]
+    },
+    "prooph/pdo-event-store": {
+        "version": "1.15",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.15",
+            "ref": "020f87be92de58907f180d552e1a1b0d8c34cdd1"
+        },
+        "files": [
+            "config/packages/prooph_pdo_event_store.yaml"
         ]
     },
     "symfony/console": {
