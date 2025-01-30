@@ -15,6 +15,9 @@ return [
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => [
         'all' => true,
     ],
+    Ecotone\SymfonyBundle\EcotoneSymfonyBundle::class => [
+        'all' => true,
+    ],
     Nelmio\CorsBundle\NelmioCorsBundle::class => [
         'all' => true,
     ],

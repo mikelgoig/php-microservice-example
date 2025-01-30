@@ -52,6 +52,9 @@
             "migrations/.gitignore"
         ]
     },
+    "ecotone/symfony-bundle": {
+        "version": "1.244.0"
+    },
     "nelmio/cors-bundle": {
         "version": "2.5",
         "recipe": {

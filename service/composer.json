@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.13.2",
         "doctrine/doctrine-migrations-bundle": "^3.4.1",
         "doctrine/orm": "^3.3.1",
+        "ecotone/symfony-bundle": "^1.244",
         "eqs/health-check-provider": "^0.1.1",
         "nelmio/cors-bundle": "^2.5",
         "nyholm/psr7": "^1.8.2",
