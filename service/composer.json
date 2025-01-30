@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.4.1",
         "doctrine/orm": "^3.3.1",
         "eqs/health-check-provider": "^0.1.1",
+        "eventsauce/eventsauce": "^3.6",
         "nelmio/cors-bundle": "^2.5",
         "nyholm/psr7": "^1.8.2",
         "phpdocumentor/reflection-docblock": "^5.6.1",
