@@ -7,6 +7,7 @@ namespace App\Catalog\Presentation\ApiPlatform\Book\Resource;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
@@ -14,6 +15,7 @@ use App\Catalog\Domain\Model\Book\BookAlreadyExistsException;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\CreateBookProcessor;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\DeleteBookProcessor;
+use App\Catalog\Presentation\ApiPlatform\Book\Processor\UpdateBookProcessor;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -37,6 +39,8 @@ use Symfony\Component\Validator\Constraints as Assert;
         ),
         // delete book
         new Delete(read: false, processor: DeleteBookProcessor::class),
+        // update book
+        new Patch(output: BookQueryResource::class, read: false, processor: UpdateBookProcessor::class),
     ],
     exceptionToStatus: [
         CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
