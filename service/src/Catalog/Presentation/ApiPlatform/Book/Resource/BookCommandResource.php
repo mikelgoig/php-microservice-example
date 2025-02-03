@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
+use App\Catalog\Domain\Model\Book\Book;
 use App\Catalog\Domain\Model\Book\BookAlreadyExistsException;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\CreateBookProcessor;
@@ -55,5 +56,14 @@ final class BookCommandResource
     /** The name of the book. */
     #[Assert\NotNull]
     #[Assert\Length(min: 1, max: 255)]
+    #[ApiProperty(example: 'Advanced Web Application Architecture')]
     public string $name;
+
+    public static function fromModel(Book $book): self
+    {
+        $self = new self();
+        $self->id = UuidV7::fromString($book->id->value);
+        $self->name = $book->name;
+        return $self;
+    }
 }

@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace App\Catalog\Presentation\ApiPlatform\Book\Processor;
 
 use ApiPlatform\Metadata\Operation;
+use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Application\Book\Command\Create\CreateBookCommand;
+use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
+use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
 use App\Shared\Application\Bus\Command\CommandBus;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Uid\UuidV7;
 
 /**
  * @implements ProcessorInterface<BookCommandResource, BookQueryResource>
@@ -20,9 +23,13 @@ final readonly class CreateBookProcessor implements ProcessorInterface
 {
     public function __construct(
         private CommandBus $commandBus,
-        private EntityManagerInterface $entityManager,
+        private ResourceMetadataCollectionFactoryInterface $resourceMetadataCollectionFactory,
+        private GetBookProvider $getBookProvider,
     ) {}
 
+    /**
+     * @throws CouldNotFindBookException
+     */
     public function process(
         mixed $data,
         Operation $operation,
@@ -32,8 +39,10 @@ final readonly class CreateBookProcessor implements ProcessorInterface
         $bookId = Uuid::v7();
         $this->commandBus->dispatch(new CreateBookCommand($bookId->toString(), $data->name));
 
-        $book = $this->entityManager->find(BookQueryResource::class, $bookId->toString());
-        \assert($book instanceof BookQueryResource);
-        return $book;
+        $metadataCollection = $this->resourceMetadataCollectionFactory->create(BookQueryResource::class);
+        $getOperation = $metadataCollection->getOperation('_api_/books/{id}{._format}_get');
+        return $this->getBookProvider->provide($getOperation, [
+            'id' => UuidV7::fromString($bookId->toString()),
+        ], $context);
     }
 }
