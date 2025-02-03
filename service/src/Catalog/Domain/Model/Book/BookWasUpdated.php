@@ -7,6 +7,7 @@ namespace App\Catalog\Domain\Model\Book;
 final class BookWasUpdated
 {
     public function __construct(
+        public string $id,
         public string $name,
     ) {}
 }

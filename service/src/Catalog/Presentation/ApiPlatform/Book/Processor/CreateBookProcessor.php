@@ -13,13 +13,15 @@ use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
 use App\Shared\Application\Bus\Command\CommandBus;
-use Symfony\Component\Uid\UuidV7;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @implements ProcessorInterface<BookCommandResource, BookQueryResource>
  */
 final readonly class CreateBookProcessor implements ProcessorInterface
 {
+    use BookProvider;
+
     public function __construct(
         private CommandBus $commandBus,
         private ResourceMetadataCollectionFactoryInterface $resourceMetadataCollectionFactory,
@@ -35,21 +37,8 @@ final readonly class CreateBookProcessor implements ProcessorInterface
         array $uriVariables = [],
         array $context = [],
     ): BookQueryResource {
-        $bookId = new UuidV7();
+        $bookId = Uuid::v7();
         $this->commandBus->dispatch(new CreateBookCommand($bookId->toString(), $data->name));
         return $this->provide($bookId, $context);
-    }
-
-    /**
-     * @param array<string, mixed> $context
-     * @throws CouldNotFindBookException
-     */
-    private function provide(UuidV7 $bookId, array $context): BookQueryResource
-    {
-        $metadataCollection = $this->resourceMetadataCollectionFactory->create(BookQueryResource::class);
-        $getOperation = $metadataCollection->getOperation('_api_/books/{id}{._format}_get');
-        return $this->getBookProvider->provide($getOperation, [
-            'id' => $bookId,
-        ], $context);
     }
 }

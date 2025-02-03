@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Catalog\Domain\Model\Book;
 
-use App\Catalog\Application\Book\Command\Update\UpdateBookCommand;
-use Ecotone\Modelling\Attribute\CommandHandler;
 use Ecotone\Modelling\Attribute\EventSourcingAggregate;
 use Ecotone\Modelling\Attribute\EventSourcingHandler;
 use Ecotone\Modelling\Attribute\Identifier;
@@ -30,13 +28,9 @@ final class Book
         return $self;
     }
 
-    /**
-     * @return array{0: BookWasUpdated}
-     */
-    #[CommandHandler]
-    public function update(UpdateBookCommand $command): array
+    public function update(string $name): void
     {
-        return [new BookWasUpdated($command->name)];
+        $this->recordThat(new BookWasUpdated($this->id->value, $name));
     }
 
     public function delete(): void
