@@ -6,6 +6,11 @@ doctrine:
     # either here or in the DATABASE_URL env var (see .env file)
     #server_version: '16'
     
+    ###> ecotone/pdo-event-sourcing
+    # Ignore event_streams table by the schema tool
+    #schema_filter: ~^(?!(event_streams))~
+    ###< ecotone/pdo-event-sourcing
+    
     profiling_collect_backtrace: '%kernel.debug%'
     
     ###> dama/doctrine-test-bundle

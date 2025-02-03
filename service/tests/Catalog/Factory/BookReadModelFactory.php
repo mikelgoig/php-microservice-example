@@ -26,6 +26,7 @@ final class BookReadModelFactory extends PersistentProxyObjectFactory
         return [
             'id' => new UuidV7(),
             'name' => self::faker()->text(),
+            'deleted' => false,
         ];
     }
 }

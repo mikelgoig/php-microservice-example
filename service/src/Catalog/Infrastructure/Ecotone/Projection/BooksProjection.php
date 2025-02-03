@@ -6,6 +6,7 @@ namespace App\Catalog\Infrastructure\Ecotone\Projection;
 
 use App\Catalog\Domain\Model\Book\Book;
 use App\Catalog\Domain\Model\Book\BookWasCreated;
+use App\Catalog\Domain\Model\Book\BookWasDeleted;
 use App\Catalog\Domain\Model\Book\BookWasUpdated;
 use Doctrine\DBAL\Connection as DbalConnection;
 use Ecotone\EventSourcing\Attribute\Projection;
@@ -26,6 +27,16 @@ final readonly class BooksProjection
         $this->connection->insert(self::BOOKS_TABLE, [
             'id' => $event->id,
             'name' => $event->name,
+        ]);
+    }
+
+    #[EventHandler]
+    public function onBookWasDeleted(BookWasDeleted $event): void
+    {
+        $this->connection->update(self::BOOKS_TABLE, [
+            'deleted' => true,
+        ], [
+            'id' => $event->id,
         ]);
     }
 

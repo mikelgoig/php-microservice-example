@@ -44,6 +44,13 @@ class BookQueryResource
     public UuidV7 $id;
 
     /** The name of the book. */
-    #[ORM\Column]
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
     public string $name;
+
+    /** Indicates if the book has been deleted. */
+    #[ORM\Column(type: 'boolean', options: [
+        'default' => false,
+    ])]
+    #[ApiProperty(readable: false)]
+    public bool $deleted;
 }

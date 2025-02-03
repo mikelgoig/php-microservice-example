@@ -11,7 +11,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 final readonly class DoctrineBookRepository implements BookReadModelRepository
 {
-    /** @var class-string */
     private const string ENTITY_CLASS = BookQueryResource::class;
     private const string ALIAS = 'books';
 
