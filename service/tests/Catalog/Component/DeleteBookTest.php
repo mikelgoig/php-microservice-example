@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Component;
 
-use App\Catalog\Domain\Model\Book\BookId;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -15,8 +14,7 @@ final class DeleteBookTest extends ComponentTestCase
 {
     public function test_can_delete_book_if_it_exists(): void
     {
-        $bookId = BookId::random();
-        // $books->save($book);
+        $bookId = $this->createBook();
 
         $response = self::createClient()->request('DELETE', "/api/books/{$bookId}");
 
@@ -36,6 +34,24 @@ final class DeleteBookTest extends ComponentTestCase
             '@type' => 'Error',
             'title' => 'An error occurred',
             'detail' => 'Could not find book <"0194adb1-41b9-7ee2-9344-98ca0217ca03">.',
+        ]);
+    }
+
+    public function test_cannot_delete_book_if_its_already_deleted(): void
+    {
+        $bookId = $this->createBook();
+        $this->deleteBook($bookId);
+
+        self::createClient()->request('DELETE', "/api/books/{$bookId}");
+
+        self::assertResponseStatusCodeSame(Response::HTTP_PRECONDITION_FAILED);
+        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
+        self::assertJsonContains([
+            '@context' => '/api/contexts/Error',
+            '@id' => '/api/errors/412',
+            '@type' => 'Error',
+            'title' => 'An error occurred',
+            'detail' => "Book <\"{$bookId}\"> is already deleted.",
         ]);
     }
 }

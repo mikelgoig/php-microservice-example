@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
+use App\Catalog\Domain\Model\Book\BookAlreadyDeletedException;
 use App\Catalog\Domain\Model\Book\BookAlreadyExistsException;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\CreateBookProcessor;
@@ -38,12 +39,28 @@ use Symfony\Component\Validator\Constraints as Assert;
             processor: CreateBookProcessor::class,
         ),
         // delete book
-        new Delete(read: false, processor: DeleteBookProcessor::class),
+        new Delete(
+            openapi: new OpenApiOperation(
+                responses: [
+                    Response::HTTP_PRECONDITION_FAILED => new OpenApiResponse('Resource precondition failed'),
+                ],
+            ),
+            exceptionToStatus: [
+                CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
+                BookAlreadyDeletedException::class => Response::HTTP_PRECONDITION_FAILED,
+            ],
+            read: false,
+            processor: DeleteBookProcessor::class,
+        ),
         // update book
-        new Patch(output: BookQueryResource::class, read: false, processor: UpdateBookProcessor::class),
-    ],
-    exceptionToStatus: [
-        CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
+        new Patch(
+            exceptionToStatus: [
+                CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
+            ],
+            output: BookQueryResource::class,
+            read: false,
+            processor: UpdateBookProcessor::class,
+        ),
     ],
 )]
 final class BookCommandResource

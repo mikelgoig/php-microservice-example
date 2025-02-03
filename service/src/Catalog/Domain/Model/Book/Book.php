@@ -17,7 +17,8 @@ final class Book
     use WithAggregateVersioning;
 
     #[Identifier]
-    public BookId $id;
+    private BookId $id;
+    private bool $isDeleted = false;
 
     public static function create(string $id, string $name): self
     {
@@ -33,8 +34,15 @@ final class Book
         $this->recordThat(new BookWasUpdated($this->id->value, $name));
     }
 
+    /**
+     * @throws BookAlreadyDeletedException
+     */
     public function delete(): void
     {
+        if ($this->isDeleted) {
+            throw BookAlreadyDeletedException::withId($this->id);
+        }
+
         $this->recordThat(new BookWasDeleted($this->id->value));
     }
 
@@ -48,5 +56,8 @@ final class Book
     public function applyBookWasUpdated(BookWasUpdated $event): void {}
 
     #[EventSourcingHandler]
-    public function applyBookWasDeleted(BookWasDeleted $event): void {}
+    public function applyBookWasDeleted(BookWasDeleted $event): void
+    {
+        $this->isDeleted = true;
+    }
 }
