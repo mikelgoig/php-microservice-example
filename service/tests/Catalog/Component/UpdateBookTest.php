@@ -6,6 +6,7 @@ namespace App\Tests\Catalog\Component;
 
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Tests\Catalog\Factory\CreateBookFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ final class UpdateBookTest extends ComponentTestCase
                 'name' => 'Advanced Web Application Architecture',
             ],
             'headers' => [
-                'Content-Type' => 'application/merge-patch+json',
+                'content-type' => 'application/merge-patch+json',
             ],
         ]);
 
@@ -36,7 +37,12 @@ final class UpdateBookTest extends ComponentTestCase
 
     public function test_cannot_update_book_if_it_does_not_exist(): void
     {
-        self::createClient()->request('DELETE', '/api/books/0194adb1-41b9-7ee2-9344-98ca0217ca03');
+        self::createClient()->request('PATCH', '/api/books/0194adb1-41b9-7ee2-9344-98ca0217ca03', [
+            'json' => CreateBookFactory::createOne(),
+            'headers' => [
+                'content-type' => 'application/merge-patch+json',
+            ],
+        ]);
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
@@ -46,6 +52,35 @@ final class UpdateBookTest extends ComponentTestCase
             '@type' => 'Error',
             'title' => 'An error occurred',
             'detail' => 'Could not find book <"0194adb1-41b9-7ee2-9344-98ca0217ca03">.',
+        ]);
+    }
+
+    public function test_cannot_update_book_if_book_with_name_already_exists(): void
+    {
+        $this->createBook([
+            'name' => 'Advanced Web Application Architecture',
+        ]);
+        $bookId = $this->createBook();
+
+        self::createClient()->request('PATCH', "/api/books/{$bookId}", [
+            'json' => CreateBookFactory::createOne([
+                'name' => 'Advanced Web Application Architecture',
+            ]),
+            'headers' => [
+                'content-type' => 'application/merge-patch+json',
+            ],
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_CONFLICT);
+        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
+        self::assertJsonContains([
+            '@context' => '/api/contexts/Error',
+            '@id' => '/api/errors/409',
+            '@type' => 'Error',
+            'title' => 'An error occurred',
+            'detail' => 'Book with name <"Advanced Web Application Architecture"> already exists.',
+            'type' => '/errors/409',
+            'status' => 409,
         ]);
     }
 }

@@ -47,8 +47,14 @@ use Symfony\Component\Validator\Constraints as Assert;
         ),
         // update book
         new Patch(
+            openapi: new OpenApiOperation(
+                responses: [
+                    Response::HTTP_CONFLICT => new OpenApiResponse('Resource already exists'),
+                ],
+            ),
             exceptionToStatus: [
                 CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
+                BookAlreadyExistsException::class => Response::HTTP_CONFLICT,
             ],
             output: BookQueryResource::class,
             read: false,

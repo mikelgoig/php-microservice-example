@@ -6,7 +6,6 @@ namespace App\Tests\Catalog\Component;
 
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
-use App\Tests\Catalog\Factory\CreateBookFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -103,10 +102,8 @@ final class CreateBookTest extends ComponentTestCase
 
     public function test_cannot_create_book_if_book_with_name_already_exists(): void
     {
-        self::createClient()->request('POST', '/api/books', [
-            'json' => CreateBookFactory::createOne([
-                'name' => 'Advanced Web Application Architecture',
-            ]),
+        $this->createBook([
+            'name' => 'Advanced Web Application Architecture',
         ]);
 
         self::createClient()->request('POST', '/api/books', [

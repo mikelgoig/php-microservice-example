@@ -15,13 +15,13 @@ final readonly class BookChecker
     /**
      * @throws BookAlreadyExistsException
      */
-    public function ensureThatThereIsNoBookWithName(string $name, ?string $excludingId = null): void
+    public function ensureThatThereIsNoBookWithName(string $name, ?BookId $excludingId = null): void
     {
         $criteria = Criteria::create()
             ->where(Criteria::expr()->eq('name', $name));
 
         if ($excludingId !== null) {
-            $criteria = $criteria->andWhere(Criteria::expr()->neq('id', $excludingId));
+            $criteria = $criteria->andWhere(Criteria::expr()->neq('id', $excludingId->value));
         }
 
         if ($this->bookReadModels->exists($criteria)) {

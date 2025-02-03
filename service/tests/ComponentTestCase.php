@@ -15,12 +15,13 @@ abstract class ComponentTestCase extends ApiTestCase
     use PHPMatcherAssertions;
 
     /**
+     * @param array<string, mixed> $attributes
      * @return string The book ID.
      */
-    protected function createBook(): string
+    protected function createBook(array $attributes = []): string
     {
         $createdBook = self::createClient()->request('POST', '/api/books', [
-            'json' => CreateBookFactory::createOne(),
+            'json' => CreateBookFactory::createOne($attributes),
         ]);
 
         $bookId = $createdBook->toArray()['id'];
