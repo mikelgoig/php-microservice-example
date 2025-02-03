@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Component;
 
+use App\Catalog\Domain\Model\Book\BookId;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
-use App\Tests\Catalog\Factory\BookFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +15,13 @@ final class DeleteBookTest extends ComponentTestCase
 {
     public function test_can_delete_book_if_it_exists(): void
     {
-        $book = BookFactory::createOne();
+        $bookId = BookId::random();
+        // $books->save($book);
 
-        self::createClient()->request('DELETE', "/api/books/{$book->id}");
+        $response = self::createClient()->request('DELETE', "/api/books/{$bookId}");
+
         self::assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+        self::assertEmpty($response->getContent());
     }
 
     public function test_cannot_delete_book_if_it_does_not_exist(): void

@@ -8,7 +8,5 @@ interface BookRepository
 {
     public function save(Book $book): void;
 
-    public function remove(Book $book): void;
-
-    public function ofId(string $id): ?Book;
+    public function ofId(BookId $id): ?Book;
 }

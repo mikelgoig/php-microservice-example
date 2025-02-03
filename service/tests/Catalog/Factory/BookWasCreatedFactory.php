@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Factory;
 
-use App\Catalog\Domain\Model\Book\Book;
-use Symfony\Component\Uid\Uuid;
+use App\Catalog\Domain\Model\Book\BookWasCreated;
 use Zenstruck\Foundry\ObjectFactory;
 
 /**
- * @extends ObjectFactory<Book>
+ * @extends ObjectFactory<BookWasCreated>
  */
-final class BookFactory extends ObjectFactory
+final class BookWasCreatedFactory extends ObjectFactory
 {
     public static function class(): string
     {
-        return Book::class;
+        return BookWasCreated::class;
     }
 
     /**
@@ -24,13 +23,7 @@ final class BookFactory extends ObjectFactory
     protected function defaults(): array
     {
         return [
-            'id' => Uuid::v7(),
             'name' => self::faker()->text(),
         ];
-    }
-
-    protected function initialize(): static
-    {
-        return $this;
     }
 }

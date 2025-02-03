@@ -25,7 +25,7 @@ abstract readonly class UuidV7 implements \Stringable
         return new static($uuid);
     }
 
-    final public static function random(): self
+    final public static function random(): static
     {
         return new static(SymfonyUuidV7::generate());
     }

@@ -10,9 +10,11 @@ use Doctrine\DBAL\Connection as DbalConnection;
 use Ecotone\EventSourcing\Attribute\Projection;
 use Ecotone\Modelling\Attribute\EventHandler;
 
-#[Projection('book_list', Book::class)]
-final readonly class BookListProjection
+#[Projection('books', Book::class)]
+final readonly class BooksProjection
 {
+    private const string BOOKS_TABLE = 'books';
+
     public function __construct(
         private DbalConnection $connection,
     ) {}
@@ -20,7 +22,7 @@ final readonly class BookListProjection
     #[EventHandler]
     public function onBookWasCreated(BookWasCreated $event): void
     {
-        $this->connection->insert('books', [
+        $this->connection->insert(self::BOOKS_TABLE, [
             'id' => $event->id,
             'name' => $event->name,
         ]);

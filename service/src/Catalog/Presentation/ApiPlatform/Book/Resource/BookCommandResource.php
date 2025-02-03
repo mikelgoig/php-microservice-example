@@ -11,7 +11,6 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
-use App\Catalog\Domain\Model\Book\Book;
 use App\Catalog\Domain\Model\Book\BookAlreadyExistsException;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\CreateBookProcessor;
@@ -29,7 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Post(
             openapi: new OpenApiOperation(
                 responses: [
-                    Response::HTTP_CONFLICT => new OpenApiResponse('Book resource already exists'),
+                    Response::HTTP_CONFLICT => new OpenApiResponse('Resource already exists'),
                 ],
             ),
             exceptionToStatus: [
@@ -58,12 +57,4 @@ final class BookCommandResource
     #[Assert\Length(min: 1, max: 255)]
     #[ApiProperty(example: 'Advanced Web Application Architecture')]
     public string $name;
-
-    public static function fromModel(Book $book): self
-    {
-        $self = new self();
-        $self->id = UuidV7::fromString($book->id->value);
-        $self->name = $book->name;
-        return $self;
-    }
 }

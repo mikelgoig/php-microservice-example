@@ -6,7 +6,7 @@ namespace App\Tests\Catalog\Component;
 
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
-use App\Tests\Catalog\Factory\BookFactory;
+use App\Tests\Catalog\Factory\BookReadModelFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +17,7 @@ final class UpdateBookTest extends ComponentTestCase
 {
     public function test_can_update_book_if_it_exists(): void
     {
-        BookFactory::createOne([
+        BookReadModelFactory::createOne([
             'id' => UuidV7::fromString('0194b6f7-c368-7ff0-ba39-659743e22db2'),
         ]);
 
