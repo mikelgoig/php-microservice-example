@@ -44,14 +44,14 @@ final class DeleteBookTest extends ComponentTestCase
 
         self::createClient()->request('DELETE', "/api/books/{$bookId}");
 
-        self::assertResponseStatusCodeSame(Response::HTTP_PRECONDITION_FAILED);
+        self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
         self::assertJsonContains([
             '@context' => '/api/contexts/Error',
-            '@id' => '/api/errors/412',
+            '@id' => '/api/errors/404',
             '@type' => 'Error',
             'title' => 'An error occurred',
-            'detail' => "Book <\"{$bookId}\"> is already deleted.",
+            'detail' => "Could not find book <\"{$bookId}\">.",
         ]);
     }
 }

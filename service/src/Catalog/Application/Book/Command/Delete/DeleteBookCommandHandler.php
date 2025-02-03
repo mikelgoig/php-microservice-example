@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Catalog\Application\Book\Command\Delete;
 
-use App\Catalog\Domain\Model\Book\BookAlreadyDeletedException;
 use App\Catalog\Domain\Model\Book\BookId;
 use App\Catalog\Domain\Model\Book\BookRepository;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
@@ -17,7 +16,6 @@ final readonly class DeleteBookCommandHandler
     ) {}
 
     /**
-     * @throws BookAlreadyDeletedException
      * @throws CouldNotFindBookException
      */
     #[CommandHandler]

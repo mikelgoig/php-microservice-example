@@ -34,16 +34,14 @@ final class Book
         $this->recordThat(new BookWasUpdated($this->id->value, $name));
     }
 
-    /**
-     * @throws BookAlreadyDeletedException
-     */
     public function delete(): void
     {
-        if ($this->isDeleted) {
-            throw BookAlreadyDeletedException::withId($this->id);
-        }
-
         $this->recordThat(new BookWasDeleted($this->id->value));
+    }
+
+    public function isDeleted(): bool
+    {
+        return $this->isDeleted;
     }
 
     #[EventSourcingHandler]

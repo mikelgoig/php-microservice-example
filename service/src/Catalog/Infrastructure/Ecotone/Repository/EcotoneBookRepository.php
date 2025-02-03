@@ -21,6 +21,16 @@ final readonly class EcotoneBookRepository implements BookRepository
 
     public function ofId(BookId $id): ?Book
     {
-        return $this->eventSourcedRepository->findBy($id);
+        $book = $this->eventSourcedRepository->findBy($id);
+
+        if ($book === null) {
+            return null;
+        }
+
+        if ($book->isDeleted()) {
+            return null;
+        }
+
+        return $book;
     }
 }
