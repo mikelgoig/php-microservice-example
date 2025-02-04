@@ -11,7 +11,6 @@ use Symfony\Component\Uid\UuidV7;
 #[ORM\Table(name: 'books')]
 class Book
 {
-    #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]
     public UuidV7 $id;
 
@@ -22,4 +21,9 @@ class Book
         'default' => false,
     ])]
     public bool $deleted;
+
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
+    private ?int $idPrimary = null;
 }
