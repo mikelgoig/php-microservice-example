@@ -3,37 +3,51 @@
 ## Backend
 
 - **Programming Language:** [PHP 8.3](https://www.php.net)
-- **Framework:** [Symfony 7.2](https://symfony.com)
-- **Testing Framework:** [PHPUnit](https://phpunit.de)
+- **Framework:** [Symfony 7.2](https://symfony.com), [API Platform 4](https://api-platform.com)
+  and [Ecotone](https://ecotone.tech)
+- **Testing Framework:** [PHPUnit 11](https://phpunit.de)
 - **Database:** [PostgreSQL 17.2](https://postgresql.org)
 - **Message Queue:** [RabbitMQ](https://rabbitmq.com)
 - **Search Engine:** [Elasticsearch](https://elastic.co/elasticsearch)
 
 ### Main Dependencies
 
-- [`ext-ctype`](https://www.php.net/manual/en/book.ctype.php) (required by `symfony/skeleton`):
+- [`ext-ctype`](https://www.php.net/manual/en/book.ctype.php) (installed by `symfony/skeleton`):
     - A PHP extension required by Symfony for character type checks.
-- [`ext-iconv`](https://www.php.net/manual/en/book.iconv.php) (required by `symfony/skeleton`):
+- [`ext-iconv`](https://www.php.net/manual/en/book.iconv.php) (installed by `symfony/skeleton`):
     - A PHP extension required by Symfony for string encoding and conversion.
-- [`api-platform/doctrine-orm`](https://github.com/api-platform/doctrine-orm) (required by `api-platform/api-pack`):
+- [`api-platform/doctrine-orm`](https://github.com/api-platform/doctrine-orm) (installed by `api-platform/api-pack`):
     - Provides integration of API Platform with the Doctrine ORM, allowing you to create RESTful APIs automatically
       from Doctrine entities.
-- [`api-platform/symfony`](https://github.com/api-platform/symfony) (required by `api-platform/api-pack`):
+- [`api-platform/symfony`](https://github.com/api-platform/symfony) (installed by `api-platform/api-pack`):
     - The main Symfony integration for API Platform, providing configuration and customizations for your API.
-- [`doctrine/dbal`](https://github.com/doctrine/dbal) (required by `api-platform/api-pack`):
+- [`doctrine/dbal`](https://github.com/doctrine/dbal) (installed by `api-platform/api-pack`):
     - The database abstraction layer for Doctrine. Provides database interaction, schema introspection, and SQL
       building capabilities.
-- [`doctrine/doctrine-bundle`](https://github.com/doctrine/DoctrineBundle) (required by `api-platform/api-pack`):
+- [`doctrine/doctrine-bundle`](https://github.com/doctrine/DoctrineBundle) (installed by `api-platform/api-pack`):
     - Symfony bundle for integrating Doctrine ORM into the framework, offering configuration, console commands, etc.
-- [`doctrine/doctrine-migrations-bundle`](https://github.com/doctrine/DoctrineMigrationsBundle) (required by
+- [`doctrine/doctrine-migrations-bundle`](https://github.com/doctrine/DoctrineMigrationsBundle) (installed by
   `api-platform/api-pack`):
     - Adds database migrations functionality to Symfony, enabling version control for database schemas.
-- [`doctrine/orm`](https://github.com/doctrine/orm) (required by `api-platform/api-pack`):
+- [`doctrine/orm`](https://github.com/doctrine/orm) (installed by `api-platform/api-pack`):
     - The Doctrine ORM (Object-Relational Mapper). Mainly used for mapping database tables/entities to PHP classes.
+- [`ecotone/jms-converter`](https://github.com/ecotoneframework/jms-converter) (supplements `ecotone/symfony-bundle`):
+    - Allows serialization and deserialization of messages in a standardized format, enabling communication between
+      different systems or components.
+- [`ecotone/pdo-event-sourcing`](https://github.com/ecotoneframework/pdo-event-sourcing) (supplements
+  `ecotone/symfony-bundle`):
+    - Implements event sourcing using PDO (PHP Data Objects).
+    - Helps in persisting domain events in relational databases and recreating the application's state by replaying
+      those events.
+    - It's widely used in event-driven architectures to handle event streams efficiently.
+- [`ecotone/symfony-bundle`](https://github.com/ecotoneframework/symfony-bundle):
+    - A Symfony bundle for integrating Ecotone into Symfony projects.
+    - Simplifies the setup of messaging, event sourcing, and other Ecotone functionalities within the Symfony framework.
+    - Enables developers to use Ecotone seamlessly within their Symfony-based applications.
 - [`eqs/health-check-provider`](https://github.com/eqsgroup/health-check-provider):
     - Enables integrating health checks to ensure the application and its components (e.g., database or external
       dependencies) are functioning correctly and accessible.
-- [`nelmio/cors-bundle`](https://github.com/nelmio/NelmioCorsBundle) (required by `api-platform/api-pack`):
+- [`nelmio/cors-bundle`](https://github.com/nelmio/NelmioCorsBundle) (installed by `api-platform/api-pack`):
     - Simplifies managing CORS (Cross-Origin Resource Sharing) headers, crucial for APIs that may be accessed from
       different origins.
 - [`nyholm/psr`](https://github.com/Nyholm/psr7) (supplements `eqs/health-check-provider`):
@@ -41,49 +55,50 @@
     - Provides classes for representing HTTP requests, responses, streams, URIs, and uploaded files, enabling
       interoperability between different libraries and frameworks that adhere to the PSR-7 standard.
     - This package is commonly used in applications to manage HTTP messages in a standardized way.
-- [`phpdocumentor/reflection-docblock`](https://github.com/phpDocumentor/ReflectionDocBlock) (required by
+- [`phpdocumentor/reflection-docblock`](https://github.com/phpDocumentor/ReflectionDocBlock) (installed by
   `api-platform/api-pack`):
     - Library for parsing PHP docblocks and annotations, useful for documenting your code.
-- [`phpstan/phpdoc-parser`](https://github.com/phpstan/phpdoc-parser) (required by `api-platform/api-pack`):
+- [`phpstan/phpdoc-parser`](https://github.com/phpstan/phpdoc-parser) (installed by `api-platform/api-pack`):
     - A parser for PHPDoc comments to improve typing or integration with static analysis tools.
-- [`runtime/frankenphp-symfony`](https://github.com/dunglas/frankenphp) (required by `symfony/skeleton`):
+- [`runtime/frankenphp-symfony`](https://github.com/dunglas/frankenphp) (installed by `symfony/skeleton`):
     - This package helps Symfony applications integrate seamlessly with FrankenPHP, which is a fast PHP application
       server.
-- [`symfony/asset`](https://github.com/symfony/asset) (required by `api-platform/api-pack`):
+- [`symfony/asset`](https://github.com/symfony/asset) (installed by `api-platform/api-pack`):
     - Provides features for managing web assets such as CSS, JS, or images in Symfony applications.
-- [`symfony/console`](https://github.com/symfony/console) (required by `symfony/skeleton`):
+- [`symfony/console`](https://github.com/symfony/console) (installed by `symfony/skeleton`):
     - Provides Symfony's user-friendly console commands for managing applications from the command line.
-- [`symfony/dotenv`](https://github.com/symfony/dotenv) (required by `symfony/skeleton`):
+- [`symfony/dotenv`](https://github.com/symfony/dotenv) (installed by `symfony/skeleton`):
     - Allows loading environment variables from a `.env` file to configure the application.
-- [`symfony/expression-language`](https://github.com/symfony/expression-language) (required by `api-platform/api-pack`):
+- [`symfony/expression-language`](https://github.com/symfony/expression-language) (installed by
+  `api-platform/api-pack`):
     - Adds support for a dynamic expression language, often used in security and workflow rules.
-- [`symfony/flex`](https://github.com/symfony/flex) (required by `symfony/skeleton`):
+- [`symfony/flex`](https://github.com/symfony/flex) (installed by `symfony/skeleton`):
     - A Composer plugin that simplifies managing Symfony projects by automating certain configurations and
       dependencies.
-- [`symfony/framework-bundle`](https://github.com/symfony/framework-bundle) (required by `symfony/skeleton`):
+- [`symfony/framework-bundle`](https://github.com/symfony/framework-bundle) (installed by `symfony/skeleton`):
     - Core Symfony framework tools, providing services like routing, HTTP handling, and other foundational
       capabilities.
 - [`symfony/messenger`](https://github.com/symfony/messenger):
     - Provides tools to manage message-driven architectures in your application.
-- [`symfony/monolog-bundle`](https://github.com/symfony/monolog-bundle) (required by `symfony/debug-pack`):
+- [`symfony/monolog-bundle`](https://github.com/symfony/monolog-bundle) (installed by `symfony/debug-pack`):
     - Enables logging in Symfony applications using Monolog, a powerful logging library.
     - Lets you send logs to files, databases, emails, or third-party services (e.g., Slack or Loggly), which is
       especially useful during debugging.
-- [`symfony/property-access`](https://github.com/symfony/property-access) (required by `api-platform/api-pack`):
+- [`symfony/property-access`](https://github.com/symfony/property-access) (installed by `api-platform/api-pack`):
     - Handles access to object properties dynamically, often used in forms and serialization.
-- [`symfony/property-info`](https://github.com/symfony/property-info) (required by `api-platform/api-pack`):
+- [`symfony/property-info`](https://github.com/symfony/property-info) (installed by `api-platform/api-pack`):
     - Offers introspection of object properties, such as determining their type for validation or serialization.
-- [`symfony/runtime`](https://github.com/symfony/runtime) (required by `symfony/skeleton`):
+- [`symfony/runtime`](https://github.com/symfony/runtime) (installed by `symfony/skeleton`):
     - Manages runtime settings and optimizes bootstrapping for Symfony applications.
-- [`symfony/security-bundle`](https://github.com/symfony/security-bundle) (required by `api-platform/api-pack`):
+- [`symfony/security-bundle`](https://github.com/symfony/security-bundle) (installed by `api-platform/api-pack`):
     - A bundle for implementing various security features like authentication, roles, and firewalls.
-- [`symfony/serializer`](https://github.com/symfony/serializer) (required by `api-platform/api-pack`):
+- [`symfony/serializer`](https://github.com/symfony/serializer) (installed by `api-platform/api-pack`):
     - Provides serialization and deserialization of objects into formats like JSON or XML.
-- [`symfony/twig-bundle`](https://github.com/symfony/twig-bundle) (required by `api-platform/api-pack`):
+- [`symfony/twig-bundle`](https://github.com/symfony/twig-bundle) (installed by `api-platform/api-pack`):
     - Integrates the Twig templating engine into Symfony applications.
-- [`symfony/validator`](https://github.com/symfony/validator) (required by `api-platform/api-pack`):
+- [`symfony/validator`](https://github.com/symfony/validator) (installed by `api-platform/api-pack`):
     - Validates objects or data values using Symfony's validation component based on constraints.
-- [`symfony/yaml`](https://github.com/symfony/yaml) (required by `symfony/skeleton`):
+- [`symfony/yaml`](https://github.com/symfony/yaml) (installed by `symfony/skeleton`):
     - Offers tools to parse, dump, and use YAML configuration files.
 - [`webmozart/assert`](https://github.com/webmozart/assert):
     - A lightweight PHP library used for making assertions in your application.
@@ -146,7 +161,7 @@
   `phpstan/phpstan`):
     - Provides PHPStan rules for analyzing and validating the proper usage of the `webmozart/assert` assertions library.
     - Ensures that assertions in the code are used correctly (e.g., proper types, arguments, and logic).
-- [`phpunit/phpunit`](https://github.com/sebastianbergmann/phpunit) (required by `symfony/test-pack`):
+- [`phpunit/phpunit`](https://github.com/sebastianbergmann/phpunit) (installed by `symfony/test-pack`):
     - The most popular PHP testing framework.
     - It's integral for creating and executing unit tests, allowing you to write assertions to validate the behavior of
       your application's code and ensure stability throughout development.
@@ -155,11 +170,11 @@
       project.
     - It's typically used to ensure that commit messages follow a structured format, making it easier to generate
       changelogs and maintain consistent versioning.
-- [`symfony/browser-kit`](https://github.com/symfony/browser-kit) (required by `symfony/test-pack`):
+- [`symfony/browser-kit`](https://github.com/symfony/browser-kit) (installed by `symfony/test-pack`):
     - A Symfony component that simulates a web browser for testing purposes.
     - It's often used in integration or functional testing, allowing you to programmatically navigate web pages and
       interact with forms, links, etc.
-- [`symfony/debug-bundle`](https://github.com/symfony/debug-bundle) (required by `symfony/debug-pack`):
+- [`symfony/debug-bundle`](https://github.com/symfony/debug-bundle) (installed by `symfony/debug-pack`):
     - Integrates debugging tools with Symfony's services in the framework.
     - Provides features like setting up a debug container and additional diagnostics.
 - [`symfony/http-client`](https://github.com/symfony/http-client) (supplements `symfony/test-pack`):
@@ -170,14 +185,14 @@
     - Simplifies the process of generating common code and features.
     - Provides interactive commands that developers can use to scaffold different parts of the application, such as
       controllers, entities, form classes, tests, and more.
-- [`symfony/phpunit-bridge`](https://github.com/symfony/phpunit-bridge) (required by `symfony/test-pack`):
+- [`symfony/phpunit-bridge`](https://github.com/symfony/phpunit-bridge) (installed by `symfony/test-pack`):
     - A Symfony tool that enhances PHPUnit by providing better integration with Symfony applications.
     - Includes features like deprecation warnings during tests, autoconfiguration of the testing environment, and easier
       PHPUnit version upgrades.
-- [`symfony/stopwatch`](https://github.com/symfony/stopwatch) (required by `symfony/debug-pack`):
+- [`symfony/stopwatch`](https://github.com/symfony/stopwatch) (installed by `symfony/debug-pack`):
     - Measures the performance or execution time of your application code.
     - It is useful for profiling and debugging code sections to determine their duration and performance impact.
-- [`symfony/web-profiler-bundle`](https://github.com/symfony/web-profiler-bundle) (required by `symfony/debug-pack`):
+- [`symfony/web-profiler-bundle`](https://github.com/symfony/web-profiler-bundle) (installed by `symfony/debug-pack`):
     - Displays the Web Debug Toolbar and integrates the Symfony Profiler.
     - Provides insight into routes, queries, logs, and more during development.
 - [`symplify/easy-coding-standard`](https://github.com/easy-coding-standard/easy-coding-standard):
@@ -214,5 +229,9 @@
 ## Rationale for Choices
 
 - **PHP and Symfony:** Chosen for robustness and rich ecosystem for backend development.
+- **API Platform:** Provides a powerful and flexible framework for building APIs, offering features like serialization,
+  validation, and OpenAPI documentation out of the box.
+- **Ecotone:** Enables messaging and event-driven architecture with support for event sourcing, CQRS, and asynchronous
+  processing, enhancing system scalability and maintainability.
 - **RabbitMQ:** Supports reliable message processing in a distributed system.
 - **Docker:** Simplifies environment setup and ensures consistency across development and production.
