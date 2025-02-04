@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Component;
 
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Tests\Catalog\Factory\BookProjectionFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
 
-#[CoversClass(BookQueryResource::class)]
+#[CoversClass(BookResource::class)]
 final class GetBookTest extends ComponentTestCase
 {
     public function test_can_get_book_if_it_exists(): void
@@ -32,7 +32,7 @@ final class GetBookTest extends ComponentTestCase
             'id' => '0194adb1-41b9-7ee2-9344-98ca0217ca03',
             'name' => 'Advanced Web Application Architecture',
         ]);
-        self::assertMatchesResourceItemJsonSchema(BookQueryResource::class);
+        self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }
 
     public function test_cannot_get_book_if_it_does_not_exist(): void

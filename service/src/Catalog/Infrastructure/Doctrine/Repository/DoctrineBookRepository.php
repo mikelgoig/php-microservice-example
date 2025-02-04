@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Catalog\Infrastructure\Doctrine\Repository;
 
 use App\Catalog\Domain\Model\Book\BookReadModelRepository;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Infrastructure\Doctrine\Entity\Book;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 
 final readonly class DoctrineBookRepository implements BookReadModelRepository
 {
-    private const string ENTITY_CLASS = BookQueryResource::class;
+    private const string ENTITY_CLASS = Book::class;
     private const string ALIAS = 'books';
 
     public function __construct(

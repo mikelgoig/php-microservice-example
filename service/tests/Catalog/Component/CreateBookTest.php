@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Component;
 
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
-#[CoversClass(BookCommandResource::class)]
+#[CoversClass(BookResource::class)]
 final class CreateBookTest extends ComponentTestCase
 {
     public function test_can_create_book_using_valid_data(): void
@@ -30,7 +29,7 @@ final class CreateBookTest extends ComponentTestCase
             'id' => '@uuid@',
             'name' => 'Advanced Web Application Architecture',
         ], $response->toArray());
-        self::assertMatchesResourceItemJsonSchema(BookQueryResource::class);
+        self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }
 
     public function test_cannot_create_book_providing_null_data(): void

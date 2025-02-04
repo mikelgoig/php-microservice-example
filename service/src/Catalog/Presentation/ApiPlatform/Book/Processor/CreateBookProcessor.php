@@ -10,13 +10,12 @@ use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Application\Book\Command\Create\CreateBookCommand;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\Uuid;
 
 /**
- * @implements ProcessorInterface<BookCommandResource, BookQueryResource>
+ * @implements ProcessorInterface<BookResource, BookResource>
  */
 final readonly class CreateBookProcessor implements ProcessorInterface
 {
@@ -36,7 +35,7 @@ final readonly class CreateBookProcessor implements ProcessorInterface
         Operation $operation,
         array $uriVariables = [],
         array $context = [],
-    ): BookQueryResource {
+    ): BookResource {
         $bookId = Uuid::v7();
         $this->commandBus->dispatch(new CreateBookCommand($bookId->toString(), $data->name));
         return $this->provide($bookId, $context);

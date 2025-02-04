@@ -7,17 +7,18 @@ namespace App\Catalog\Presentation\ApiPlatform\Book\Provider;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Infrastructure\Doctrine\Entity\Book;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Uid\Uuid;
 
 /**
- * @implements ProviderInterface<BookQueryResource>
+ * @implements ProviderInterface<BookResource>
  */
 final readonly class GetBookProvider implements ProviderInterface
 {
     /**
-     * @param ProviderInterface<BookQueryResource> $itemProvider
+     * @param ProviderInterface<Book> $itemProvider
      */
     public function __construct(
         #[Autowire(service: 'api_platform.doctrine.orm.state.item_provider')]
@@ -27,10 +28,10 @@ final readonly class GetBookProvider implements ProviderInterface
     /**
      * @throws CouldNotFindBookException
      */
-    public function provide(Operation $operation, array $uriVariables = [], array $context = []): BookQueryResource
+    public function provide(Operation $operation, array $uriVariables = [], array $context = []): BookResource
     {
         $book = $this->itemProvider->provide($operation, $uriVariables, $context);
-        \assert($book === null || $book instanceof BookQueryResource);
+        \assert($book === null || $book instanceof Book);
 
         if ($book === null) {
             $bookId = $uriVariables['id'];
@@ -38,6 +39,11 @@ final readonly class GetBookProvider implements ProviderInterface
             throw CouldNotFindBookException::withId($bookId->toString());
         }
 
-        return $book;
+        // TODO: Use an Object Mapper
+        $bookResource = new BookResource();
+        $bookResource->id = $book->id;
+        $bookResource->name = $book->name;
+        $bookResource->deleted = $book->deleted;
+        return $bookResource;
     }
 }

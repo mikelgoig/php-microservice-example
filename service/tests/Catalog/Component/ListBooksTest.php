@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Component;
 
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Tests\Catalog\Factory\BookProjectionFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
-#[CoversClass(BookQueryResource::class)]
+#[CoversClass(BookResource::class)]
 final class ListBooksTest extends ComponentTestCase
 {
     public function test_can_list_books_ordered_by_id_desc_by_default(): void
@@ -46,7 +46,7 @@ final class ListBooksTest extends ComponentTestCase
                 ],
             ],
         ], $response->toArray());
-        self::assertMatchesResourceCollectionJsonSchema(BookQueryResource::class);
+        self::assertMatchesResourceCollectionJsonSchema(BookResource::class);
     }
 
     public function test_can_list_books_with_pagination(): void
@@ -72,6 +72,6 @@ final class ListBooksTest extends ComponentTestCase
         ]);
         self::assertIsArray($response->toArray()['member']);
         self::assertCount(30, $response->toArray()['member']);
-        self::assertMatchesResourceCollectionJsonSchema(BookQueryResource::class);
+        self::assertMatchesResourceCollectionJsonSchema(BookResource::class);
     }
 }

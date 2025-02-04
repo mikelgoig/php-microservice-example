@@ -29,15 +29,10 @@ doctrine:
       Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
     auto_mapping: true
     mappings:
-      Aggregates:
+      Catalog:
         type: attribute
-        dir: '%kernel.project_dir%/src/Catalog/Domain/Model'
-        prefix: 'App\Catalog\Domain\Model'
-        is_bundle: false
-      Projections:
-        type: attribute
-        dir: '%kernel.project_dir%/src/Catalog/Presentation/ApiPlatform'
-        prefix: 'App\Catalog\Presentation\ApiPlatform'
+        dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Doctrine/Entity'
+        prefix: 'App\Catalog\Infrastructure\Doctrine\Entity'
         is_bundle: false
     controller_resolver:
       auto_mapping: false

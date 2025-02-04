@@ -7,12 +7,12 @@ namespace App\Catalog\Presentation\ApiPlatform\Book\Processor;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Application\Book\Command\Delete\DeleteBookCommand;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\Uuid;
 
 /**
- * @implements ProcessorInterface<BookCommandResource, void>
+ * @implements ProcessorInterface<BookResource, void>
  */
 final readonly class DeleteBookProcessor implements ProcessorInterface
 {

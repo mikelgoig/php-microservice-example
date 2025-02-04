@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Component;
 
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Tests\Catalog\Factory\BookFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
-#[CoversClass(BookCommandResource::class)]
+#[CoversClass(BookResource::class)]
 final class UpdateBookTest extends ComponentTestCase
 {
     public function test_can_update_book_if_it_exists(): void
@@ -32,7 +31,7 @@ final class UpdateBookTest extends ComponentTestCase
         self::assertJsonContains([
             'name' => 'Advanced Web Application Architecture',
         ]);
-        self::assertMatchesResourceItemJsonSchema(BookQueryResource::class);
+        self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }
 
     public function test_cannot_update_book_if_it_does_not_exist(): void

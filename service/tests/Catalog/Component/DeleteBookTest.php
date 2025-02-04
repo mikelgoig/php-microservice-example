@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Component;
 
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
-#[CoversClass(BookCommandResource::class)]
+#[CoversClass(BookResource::class)]
 final class DeleteBookTest extends ComponentTestCase
 {
     public function test_can_delete_book_if_it_exists(): void

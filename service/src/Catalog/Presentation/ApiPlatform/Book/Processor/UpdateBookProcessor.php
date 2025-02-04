@@ -10,13 +10,12 @@ use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Application\Book\Command\Update\UpdateBookCommand;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\Uuid;
 
 /**
- * @implements ProcessorInterface<BookCommandResource, BookQueryResource>
+ * @implements ProcessorInterface<BookResource, BookResource>
  */
 final readonly class UpdateBookProcessor implements ProcessorInterface
 {
@@ -36,7 +35,7 @@ final readonly class UpdateBookProcessor implements ProcessorInterface
         Operation $operation,
         array $uriVariables = [],
         array $context = [],
-    ): BookQueryResource {
+    ): BookResource {
         $bookId = $uriVariables['id'];
         \assert($bookId instanceof Uuid);
         $this->commandBus->dispatch(new UpdateBookCommand($bookId->toString(), $data->name));

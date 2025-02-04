@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Factory;
 
-use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
+use App\Catalog\Infrastructure\Doctrine\Entity\Book;
 use Symfony\Component\Uid\UuidV7;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends PersistentProxyObjectFactory<BookQueryResource>
+ * @extends PersistentProxyObjectFactory<Book>
  */
 final class BookProjectionFactory extends PersistentProxyObjectFactory
 {
     public static function class(): string
     {
-        return BookQueryResource::class;
+        return Book::class;
     }
 
     /**
