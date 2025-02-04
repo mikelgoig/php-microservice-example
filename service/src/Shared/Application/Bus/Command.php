@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Application\Bus\Command;
+namespace App\Shared\Application\Bus;
 
 interface Command {}

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Ecotone;
+namespace App\Shared\Infrastructure\Ecotone\Config;
 
 use Ecotone\Messaging\Attribute\ServiceContext;
 use Ecotone\SymfonyBundle\Config\SymfonyConnectionReference;

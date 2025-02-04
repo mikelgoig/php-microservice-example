@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Application\Book\Command\Delete\DeleteBookCommand;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
-use App\Shared\Application\Bus\Command\CommandBus;
+use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\Uuid;
 
 /**

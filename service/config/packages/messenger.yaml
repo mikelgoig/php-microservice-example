@@ -2,8 +2,7 @@ framework:
   messenger:
     routing:
       # Route your messages to the transports
-      App\Shared\Application\Bus\Command\Command: sync
-      App\Shared\Application\Bus\Query\Query: sync
+      App\Shared\Application\Bus\Command: sync
     
     transports:
       # https://symfony.com/doc/current/messenger.html#transport-configuration

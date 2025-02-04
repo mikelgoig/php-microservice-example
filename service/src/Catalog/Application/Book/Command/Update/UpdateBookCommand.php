@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Catalog\Application\Book\Command\Update;
 
-use App\Shared\Application\Bus\Command\Command;
+use App\Shared\Application\Bus\Command;
 
 /**
  * @see UpdateBookCommandHandler

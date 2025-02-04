@@ -6,7 +6,7 @@ namespace App\Tests\Catalog\Component;
 
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
-use App\Tests\Catalog\Factory\CreateBookFactory;
+use App\Tests\Catalog\Factory\BookFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +38,7 @@ final class UpdateBookTest extends ComponentTestCase
     public function test_cannot_update_book_if_it_does_not_exist(): void
     {
         self::createClient()->request('PATCH', '/api/books/0194adb1-41b9-7ee2-9344-98ca0217ca03', [
-            'json' => CreateBookFactory::createOne(),
+            'json' => BookFactory::createOne(),
             'headers' => [
                 'content-type' => 'application/merge-patch+json',
             ],
@@ -63,7 +63,7 @@ final class UpdateBookTest extends ComponentTestCase
         $bookId = $this->createBook();
 
         self::createClient()->request('PATCH', "/api/books/{$bookId}", [
-            'json' => CreateBookFactory::createOne([
+            'json' => BookFactory::createOne([
                 'name' => 'Advanced Web Application Architecture',
             ]),
             'headers' => [

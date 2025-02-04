@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Catalog\Component;
 
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
-use App\Tests\Catalog\Factory\BookReadModelFactory;
+use App\Tests\Catalog\Factory\BookProjectionFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +15,10 @@ final class ListBooksTest extends ComponentTestCase
 {
     public function test_can_list_books_ordered_by_id_desc_by_default(): void
     {
-        BookReadModelFactory::createOne([
+        BookProjectionFactory::createOne([
             'name' => 'Advanced Web Application Architecture',
         ]);
-        BookReadModelFactory::createOne([
+        BookProjectionFactory::createOne([
             'name' => 'Domain-Driven Design in PHP',
         ]);
 
@@ -51,7 +51,7 @@ final class ListBooksTest extends ComponentTestCase
 
     public function test_can_list_books_with_pagination(): void
     {
-        BookReadModelFactory::createMany(100);
+        BookProjectionFactory::createMany(100);
 
         $response = self::createClient()->request('GET', '/api/books');
 

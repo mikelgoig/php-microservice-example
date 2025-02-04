@@ -12,7 +12,7 @@ use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookCommandResource;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookQueryResource;
-use App\Shared\Application\Bus\Command\CommandBus;
+use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\Uuid;
 
 /**

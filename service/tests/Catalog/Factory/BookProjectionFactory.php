@@ -11,7 +11,7 @@ use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 /**
  * @extends PersistentProxyObjectFactory<BookQueryResource>
  */
-final class BookReadModelFactory extends PersistentProxyObjectFactory
+final class BookProjectionFactory extends PersistentProxyObjectFactory
 {
     public static function class(): string
     {

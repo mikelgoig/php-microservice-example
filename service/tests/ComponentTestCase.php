@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
-use App\Tests\Catalog\Factory\CreateBookFactory;
+use App\Tests\Catalog\Factory\BookFactory;
 use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
@@ -21,7 +21,7 @@ abstract class ComponentTestCase extends ApiTestCase
     protected function createBook(array $attributes = []): string
     {
         $createdBook = self::createClient()->request('POST', '/api/books', [
-            'json' => CreateBookFactory::createOne($attributes),
+            'json' => BookFactory::createOne($attributes),
         ]);
 
         $bookId = $createdBook->toArray()['id'];
