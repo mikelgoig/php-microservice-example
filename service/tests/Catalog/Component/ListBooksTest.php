@@ -37,12 +37,16 @@ final class ListBooksTest extends ComponentTestCase
                     '@type' => 'Book',
                     'id' => '@uuid@',
                     'name' => 'Domain-Driven Design in PHP',
+                    'createdAt' => '@datetime@',
+                    'updatedAt' => null,
                 ],
                 [
                     '@id' => '/api/books/@uuid@',
                     '@type' => 'Book',
                     'id' => '@uuid@',
                     'name' => 'Advanced Web Application Architecture',
+                    'createdAt' => '@datetime@',
+                    'updatedAt' => null,
                 ],
             ],
         ], $response->toArray());

@@ -22,8 +22,14 @@ class Book
     ])]
     public bool $deleted;
 
+    #[ORM\Column(type: 'datetime_immutable', precision: 6)]
+    public \DateTimeImmutable $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable', precision: 6, nullable: true)]
+    public ?\DateTimeImmutable $updatedAt;
+
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private ?int $idPrimary = null;
+    private int $idPrimary;
 }

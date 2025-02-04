@@ -95,4 +95,12 @@ final class BookResource
     /** Indicates if the book has been deleted. */
     #[ApiProperty(readable: false, writable: false)]
     public bool $deleted;
+
+    /** The creation date of the resource. */
+    #[ApiProperty(writable: false)]
+    public \DateTimeInterface $createdAt;
+
+    /** The update date of the resource. */
+    #[ApiProperty(writable: false)]
+    public ?\DateTimeInterface $updatedAt;
 }

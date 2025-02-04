@@ -28,6 +28,8 @@ final class CreateBookTest extends ComponentTestCase
             '@type' => 'Book',
             'id' => '@uuid@',
             'name' => 'Advanced Web Application Architecture',
+            'createdAt' => '@datetime@',
+            'updatedAt' => null,
         ], $response->toArray());
         self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }

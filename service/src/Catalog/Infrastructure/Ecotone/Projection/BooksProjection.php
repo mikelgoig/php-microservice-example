@@ -27,6 +27,7 @@ final readonly class BooksProjection
         $this->connection->insert(self::BOOKS_TABLE, [
             'id' => $event->id,
             'name' => $event->name,
+            'created_at' => $event->occurredOn,
         ]);
     }
 
@@ -35,6 +36,7 @@ final readonly class BooksProjection
     {
         $this->connection->update(self::BOOKS_TABLE, [
             'deleted' => true,
+            'updated_at' => $event->occurredOn,
         ], [
             'id' => $event->id,
         ]);
@@ -45,6 +47,7 @@ final readonly class BooksProjection
     {
         $this->connection->update(self::BOOKS_TABLE, [
             'name' => $event->name,
+            'updated_at' => $event->occurredOn,
         ], [
             'id' => $event->id,
         ]);

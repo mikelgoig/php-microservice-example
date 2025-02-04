@@ -44,6 +44,8 @@ final readonly class GetBookProvider implements ProviderInterface
         $bookResource->id = $book->id;
         $bookResource->name = $book->name;
         $bookResource->deleted = $book->deleted;
+        $bookResource->createdAt = $book->createdAt;
+        $bookResource->updatedAt = $book->updatedAt;
         return $bookResource;
     }
 }

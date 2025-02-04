@@ -17,7 +17,7 @@ final class UpdateBookTest extends ComponentTestCase
     {
         $bookId = $this->createBook();
 
-        self::createClient()->request('PATCH', "/api/books/{$bookId}", [
+        $response = self::createClient()->request('PATCH', "/api/books/{$bookId}", [
             'json' => [
                 'name' => 'Advanced Web Application Architecture',
             ],
@@ -28,9 +28,15 @@ final class UpdateBookTest extends ComponentTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertJsonContains([
+        self::assertMatchesPattern([
+            '@context' => '/api/contexts/Book',
+            '@id' => '/api/books/@uuid@',
+            '@type' => 'Book',
+            'id' => '@uuid@',
             'name' => 'Advanced Web Application Architecture',
-        ]);
+            'createdAt' => '@datetime@',
+            'updatedAt' => '@datetime@',
+        ], $response->toArray());
         self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }
 

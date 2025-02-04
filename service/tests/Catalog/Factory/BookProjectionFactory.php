@@ -27,6 +27,7 @@ final class BookProjectionFactory extends PersistentProxyObjectFactory
             'id' => new UuidV7(),
             'name' => self::faker()->text(),
             'deleted' => false,
+            'createdAt' => new \DateTimeImmutable(),
         ];
     }
 }

@@ -22,6 +22,8 @@ final class Version20241216175807 extends AbstractMigration
                 id UUID NOT NULL,
                 name VARCHAR(255) NOT NULL,
                 deleted BOOLEAN NOT NULL DEFAULT false,
+                created_at TIMESTAMP(6) WITHOUT TIME ZONE NOT NULL,
+                updated_at TIMESTAMP(6) WITHOUT TIME ZONE DEFAULT NULL,
                 PRIMARY KEY(id_primary)
             );
         SQL);
@@ -33,6 +35,12 @@ final class Version20241216175807 extends AbstractMigration
         SQL);
         $this->addSql(<<<SQL
             COMMENT ON COLUMN books.id IS '(DC2Type:uuid)';
+        SQL);
+        $this->addSql(<<<SQL
+            COMMENT ON COLUMN books.created_at IS '(DC2Type:datetime_immutable)';
+        SQL);
+        $this->addSql(<<<SQL
+            COMMENT ON COLUMN books.updated_at IS '(DC2Type:datetime_immutable)';
         SQL);
     }
 
