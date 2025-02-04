@@ -6,9 +6,7 @@ namespace App\Catalog\Application\Book\Command\Update;
 
 use App\Shared\Application\Bus\Command;
 
-/**
- * @see UpdateBookCommandHandler
- */
+/** @see UpdateBookCommandHandler */
 final readonly class UpdateBookCommand implements Command
 {
     public function __construct(
