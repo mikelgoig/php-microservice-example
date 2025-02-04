@@ -15,12 +15,10 @@
     "actions": [
       {
         "action": "make lint"
-      }
-    ]
-  },
-  "pre-push": {
-    "enabled": true,
-    "actions": [
+      },
+      {
+        "action": "make db-validate"
+      },
       {
         "action": "make test-ff"
       }
