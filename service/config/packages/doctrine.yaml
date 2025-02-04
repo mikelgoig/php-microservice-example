@@ -8,7 +8,7 @@ doctrine:
     
     ###> ecotone/pdo-event-sourcing
     # Ignore event_streams table by the schema tool
-    #schema_filter: ~^(?!(event_streams))~
+    schema_filter: ~^(?!(event_streams))~
     ###< ecotone/pdo-event-sourcing
     
     profiling_collect_backtrace: '%kernel.debug%'
@@ -47,6 +47,11 @@ when@test:
     dbal:
       # "TEST_TOKEN" is typically set by ParaTest
       dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+      
+      ###> ecotone/pdo-event-sourcing
+      # Do not ignore any tables in testing env
+      schema_filter: ~
+      ###< ecotone/pdo-event-sourcing
 
 when@prod:
   doctrine:
