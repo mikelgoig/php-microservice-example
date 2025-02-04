@@ -11,9 +11,9 @@
         "doctrine/doctrine-bundle": "^2.13.2",
         "doctrine/doctrine-migrations-bundle": "^3.4.1",
         "doctrine/orm": "^3.3.1",
-        "ecotone/jms-converter": "^1.244",
-        "ecotone/pdo-event-sourcing": "^1.244",
-        "ecotone/symfony-bundle": "^1.244",
+        "ecotone/jms-converter": "^1.244.3",
+        "ecotone/pdo-event-sourcing": "^1.244.3",
+        "ecotone/symfony-bundle": "^1.244.3",
         "eqs/health-check-provider": "^0.1.1",
         "nelmio/cors-bundle": "^2.5",
         "nyholm/psr7": "^1.8.2",
@@ -42,7 +42,7 @@
     "require-dev": {
         "captainhook/captainhook-phar": "^5.24.3",
         "coduo/php-matcher": "^6.0.17",
-        "dama/doctrine-test-bundle": "^8.2",
+        "dama/doctrine-test-bundle": "^8.2.1",
         "justinrainbow/json-schema": "^5.3",
         "mikelgoig/easy-coding-standard-rules": "^1.1",
         "phpstan/extension-installer": "^1.4.3",
@@ -53,7 +53,7 @@
         "phpstan/phpstan-strict-rules": "^2.0.3",
         "phpstan/phpstan-symfony": "^2.0.2",
         "phpstan/phpstan-webmozart-assert": "^2.0",
-        "phpunit/phpunit": "^11.5.5",
+        "phpunit/phpunit": "^11.5.6",
         "ramsey/conventional-commits": "^1.5.1",
         "symfony/browser-kit": "7.2.*",
         "symfony/debug-bundle": "7.2.*",
@@ -62,9 +62,9 @@
         "symfony/phpunit-bridge": "7.2.*",
         "symfony/stopwatch": "7.2.*",
         "symfony/web-profiler-bundle": "7.2.*",
-        "symplify/easy-coding-standard": "^12.5.6",
-        "symplify/phpstan-rules": "^14.2.5",
-        "zenstruck/foundry": "^2.3.1"
+        "symplify/easy-coding-standard": "^12.5.8",
+        "symplify/phpstan-rules": "^14.2.7",
+        "zenstruck/foundry": "^2.3.3"
     },
     "conflict": {
         "symfony/symfony": "*"
