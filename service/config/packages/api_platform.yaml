@@ -24,4 +24,5 @@ api_platform:
       datetime_format: 'Y-m-d\TH:i:s.u\Z'
       skip_null_values: false
     pagination_client_items_per_page: true
+    pagination_items_per_page: 30
     pagination_maximum_items_per_page: 100
