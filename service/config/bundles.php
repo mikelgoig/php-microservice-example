@@ -43,6 +43,9 @@ return [
         'dev' => true,
         'test' => true,
     ],
+    Symfonycasts\MicroMapper\SymfonycastsMicroMapperBundle::class => [
+        'all' => true,
+    ],
     Zenstruck\Foundry\ZenstruckFoundryBundle::class => [
         'dev' => true,
         'test' => true,

@@ -303,6 +303,9 @@
             "config/routes/web_profiler.yaml"
         ]
     },
+    "symfonycasts/micro-mapper": {
+        "version": "v0.2.1"
+    },
     "zenstruck/foundry": {
         "version": "2.3",
         "recipe": {

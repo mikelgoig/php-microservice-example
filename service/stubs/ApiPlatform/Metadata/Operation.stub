@@ -1,0 +1,7 @@
+<?php
+
+namespace ApiPlatform\Metadata;
+
+class Operation
+{
+}

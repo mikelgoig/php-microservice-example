@@ -1,0 +1,22 @@
+<?php
+
+namespace Symfonycasts\MicroMapper;
+
+interface MapperInterface
+{
+    /**
+     * @template TTo of object
+     * @param class-string<TTo> $toClass
+     * @param array<mixed> $context
+     * @return TTo
+     */
+    public function load(object $from, string $toClass, array $context): object;
+
+    /**
+     * @template TTo of object
+     * @param TTo $to
+     * @param array<mixed> $context
+     * @return TTo
+     */
+    public function populate(object $from, object $to, array $context): object;
+}

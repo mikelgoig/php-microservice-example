@@ -100,6 +100,10 @@
     - Validates objects or data values using Symfony's validation component based on constraints.
 - [`symfony/yaml`](https://github.com/symfony/yaml) (installed by `symfony/skeleton`):
     - Offers tools to parse, dump, and use YAML configuration files.
+- [`symfonycasts/micro-mapper`](https://github.com/SymfonyCasts/micro-mapper) (supplements `api-platform/api-pack`):
+    - A lightweight object mapper designed to simplify mapping data from one structure to another.
+    - It can be used for tasks like mapping arrays or DTOs (Data Transfer Objects) to entities and vice versa, making
+      the handling of complex data transformation more intuitive and concise.
 - [`webmozart/assert`](https://github.com/webmozart/assert):
     - A lightweight PHP library used for making assertions in your application.
 

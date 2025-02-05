@@ -21,6 +21,7 @@ use App\Catalog\Presentation\ApiPlatform\Book\Processor\CreateBookProcessor;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\DeleteBookProcessor;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\UpdateBookProcessor;
 use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
+use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToResourceStateProvider;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -34,6 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
             order: [
                 'id' => 'DESC',
             ],
+            provider: EntityToResourceStateProvider::class,
             stateOptions: new Options(Book::class),
         ),
         // create book

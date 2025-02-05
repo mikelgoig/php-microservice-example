@@ -1,0 +1,20 @@
+<?php
+
+namespace ApiPlatform\Doctrine\Orm\State;
+
+use ApiPlatform\Metadata\Operation;
+use ApiPlatform\State\ProviderInterface;
+
+/**
+ * @template T of object
+ * @implements ProviderInterface<T>
+ */
+final class ItemProvider implements ProviderInterface
+{
+    /**
+     * @param array<mixed> $uriVariables
+     * @param array<mixed> $context
+     * @return T|null
+     */
+    public function provide(Operation $operation, array $uriVariables = [], array $context = []): ?object;
+}

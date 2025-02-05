@@ -21,3 +21,9 @@ parameters:
         containerXmlPath: var/cache/dev/App_Shared_Infrastructure_Symfony_KernelDevDebugContainer.xml
     doctrine:
         objectManagerLoader: tests/object-manager.php
+    stubFiles:
+        - stubs/ApiPlatform/Doctrine/Orm/State/CollectionProvider.stub
+        - stubs/ApiPlatform/Doctrine/Orm/State/ItemProvider.stub
+        - stubs/ApiPlatform/Metadata/Operation.stub
+        - stubs/ApiPlatform/State/ProviderInterface.stub
+        - stubs/Symfonycasts/MicroMapper/MapperInterface.stub
