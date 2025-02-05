@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Catalog\Presentation\ApiPlatform\Book\Processor;
 
 use ApiPlatform\Metadata\Operation;
-use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Application\Book\Command\Create\CreateBookCommand;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
-use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\Uuid;
@@ -19,12 +17,9 @@ use Symfony\Component\Uid\Uuid;
  */
 final readonly class CreateBookProcessor implements ProcessorInterface
 {
-    use BookProvider;
-
     public function __construct(
         private CommandBus $commandBus,
-        private ResourceMetadataCollectionFactoryInterface $resourceMetadataCollectionFactory,
-        private GetBookProvider $getBookProvider,
+        private BookFinder $bookFinder,
     ) {}
 
     /**
@@ -38,6 +33,6 @@ final readonly class CreateBookProcessor implements ProcessorInterface
     ): BookResource {
         $bookId = Uuid::v7();
         $this->commandBus->dispatch(new CreateBookCommand($bookId->toString(), $data->name));
-        return $this->provide($bookId, $context);
+        return $this->bookFinder->find($bookId, $context);
     }
 }

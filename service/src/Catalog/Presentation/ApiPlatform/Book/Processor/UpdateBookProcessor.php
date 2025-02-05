@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Catalog\Presentation\ApiPlatform\Book\Processor;
 
 use ApiPlatform\Metadata\Operation;
-use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Application\Book\Command\Update\UpdateBookCommand;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
-use App\Catalog\Presentation\ApiPlatform\Book\Provider\GetBookProvider;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\Uuid;
@@ -19,12 +17,9 @@ use Symfony\Component\Uid\Uuid;
  */
 final readonly class UpdateBookProcessor implements ProcessorInterface
 {
-    use BookProvider;
-
     public function __construct(
         private CommandBus $commandBus,
-        private ResourceMetadataCollectionFactoryInterface $resourceMetadataCollectionFactory,
-        private GetBookProvider $getBookProvider,
+        private BookFinder $bookFinder,
     ) {}
 
     /**
@@ -39,6 +34,6 @@ final readonly class UpdateBookProcessor implements ProcessorInterface
         $bookId = $uriVariables['id'];
         \assert($bookId instanceof Uuid);
         $this->commandBus->dispatch(new UpdateBookCommand($bookId->toString(), $data->name));
-        return $this->provide($bookId, $context);
+        return $this->bookFinder->find($bookId, $context);
     }
 }
