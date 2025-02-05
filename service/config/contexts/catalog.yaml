@@ -1,0 +1,15 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+  
+  # makes classes in src/Catalog/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\Catalog\:
+    resource: '../../src/Catalog/'
+    exclude:
+      - '../../src/Catalog/Infrastructure/Doctrine/Entity/'
+  
+  # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
