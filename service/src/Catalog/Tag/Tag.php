@@ -33,7 +33,7 @@ class Tag
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ApiProperty(writable: false, identifier: true)]
-    public UuidV7 $id;
+    public ?UuidV7 $id = null;
 
     /** The name of the tag. */
     #[ORM\Column(type: 'string', length: 255, unique: true)]
@@ -55,7 +55,7 @@ class Tag
     #[ORM\PrePersist]
     public function onPrePersist(): void
     {
-        $this->id = new UuidV7();
+        $this->id = $this->id !== null ? $this->id : new UuidV7();
         $this->createdAt = DateTimeCreator::now();
     }
 

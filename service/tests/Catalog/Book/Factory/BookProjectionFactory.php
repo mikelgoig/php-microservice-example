@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Catalog\Book\Factory;
 
 use App\Catalog\Book\Infrastructure\Doctrine\Book;
+use App\Shared\Domain\DateTime\DateTimeCreator;
 use Symfony\Component\Uid\UuidV7;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
@@ -27,7 +28,7 @@ final class BookProjectionFactory extends PersistentProxyObjectFactory
             'id' => new UuidV7(),
             'name' => self::faker()->text(),
             'deleted' => false,
-            'createdAt' => new \DateTimeImmutable(),
+            'createdAt' => DateTimeCreator::now(),
         ];
     }
 }
