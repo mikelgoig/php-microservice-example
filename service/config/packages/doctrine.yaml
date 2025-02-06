@@ -33,7 +33,10 @@ doctrine:
         type: attribute
         dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Doctrine'
         prefix: 'App\Catalog\Infrastructure\Doctrine'
-        is_bundle: false
+      Taxonomies:
+        type: attribute
+        dir: '%kernel.project_dir%/src/Taxonomies'
+        prefix: 'App\Taxonomies'
     controller_resolver:
       auto_mapping: false
 

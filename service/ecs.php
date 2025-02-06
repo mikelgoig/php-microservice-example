@@ -21,12 +21,6 @@ return ECSConfig::configure()
     ->withSets([CodingStandard::DEFAULT, CodingStandard::RISKY])
 
     ->withSkip([
-        __DIR__ . '/tests/Support/_generated',
-        FinalClassFixer::class => [
-            __DIR__ . '/src/Catalog/Domain/Model/Book/Book.php',
-            __DIR__ . '/src/Catalog/Presentation/ApiPlatform/Book/Resource/BookQueryResource.php',
-            __DIR__ . '/src/Shared/Infrastructure/Symfony/Kernel.php',
-            __DIR__ . '/tests/Support/ComponentTester.php',
-        ],
+        FinalClassFixer::class => [__DIR__ . '/src/Shared/Infrastructure/Symfony/Kernel.php'],
     ])
 ;

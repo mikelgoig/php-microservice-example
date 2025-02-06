@@ -6,6 +6,7 @@ namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\Tests\Catalog\Factory\Book\BookFactory;
+use App\Tests\Taxonomies\Factory\Tag\TagFactory;
 use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -37,5 +38,20 @@ abstract class ComponentTestCase extends ApiTestCase
     protected function deleteBook(string $bookId): void
     {
         self::createClient()->request('DELETE', "/api/books/{$bookId}");
+    }
+
+    /**
+     * @param array<string, mixed> $attributes
+     * @return string The tag ID.
+     */
+    protected function createTag(array $attributes = []): string
+    {
+        $createdTag = self::createClient()->request('POST', '/api/tags', [
+            'json' => TagFactory::createOne($attributes),
+        ]);
+
+        $tagId = $createdTag->toArray()['id'];
+        \assert(is_string($tagId));
+        return $tagId;
     }
 }
