@@ -7,7 +7,7 @@ namespace App\Catalog\Presentation\ApiPlatform\Book\Provider;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
-use App\Catalog\Infrastructure\Doctrine\Entity\Book;
+use App\Catalog\Infrastructure\Doctrine\Book\Book;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToResourceProvider;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;

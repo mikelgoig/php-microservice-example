@@ -16,7 +16,7 @@ use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use App\Catalog\Domain\Model\Book\BookAlreadyExistsException;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
-use App\Catalog\Infrastructure\Doctrine\Entity\Book;
+use App\Catalog\Infrastructure\Doctrine\Book\Book;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\CreateBookProcessor;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\DeleteBookProcessor;
 use App\Catalog\Presentation\ApiPlatform\Book\Processor\UpdateBookProcessor;

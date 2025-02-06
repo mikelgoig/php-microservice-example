@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Application\Book\Command\Update;
+namespace App\Catalog\Application\Book\Update;
 
 use App\Shared\Application\Bus\Command;
 

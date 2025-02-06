@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Catalog\Factory;
+namespace App\Tests\Catalog\Factory\Book;
 
-use App\Catalog\Infrastructure\Doctrine\Entity\Book;
+use App\Catalog\Infrastructure\Doctrine\Book\Book;
 use Symfony\Component\Uid\UuidV7;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 

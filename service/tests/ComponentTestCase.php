@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
-use App\Tests\Catalog\Factory\BookFactory;
+use App\Tests\Catalog\Factory\Book\BookFactory;
 use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;

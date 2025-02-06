@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Catalog\Component;
+namespace App\Tests\Catalog\Component\Book;
 
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Tests\ComponentTestCase;

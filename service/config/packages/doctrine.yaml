@@ -31,8 +31,8 @@ doctrine:
     mappings:
       Catalog:
         type: attribute
-        dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Doctrine/Entity'
-        prefix: 'App\Catalog\Infrastructure\Doctrine\Entity'
+        dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Doctrine'
+        prefix: 'App\Catalog\Infrastructure\Doctrine'
         is_bundle: false
     controller_resolver:
       auto_mapping: false

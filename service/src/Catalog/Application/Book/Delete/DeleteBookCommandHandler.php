@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Application\Book\Command\Delete;
+namespace App\Catalog\Application\Book\Delete;
 
 use App\Catalog\Domain\Model\Book\BookId;
 use App\Catalog\Domain\Model\Book\BookRepository;

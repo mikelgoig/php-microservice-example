@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Infrastructure\Ecotone\Repository;
+namespace App\Catalog\Infrastructure\Ecotone\Book;
 
 use App\Catalog\Domain\Model\Book\Book;
 use App\Catalog\Domain\Model\Book\BookId;

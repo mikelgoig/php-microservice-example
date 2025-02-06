@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Infrastructure\MicroMapper;
+namespace App\Catalog\Infrastructure\MicroMapper\Book;
 
-use App\Catalog\Infrastructure\Doctrine\Entity\Book;
+use App\Catalog\Infrastructure\Doctrine\Book\Book;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use Symfonycasts\MicroMapper\AsMapper;
 use Symfonycasts\MicroMapper\MapperInterface;

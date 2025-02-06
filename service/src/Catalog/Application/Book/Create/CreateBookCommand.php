@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Application\Book\Command\Create;
+namespace App\Catalog\Application\Book\Create;
 
 use App\Shared\Application\Bus\Command;
 

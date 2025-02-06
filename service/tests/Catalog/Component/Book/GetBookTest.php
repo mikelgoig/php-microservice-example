@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Catalog\Component;
+namespace App\Tests\Catalog\Component\Book;
 
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
-use App\Tests\Catalog\Factory\BookProjectionFactory;
+use App\Tests\Catalog\Factory\Book\BookProjectionFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;

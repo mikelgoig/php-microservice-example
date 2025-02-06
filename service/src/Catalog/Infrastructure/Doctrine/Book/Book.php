@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Infrastructure\Doctrine\Entity;
+namespace App\Catalog\Infrastructure\Doctrine\Book;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV7;

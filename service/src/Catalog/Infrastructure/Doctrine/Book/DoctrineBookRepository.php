@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Infrastructure\Doctrine\Repository;
+namespace App\Catalog\Infrastructure\Doctrine\Book;
 
 use App\Catalog\Domain\Model\Book\BookReadModelRepository;
-use App\Catalog\Infrastructure\Doctrine\Entity\Book;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 

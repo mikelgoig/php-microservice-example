@@ -6,7 +6,7 @@ namespace App\Catalog\Presentation\ApiPlatform\Book\Processor;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use App\Catalog\Application\Book\Command\Update\UpdateBookCommand;
+use App\Catalog\Application\Book\Update\UpdateBookCommand;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
 use App\Shared\Application\Bus\CommandBus;
