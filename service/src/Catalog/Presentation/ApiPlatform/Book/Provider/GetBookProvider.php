@@ -9,7 +9,7 @@ use ApiPlatform\State\ProviderInterface;
 use App\Catalog\Domain\Model\Book\CouldNotFindBookException;
 use App\Catalog\Infrastructure\Doctrine\Entity\Book;
 use App\Catalog\Presentation\ApiPlatform\Book\Resource\BookResource;
-use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToResourceStateProvider;
+use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToResourceProvider;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Uid\Uuid;
 
@@ -19,11 +19,11 @@ use Symfony\Component\Uid\Uuid;
 final readonly class GetBookProvider implements ProviderInterface
 {
     /**
-     * @param EntityToResourceStateProvider<Book, BookResource> $entityToResourceStateProvider
+     * @param EntityToResourceProvider<Book, BookResource> $entityToResourceProvider
      */
     public function __construct(
-        #[Autowire(service: EntityToResourceStateProvider::class)]
-        private ProviderInterface $entityToResourceStateProvider,
+        #[Autowire(service: EntityToResourceProvider::class)]
+        private ProviderInterface $entityToResourceProvider,
     ) {}
 
     /**
@@ -31,7 +31,7 @@ final readonly class GetBookProvider implements ProviderInterface
      */
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): BookResource
     {
-        $book = $this->entityToResourceStateProvider->provide($operation, $uriVariables, $context);
+        $book = $this->entityToResourceProvider->provide($operation, $uriVariables, $context);
 
         if ($book === null) {
             $bookId = $uriVariables['id'];

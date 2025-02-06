@@ -16,15 +16,15 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfonycasts\MicroMapper\MicroMapperInterface;
 
 /**
- * @template T1 of object
- * @template T2 of object
- * @implements ProviderInterface<T2>
+ * @template TEntity of object
+ * @template TResource of object
+ * @implements ProviderInterface<TResource>
  */
-final readonly class EntityToResourceStateProvider implements ProviderInterface
+final readonly class EntityToResourceProvider implements ProviderInterface
 {
     /**
-     * @param ItemProvider<T1> $itemProvider
-     * @param CollectionProvider<T1> $collectionProvider
+     * @param ItemProvider<TEntity> $itemProvider
+     * @param CollectionProvider<TEntity> $collectionProvider
      */
     public function __construct(
         #[Autowire(service: ItemProvider::class)]
@@ -35,7 +35,7 @@ final readonly class EntityToResourceStateProvider implements ProviderInterface
     ) {}
 
     /**
-     * @return ($operation is CollectionOperationInterface ? PartialPaginatorInterface<T2>|iterable<T2> : T2|null)
+     * @return ($operation is CollectionOperationInterface ? PartialPaginatorInterface<TResource>|iterable<TResource> : TResource|null)
      */
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): array|object|null
     {
@@ -68,7 +68,7 @@ final readonly class EntityToResourceStateProvider implements ProviderInterface
     }
 
     /**
-     * @phpstan-assert class-string<T2> $resourceClass
+     * @phpstan-assert class-string<TResource> $resourceClass
      */
     private function ensureThatResourceClassExists(?string $resourceClass): void
     {
