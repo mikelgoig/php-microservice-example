@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV7;
 
 #[ORM\Entity(readOnly: true)]
-#[ORM\Table(name: 'books')]
+#[ORM\Table(name: 'books', schema: 'projections')]
 class Book
 {
     #[ORM\Column(type: 'uuid', unique: true)]

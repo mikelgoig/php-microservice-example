@@ -12,10 +12,10 @@ use Doctrine\DBAL\Connection as DbalConnection;
 use Ecotone\EventSourcing\Attribute\Projection;
 use Ecotone\Modelling\Attribute\EventHandler;
 
-#[Projection('books', Book::class)]
+#[Projection(name: 'books', fromStreams: Book::class)]
 final readonly class BooksProjection
 {
-    private const string BOOKS_TABLE = 'books';
+    private const string BOOKS_TABLE = 'projections.books';
 
     public function __construct(
         private DbalConnection $connection,
