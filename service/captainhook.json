@@ -14,13 +14,13 @@
     "enabled": true,
     "actions": [
       {
+        "action": "make test-ff"
+      },
+      {
         "action": "make lint"
       },
       {
         "action": "make db-validate"
-      },
-      {
-        "action": "make test-ff"
       }
     ]
   }
