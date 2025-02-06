@@ -31,8 +31,8 @@ doctrine:
     mappings:
       Catalog:
         type: attribute
-        dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Doctrine'
-        prefix: 'App\Catalog\Infrastructure\Doctrine'
+        dir: '%kernel.project_dir%/src/Catalog/Book/Infrastructure/Doctrine'
+        prefix: 'App\Catalog\Book\Infrastructure\Doctrine'
       Taxonomies:
         type: attribute
         dir: '%kernel.project_dir%/src/Taxonomies'

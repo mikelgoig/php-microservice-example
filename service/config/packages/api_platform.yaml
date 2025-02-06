@@ -6,7 +6,7 @@ api_platform:
   mapping:
     paths:
       # Catalog context
-      - '%kernel.project_dir%/src/Catalog/Presentation/ApiPlatform/'
+      - '%kernel.project_dir%/src/Catalog/Book/Presentation/ApiPlatform/ApiResource/'
       # Taxonomies context
       - '%kernel.project_dir%/src/Taxonomies/'
   exception_to_status:

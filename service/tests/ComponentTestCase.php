@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
-use App\Tests\Catalog\Factory\Book\BookFactory;
+use App\Tests\Catalog\Book\Factory\BookFactory;
 use App\Tests\Taxonomies\Factory\Tag\TagFactory;
 use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
 use Zenstruck\Foundry\Test\Factories;
