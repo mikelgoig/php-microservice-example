@@ -73,6 +73,10 @@ _TO DO_
 
 ## 👩‍💻 Project Explanation
 
+### Configuration
+
+- [Doctrine](docs/config/doctrine.md)
+
 ### Reference
 
 - [Environment Variables](docs/reference/environment-variables.md)
