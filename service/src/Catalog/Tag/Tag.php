@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Taxonomies\Tag;
+namespace App\Catalog\Tag;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;

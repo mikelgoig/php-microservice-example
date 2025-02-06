@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Taxonomies\Factory\Tag;
+namespace App\Tests\Catalog\Tag\Factory;
 
 use Zenstruck\Foundry\ArrayFactory;
 

@@ -29,14 +29,16 @@ doctrine:
       Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
     auto_mapping: true
     mappings:
-      Catalog:
+      Books:
         type: attribute
         dir: '%kernel.project_dir%/src/Catalog/Book/Infrastructure/Doctrine'
         prefix: 'App\Catalog\Book\Infrastructure\Doctrine'
-      Taxonomies:
+        is_bundle: false
+      Tags:
         type: attribute
-        dir: '%kernel.project_dir%/src/Taxonomies'
-        prefix: 'App\Taxonomies'
+        dir: '%kernel.project_dir%/src/Catalog/Tag/'
+        prefix: 'App\Catalog\Tag'
+        is_bundle: false
     controller_resolver:
       auto_mapping: false
 

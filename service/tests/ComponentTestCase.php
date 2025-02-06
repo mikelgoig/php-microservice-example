@@ -6,7 +6,7 @@ namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\Tests\Catalog\Book\Factory\BookFactory;
-use App\Tests\Taxonomies\Factory\Tag\TagFactory;
+use App\Tests\Catalog\Tag\Factory\TagFactory;
 use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;

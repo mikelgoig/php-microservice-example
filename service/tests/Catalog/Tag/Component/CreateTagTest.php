@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Taxonomies\Component\Tag;
+namespace App\Tests\Catalog\Tag\Component;
 
-use App\Taxonomies\Tag\Tag;
+use App\Catalog\Tag\Tag;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;

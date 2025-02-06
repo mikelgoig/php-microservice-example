@@ -14,18 +14,16 @@ Doctrine can locate and manage them properly.
 
 2. Specify the mapping configuration for the desired namespace, directory, and related settings.
 
-    Below is an example of mapping Doctrine entities for the `Catalog` context:
+    Below is an example of mapping Doctrine entities for the `Entity` directory:
 
     ```yaml
-    # service/config/packages/doctrine.yaml
-    
     doctrine:
       orm:
         mappings:
-          Catalog: # Custom mapping name
+          App: # Custom mapping name
             type: attribute # Specifies annotations, attributes, or XML mapping (we use attributes)
-            dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Doctrine' # Path to the directory where entities are stored
-            prefix: 'App\Catalog\Infrastructure\Doctrine' # Namespace prefix for the entities
+            dir: '%kernel.project_dir%/src/Entity' # Path to the directory where entities are stored
+            prefix: 'App\Entity' # Namespace prefix for the entities
             is_bundle: false
     ```
 
@@ -43,11 +41,9 @@ being automatically registered as services. This can be achieved in your Symfony
    Here’s an example for the `Catalog` context:
 
     ```yaml
-    # service/config/contexts/catalog.yaml
-    
     services:
-      App\Catalog\:
-        resource: '../../src/Catalog/'
+      App\:
+        resource: '../../src/'
         exclude: # Explicitly exclude specific files/entities
-          - '../../src/Catalog/Infrastructure/Doctrine/Book/Book.php'
+          - '../../src/Entity/*.php'
     ```

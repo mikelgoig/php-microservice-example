@@ -9,7 +9,9 @@ services:
   App\Catalog\:
     resource: '../../src/Catalog/'
     exclude:
+      # Doctrine entities
       - '../../src/Catalog/Book/Infrastructure/Doctrine/Book.php'
+      - '../../src/Catalog/Tag/Tag.php'
   
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
