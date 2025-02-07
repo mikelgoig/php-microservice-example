@@ -9,7 +9,7 @@ use ApiPlatform\State\ProviderInterface;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
 use App\Catalog\Book\Infrastructure\Doctrine\Book;
 use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
-use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToResourceProvider;
+use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Uid\Uuid;
 
@@ -19,10 +19,10 @@ use Symfony\Component\Uid\Uuid;
 final readonly class GetBookProvider implements ProviderInterface
 {
     /**
-     * @param EntityToResourceProvider<Book, BookResource> $entityToResourceProvider
+     * @param EntityToDtoProvider<Book, BookResource> $entityToResourceProvider
      */
     public function __construct(
-        #[Autowire(service: EntityToResourceProvider::class)]
+        #[Autowire(service: EntityToDtoProvider::class)]
         private ProviderInterface $entityToResourceProvider,
     ) {}
 

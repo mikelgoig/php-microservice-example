@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Tag\Component;
 
-use App\Catalog\Tag\Tag;
+use App\Catalog\Tag\TagResource;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
-#[CoversClass(Tag::class)]
+#[CoversClass(TagResource::class)]
 final class CreateTagTest extends ComponentTestCase
 {
     public function test_can_create_tag_using_valid_data(): void
@@ -31,7 +31,7 @@ final class CreateTagTest extends ComponentTestCase
             'createdAt' => '@datetime@',
             'updatedAt' => null,
         ], $response->toArray());
-        self::assertMatchesResourceItemJsonSchema(Tag::class);
+        self::assertMatchesResourceItemJsonSchema(TagResource::class);
     }
 
     public function test_cannot_create_tag_providing_blank_data(): void

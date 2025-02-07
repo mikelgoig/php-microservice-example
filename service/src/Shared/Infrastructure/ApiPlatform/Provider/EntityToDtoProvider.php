@@ -17,10 +17,10 @@ use Symfonycasts\MicroMapper\MicroMapperInterface;
 
 /**
  * @template TEntity of object
- * @template TResource of object
- * @implements ProviderInterface<TResource>
+ * @template TDto of object
+ * @implements ProviderInterface<TDto>
  */
-final readonly class EntityToResourceProvider implements ProviderInterface
+final readonly class EntityToDtoProvider implements ProviderInterface
 {
     /**
      * @param ItemProvider<TEntity> $itemProvider
@@ -35,16 +35,16 @@ final readonly class EntityToResourceProvider implements ProviderInterface
     ) {}
 
     /**
-     * @return ($operation is CollectionOperationInterface ? PartialPaginatorInterface<TResource>|iterable<TResource> : TResource|null)
+     * @return ($operation is CollectionOperationInterface ? PartialPaginatorInterface<TDto>|iterable<TDto> : TDto|null)
      */
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): array|object|null
     {
-        $resourceClass = $operation->getClass();
-        $this->ensureThatResourceClassExists($resourceClass);
+        $dtoClass = $operation->getClass();
+        $this->ensureThatDtoClassExists($dtoClass);
 
         if ($operation instanceof CollectionOperationInterface) {
             $entities = $this->collectionProvider->provide($operation, $uriVariables, $context);
-            $dtos = $this->microMapper->mapMultiple($entities, $resourceClass);
+            $dtos = $this->microMapper->mapMultiple($entities, $dtoClass);
 
             if ($entities instanceof Paginator) {
                 return new TraversablePaginator(
@@ -64,15 +64,15 @@ final readonly class EntityToResourceProvider implements ProviderInterface
             return null;
         }
 
-        return $this->microMapper->map($entity, $resourceClass);
+        return $this->microMapper->map($entity, $dtoClass);
     }
 
     /**
-     * @phpstan-assert class-string<TResource> $resourceClass
+     * @phpstan-assert class-string<TDto> $dtoClass
      */
-    private function ensureThatResourceClassExists(?string $resourceClass): void
+    private function ensureThatDtoClassExists(?string $dtoClass): void
     {
-        \assert($resourceClass !== null, 'Resource class is not defined.');
-        \assert(class_exists($resourceClass), 'Resource class is not a valid class-string.');
+        \assert($dtoClass !== null, 'DTO class is not defined.');
+        \assert(class_exists($dtoClass), "DTO class <{$dtoClass}> is not a valid class-string.");
     }
 }
