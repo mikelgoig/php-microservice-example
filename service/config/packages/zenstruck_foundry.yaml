@@ -6,5 +6,8 @@ when@dev: &dev
         # When using migrate mode along with DamaDoctrineTestBundle,
         # the database is dropped/created and migrated only once for the suite.
         mode: migrate
+        connections:
+          - default
+          - ecotone
 
 when@test: *dev

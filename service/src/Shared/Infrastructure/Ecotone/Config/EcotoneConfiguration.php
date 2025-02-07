@@ -12,7 +12,7 @@ final readonly class EcotoneConfiguration
     #[ServiceContext]
     public function dbalConfiguration(): SymfonyConnectionReference
     {
-        $connection = SymfonyConnectionReference::defaultConnection('default');
+        $connection = SymfonyConnectionReference::defaultConnection('ecotone');
         \assert($connection instanceof SymfonyConnectionReference);
         return $connection;
     }

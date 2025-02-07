@@ -11,16 +11,16 @@ final class Version20241216175807 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create projections.books table';
+        return 'Create read.books table';
     }
 
     public function up(Schema $schema): void
     {
         $this->addSql(<<<SQL
-            CREATE SCHEMA IF NOT EXISTS projections;
+            CREATE SCHEMA IF NOT EXISTS read;
         SQL);
         $this->addSql(<<<SQL
-            CREATE TABLE projections.books (
+            CREATE TABLE read.books (
                 id_primary SERIAL NOT NULL,
                 id UUID NOT NULL,
                 name VARCHAR(255) NOT NULL,
@@ -31,26 +31,26 @@ final class Version20241216175807 extends AbstractMigration
             );
         SQL);
         $this->addSql(<<<SQL
-            CREATE UNIQUE INDEX UNIQ_B87C2C85BF396750 ON projections.books (id);
+            CREATE UNIQUE INDEX UNIQ_D5E58822BF396750 ON read.books (id);
         SQL);
         $this->addSql(<<<SQL
-            CREATE UNIQUE INDEX UNIQ_B87C2C855E237E06 ON projections.books (name);
+            CREATE UNIQUE INDEX UNIQ_D5E588225E237E06 ON read.books (name);
         SQL);
         $this->addSql(<<<SQL
-            COMMENT ON COLUMN projections.books.id IS '(DC2Type:uuid)';
+            COMMENT ON COLUMN read.books.id IS '(DC2Type:uuid)';
         SQL);
         $this->addSql(<<<SQL
-            COMMENT ON COLUMN projections.books.created_at IS '(DC2Type:datetime_immutable)';
+            COMMENT ON COLUMN read.books.created_at IS '(DC2Type:datetime_immutable)';
         SQL);
         $this->addSql(<<<SQL
-            COMMENT ON COLUMN projections.books.updated_at IS '(DC2Type:datetime_immutable)';
+            COMMENT ON COLUMN read.books.updated_at IS '(DC2Type:datetime_immutable)';
         SQL);
     }
 
     public function down(Schema $schema): void
     {
         $this->addSql(<<<SQL
-            DROP TABLE projections.books;
+            DROP TABLE read.books;
         SQL);
     }
 }

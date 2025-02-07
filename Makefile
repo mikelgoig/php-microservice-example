@@ -113,7 +113,7 @@ db-fresh-test:
 
 .PHONY: db-diff
 db-diff: ## Generate a migration by comparing your database to your mapping information
-db-diff: db-fresh
+db-diff:
 db-diff: c = doctrine:migrations:diff --no-interaction
 db-diff: sf
 
