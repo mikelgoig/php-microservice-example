@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV7;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'tags')]
+#[ORM\Table(name: 'tags', schema: 'write')]
 #[ORM\HasLifecycleCallbacks]
 class TagEntity
 {

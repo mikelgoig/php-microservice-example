@@ -15,7 +15,7 @@ use Ecotone\Modelling\Attribute\EventHandler;
 #[Projection(name: 'books', fromStreams: Book::class)]
 final readonly class BooksProjection
 {
-    private const string BOOKS_TABLE = 'projections.books';
+    private const string BOOKS_TABLE = 'read.books';
 
     public function __construct(
         private DbalConnection $connection,

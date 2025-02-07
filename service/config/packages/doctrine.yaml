@@ -1,23 +1,27 @@
 doctrine:
   dbal:
-    url: '%env(resolve:DATABASE_URL)%'
-    
-    # IMPORTANT: You MUST configure your server version,
-    # either here or in the DATABASE_URL env var (see .env file)
-    #server_version: '16'
-    
-    ###> ecotone/pdo-event-sourcing
-    # Ignore event_streams table by the schema tool
-    schema_filter: ~^(?!(event_streams))~
-    ###< ecotone/pdo-event-sourcing
-    
-    profiling_collect_backtrace: '%kernel.debug%'
-    
-    ###> dama/doctrine-test-bundle
-    # Starting from version 8 and only when using DBAL < 4
-    # you need to make sure you have use_savepoints enabled for all relevant connections
-    use_savepoints: true
-    ###< dama/doctrine-test-bundle ###
+    connections:
+      default:
+        url: '%env(resolve:DATABASE_URL)%'
+        
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        #server_version: '16'
+        
+        # Tables to be ignored by the schema tool
+        schema_filter: ~^(?!(event_streams|projections|_))~
+        
+        profiling_collect_backtrace: '%kernel.debug%'
+        
+        ###> dama/doctrine-test-bundle
+        # Starting from version 8 and only when using DBAL < 4
+        # you need to make sure you have use_savepoints enabled for all relevant connections
+        use_savepoints: true
+        ###< dama/doctrine-test-bundle ###
+      
+      ecotone:
+        url: '%env(resolve:DATABASE_URL)%'
+        use_savepoints: true
 
   orm:
     auto_generate_proxy_classes: true
@@ -45,13 +49,12 @@ doctrine:
 when@test:
   doctrine:
     dbal:
-      # "TEST_TOKEN" is typically set by ParaTest
-      dbname_suffix: '_test%env(default::TEST_TOKEN)%'
-      
-      ###> ecotone/pdo-event-sourcing
-      # Do not ignore any tables in testing env
-      schema_filter: ~
-      ###< ecotone/pdo-event-sourcing
+      connections:
+        default:
+          # "TEST_TOKEN" is typically set by ParaTest
+          dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+        ecotone:
+          dbname_suffix: '_test%env(default::TEST_TOKEN)%'
 
 when@prod:
   doctrine:
