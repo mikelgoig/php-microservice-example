@@ -7,6 +7,7 @@ namespace App\Catalog\Tag;
 use ApiPlatform\Doctrine\Orm\State\Options as DoctrineOptions;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use App\Shared\Infrastructure\ApiPlatform\Processor\EntityToDtoProcessor;
@@ -23,6 +24,8 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Post(),
         // get tag
         new Get(),
+        // delete tag
+        new Delete(),
     ],
     provider: EntityToDtoProvider::class,
     processor: EntityToDtoProcessor::class,
