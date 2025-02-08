@@ -16,41 +16,36 @@ final class ListTagsTest extends ComponentTestCase
     public function test_can_list_tags_ordered_by_name_asc_by_default(): void
     {
         TagProjectionFactory::createOne([
-            'name' => 'ddd',
-        ]);
-        TagProjectionFactory::createOne([
             'name' => 'clean-architecture',
         ]);
+        TagProjectionFactory::createOne([
+            'name' => 'web-apis',
+        ]);
+        TagProjectionFactory::createOne([
+            'name' => 'ddd',
+        ]);
 
-        $response = self::createClient()->request('GET', '/api/tags');
+        self::createClient()->request('GET', '/api/tags');
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern([
+        self::assertJsonContains([
             '@context' => '/api/contexts/Tag',
             '@id' => '/api/tags',
             '@type' => 'Collection',
-            'totalItems' => 2,
+            'totalItems' => 3,
             'member' => [
-                [
-                    '@id' => '/api/tags/@uuid@',
-                    '@type' => 'Tag',
-                    'id' => '@uuid@',
+                $this->findIriBy(TagResource::class, [
                     'name' => 'clean-architecture',
-                    'createdAt' => '@datetime@',
-                    'updatedAt' => null,
-                ],
-                [
-                    '@id' => '/api/tags/@uuid@',
-                    '@type' => 'Tag',
-                    'id' => '@uuid@',
+                ]),
+                $this->findIriBy(TagResource::class, [
                     'name' => 'ddd',
-                    'createdAt' => '@datetime@',
-                    'updatedAt' => null,
-                ],
+                ]),
+                $this->findIriBy(TagResource::class, [
+                    'name' => 'web-apis',
+                ]),
             ],
-        ], $response->toArray());
-        self::assertMatchesResourceCollectionJsonSchema(TagResource::class);
+        ]);
     }
 
     public function test_can_list_tags_with_pagination(): void
@@ -61,11 +56,12 @@ final class ListTagsTest extends ComponentTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertJsonContains([
+        self::assertMatchesPattern([
             '@context' => '/api/contexts/Tag',
             '@id' => '/api/tags',
             '@type' => 'Collection',
             'totalItems' => 100,
+            'member' => ['/api/tags/@uuid@', '@...@'],
             'view' => [
                 '@id' => '/api/tags?page=1',
                 '@type' => 'PartialCollectionView',
@@ -73,9 +69,8 @@ final class ListTagsTest extends ComponentTestCase
                 'last' => '/api/tags?page=4',
                 'next' => '/api/tags?page=2',
             ],
-        ]);
+        ], $response->toArray());
         self::assertIsArray($response->toArray()['member']);
         self::assertCount(30, $response->toArray()['member']);
-        self::assertMatchesResourceCollectionJsonSchema(TagResource::class);
     }
 }

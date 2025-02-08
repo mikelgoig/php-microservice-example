@@ -25,6 +25,7 @@ api_platform:
       vary: [ 'Content-Type', 'Authorization', 'Origin' ]
     normalization_context:
       datetime_format: 'Y-m-d\TH:i:s.u\Z'
+      iri_only: true
       skip_null_values: false
     pagination_client_items_per_page: true
     pagination_items_per_page: 30
