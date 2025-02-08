@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Catalog\Tag\Component;
 
 use App\Catalog\Tag\TagResource;
-use App\Tests\Catalog\Tag\Factory\TagProjectionFactory;
+use App\Tests\Catalog\Tag\Factory\TagEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ final class GetTagTest extends ComponentTestCase
 {
     public function test_can_get_tag_if_it_exists(): void
     {
-        TagProjectionFactory::createOne([
+        TagEntityFactory::createOne([
             'id' => new UuidV7('0194dcb5-043c-7992-845d-85904d5689df'),
             'name' => 'ddd',
         ]);

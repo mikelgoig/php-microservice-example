@@ -11,7 +11,7 @@ use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 /**
  * @extends PersistentProxyObjectFactory<TagEntity>
  */
-final class TagProjectionFactory extends PersistentProxyObjectFactory
+final class TagEntityFactory extends PersistentProxyObjectFactory
 {
     public static function class(): string
     {

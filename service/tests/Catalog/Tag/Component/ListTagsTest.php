@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Catalog\Tag\Component;
 
 use App\Catalog\Tag\TagResource;
-use App\Tests\Catalog\Tag\Factory\TagProjectionFactory;
+use App\Tests\Catalog\Tag\Factory\TagEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,13 +15,13 @@ final class ListTagsTest extends ComponentTestCase
 {
     public function test_can_list_tags_ordered_by_name_asc_by_default(): void
     {
-        TagProjectionFactory::createOne([
+        TagEntityFactory::createOne([
             'name' => 'clean-architecture',
         ]);
-        TagProjectionFactory::createOne([
+        TagEntityFactory::createOne([
             'name' => 'web-apis',
         ]);
-        TagProjectionFactory::createOne([
+        TagEntityFactory::createOne([
             'name' => 'ddd',
         ]);
 
@@ -50,7 +50,7 @@ final class ListTagsTest extends ComponentTestCase
 
     public function test_can_list_tags_with_pagination(): void
     {
-        TagProjectionFactory::createMany(100);
+        TagEntityFactory::createMany(100);
 
         $response = self::createClient()->request('GET', '/api/tags');
 
