@@ -16,7 +16,7 @@ use Symfonycasts\MicroMapper\MicroMapperInterface;
  *
  * @phpstan-require-extends ApiTestCase
  */
-trait ApiPlatformResourceFinder
+trait ApiResourceFinder
 {
     /**
      * @param array<mixed> $criteria
