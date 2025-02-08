@@ -1,0 +1,43 @@
+rules:
+    - Symplify\PHPStanRules\Rules\ForbiddenMultipleClassLikeInOneFileRule
+    - Symplify\PHPStanRules\Rules\NoGlobalConstRule
+
+services:
+    -
+        class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            forbiddenFunctions:
+                - 'array_walk'
+                - 'compact'
+                - 'curl_*'
+                - 'd'
+                - 'dd'
+                - 'dump'
+                - 'extract'
+                - 'method_exists'
+                - 'property_exists'
+                - 'spl_autoload_register'
+                - 'spl_autoload_unregister'
+                - 'var_dump'
+    -
+        class: Symplify\PHPStanRules\Rules\ForbiddenNodeRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            forbiddenNodes:
+                - PhpParser\Node\Stmt\Trait_
+                - PhpParser\Node\Expr\Empty_
+                - PhpParser\Node\Stmt\Switch_
+                - PhpParser\Node\Expr\ErrorSuppress
+                - PhpParser\Node\Expr\PostInc
+                - PhpParser\Node\Expr\PostDec
+    -
+        class: Symplify\PHPStanRules\Rules\PreferredClassRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            oldToPreferredClasses:
+                Assert\Assert: Webmozart\Assert\Assert
+                Assert\Assertion: Webmozart\Assert\Assert
+                DateTime: DateTimeImmutable
+                PHPStan\Node\ClassMethod: PhpParser\Node\Stmt\ClassMethod
+                PhpCsFixer\Finder: Symfony\Component\Finder\Finder

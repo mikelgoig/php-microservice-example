@@ -1,0 +1,10 @@
+rules:
+    - Symplify\PHPStanRules\Rules\Symfony\NoAbstractControllerConstructorRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoConstructorAndRequiredTogetherRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoGetDoctrineInControllerRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoGetInControllerRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoListenerWithoutContractRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoRequiredOutsideClassRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoStringInGetSubscribedEventsRule
+    - Symplify\PHPStanRules\Rules\Symfony\RequireInvokableControllerRule
+    - Symplify\PHPStanRules\Rules\Symfony\SingleArgEventDispatchRule

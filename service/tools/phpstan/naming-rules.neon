@@ -1,0 +1,25 @@
+rules:
+    - Symplify\PHPStanRules\Rules\NoReturnSetterMethodRule
+    - Symplify\PHPStanRules\Rules\UppercaseConstantRule
+    - Symplify\PHPStanRules\Rules\RequireAttributeNameRule
+
+services:
+    -
+        class: Symplify\PHPStanRules\Rules\ClassNameRespectsParentSuffixRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            parentClasses:
+                - App\Shared\Application\Bus\Command
+
+# unusedRules:
+
+# Symplify\CheckRequiredInterfaceInContractNamespaceRule
+# Symplify\NoEntityOutsideEntityNamespaceRule
+# Symplify\RequireAttributeNamespaceRule
+# Symplify\RequireExceptionNamespaceRule
+#   In general, as we use Domain-Driven Design, we should avoid organizing code by technical concerns.
+
+# Symplify\ExplicitClassPrefixSuffixRule
+#   In general, we should avoid reflecting type information in names. For example: IShoppingCart,
+#   AbstractShoppingCart, ShoppingCartImpl, ...
+#   → Blé, Carlos. Código Sostenible. Savvily, 2022, p. 47

@@ -5,23 +5,24 @@ declare(strict_types=1);
 namespace App\Catalog\Book\Infrastructure\Doctrine;
 
 use App\Catalog\Book\Domain\BookReadModelRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
-final readonly class DoctrineBookRepository implements BookReadModelRepository
+/**
+ * @extends ServiceEntityRepository<Book>
+ */
+final class DoctrineBookRepository extends ServiceEntityRepository implements BookReadModelRepository
 {
-    private const string ENTITY_CLASS = Book::class;
-    private const string ALIAS = 'books';
-
-    public function __construct(
-        private EntityManagerInterface $entityManager,
-    ) {}
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Book::class);
+    }
 
     public function exists(Criteria $criteria): bool
     {
-        $result = $this->entityManager->createQueryBuilder()
-            ->select(self::ALIAS . '.id')
-            ->from(self::ENTITY_CLASS, self::ALIAS)
+        $result = $this->createQueryBuilder('b')
+            ->select('b.id')
             ->addCriteria($criteria)
             ->getQuery()
             ->getOneOrNullResult();

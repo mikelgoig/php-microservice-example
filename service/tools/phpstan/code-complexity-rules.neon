@@ -1,0 +1,21 @@
+rules:
+    - Symplify\PHPStanRules\Rules\Complexity\ForbiddenArrayMethodCallRule
+    - Symplify\PHPStanRules\Rules\Complexity\NoConstructorOverrideRule
+    - Symplify\PHPStanRules\Rules\ForbiddenExtendOfNonAbstractClassRule
+    - Symplify\PHPStanRules\Rules\ForbiddenStaticClassConstFetchRule
+    - Symplify\PHPStanRules\Rules\NoDynamicNameRule
+    - Symplify\PHPStanRules\Rules\NoReferenceRule
+    - Symplify\PHPStanRules\Rules\PreventParentMethodVisibilityOverrideRule
+
+services:
+    -
+        class: Symplify\PHPStanRules\Rules\Complexity\ForbiddenNewArgumentRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            forbiddenTypes:
+                - App\Catalog\Book\Infrastructure\Doctrine\DoctrineBookRepository
+                - App\Catalog\Book\Infrastructure\Ecotone\EcotoneBookRepository
+                - App\Catalog\Book\Presentation\ApiPlatform\Processor\BookFinder
+                - App\Catalog\Book\Presentation\ApiPlatform\Provider\GetBookProvider
+                - App\Shared\Infrastructure\ApiPlatform\Processor\EntityToDtoProcessor
+                - App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider
