@@ -14,7 +14,7 @@ final class BookFactory extends ArrayFactory
     protected function defaults(): array
     {
         return [
-            'name' => self::faker()->text(),
+            'name' => self::faker()->unique()->text(),
         ];
     }
 }

@@ -14,7 +14,7 @@ final class TagFactory extends ArrayFactory
     protected function defaults(): array
     {
         return [
-            'name' => self::faker()->slug(),
+            'name' => self::faker()->unique()->slug(),
         ];
     }
 }

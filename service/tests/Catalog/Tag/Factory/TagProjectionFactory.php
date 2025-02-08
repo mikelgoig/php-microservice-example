@@ -25,7 +25,7 @@ final class TagProjectionFactory extends PersistentProxyObjectFactory
     {
         return [
             'id' => new UuidV7(),
-            'name' => self::faker()->slug(),
+            'name' => self::faker()->unique()->slug(),
         ];
     }
 }
