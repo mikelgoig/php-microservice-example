@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Catalog\Book\Component;
 
 use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
-use App\Tests\Catalog\Book\Factory\BookProjectionFactory;
+use App\Tests\Catalog\Book\Factory\BookEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ final class GetBookTest extends ComponentTestCase
 {
     public function test_can_get_book_if_it_exists(): void
     {
-        BookProjectionFactory::createOne([
+        BookEntityFactory::createOne([
             'id' => new UuidV7('0194adb1-41b9-7ee2-9344-98ca0217ca03'),
             'name' => 'Advanced Web Application Architecture',
         ]);
