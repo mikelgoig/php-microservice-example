@@ -23,21 +23,21 @@ abstract class ComponentTestCase extends ApiTestCase
      */
     protected function createBook(array $attributes = []): string
     {
-        $createdBook = self::createClient()->request('POST', '/api/books', [
+        $resource = self::createClient()->request('POST', '/api/books', [
             'json' => BookFactory::createOne($attributes),
         ]);
 
-        $bookId = $createdBook->toArray()['id'];
-        \assert(is_string($bookId));
-        return $bookId;
+        $id = $resource->toArray()['id'];
+        \assert(is_string($id));
+        return $id;
     }
 
     /**
-     * @param string $bookId The book ID.
+     * @param string $id The book ID.
      */
-    protected function deleteBook(string $bookId): void
+    protected function deleteBook(string $id): void
     {
-        self::createClient()->request('DELETE', "/api/books/{$bookId}");
+        self::createClient()->request('DELETE', "/api/books/{$id}");
     }
 
     /**
@@ -46,12 +46,12 @@ abstract class ComponentTestCase extends ApiTestCase
      */
     protected function createTag(array $attributes = []): string
     {
-        $createdTag = self::createClient()->request('POST', '/api/tags', [
+        $resource = self::createClient()->request('POST', '/api/tags', [
             'json' => TagFactory::createOne($attributes),
         ]);
 
-        $tagId = $createdTag->toArray()['id'];
-        \assert(is_string($tagId));
-        return $tagId;
+        $id = $resource->toArray()['id'];
+        \assert(is_string($id));
+        return $id;
     }
 }

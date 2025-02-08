@@ -8,8 +8,6 @@ parameters:
     paths:
         - src
         - tests
-    excludePaths:
-        - tests/Support/_generated/*
     tmpDir: var/cache/phpstan
     exceptions:
         checkedExceptionRegexes:

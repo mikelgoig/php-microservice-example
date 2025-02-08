@@ -38,8 +38,6 @@ being automatically registered as services. This can be achieved in your Symfony
 
 2. Use the `exclude` parameter to explicitly list the entities you want to exclude.
 
-   Here’s an example for the `Catalog` context:
-
     ```yaml
     services:
       App\:

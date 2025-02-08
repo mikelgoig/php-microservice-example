@@ -1,6 +1,4 @@
 # This file is the entry point to configure your own services.
-# Files in the contexts/ subdirectory configure your bounded contexts.
 
 imports:
-  - { resource: 'contexts/*.yaml' }
-
+  - { resource: 'services/*.yaml' }

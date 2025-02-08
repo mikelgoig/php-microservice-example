@@ -30,9 +30,9 @@ final class UpdateTagTest extends ComponentTestCase
         self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
         self::assertMatchesPattern([
             '@context' => '/api/contexts/Tag',
-            '@id' => '/api/tags/@uuid@',
+            '@id' => "/api/tags/{$tagId}",
             '@type' => 'Tag',
-            'id' => '@uuid@',
+            'id' => $tagId,
             'name' => 'ddd',
             'createdAt' => '@datetime@',
             'updatedAt' => '@datetime@',
@@ -42,12 +42,7 @@ final class UpdateTagTest extends ComponentTestCase
 
     public function test_cannot_update_tag_if_it_does_not_exist(): void
     {
-        self::createClient()->request('PATCH', '/api/tags/0194e26a-cef5-766c-968b-ced71898bb71', [
-            'json' => TagFactory::createOne(),
-            'headers' => [
-                'content-type' => 'application/merge-patch+json',
-            ],
-        ]);
+        self::createClient()->request('PATCH', '/api/tags/0194e26a-cef5-766c-968b-ced71898bb71');
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');

@@ -50,7 +50,7 @@ final class TagResource
 
     /** The name of the tag. */
     #[Assert\NotBlank]
-    #[Assert\Length(min: 1, max: 255)]
+    #[Assert\Length(max: 255)]
     #[ApiProperty(example: 'ddd')]
     public string $name = '';
 
