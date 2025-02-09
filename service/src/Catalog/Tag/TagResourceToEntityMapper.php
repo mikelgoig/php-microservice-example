@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Catalog\Tag;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Uid\UuidV7;
 use Symfonycasts\MicroMapper\AsMapper;
 use Symfonycasts\MicroMapper\MapperInterface;
 
@@ -25,7 +26,7 @@ final readonly class TagResourceToEntityMapper implements MapperInterface
                 ?? throw new \RuntimeException("Tag <{$resource->id}> not found.");
         }
 
-        return new TagEntity();
+        return new TagEntity(new UuidV7(), $resource->name);
     }
 
     public function populate(object $from, object $to, array $context): TagEntity

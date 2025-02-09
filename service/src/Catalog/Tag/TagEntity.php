@@ -25,14 +25,10 @@ class TagEntity
     #[ORM\Column(type: 'datetime_immutable', precision: 6, nullable: true)]
     private ?\DateTimeImmutable $updatedAt;
 
-    public function __construct()
+    public function __construct(UuidV7 $id, string $name)
     {
-        $this->id = new UuidV7();
-    }
-
-    #[ORM\PrePersist]
-    public function onPrePersist(): void
-    {
+        $this->id = $id;
+        $this->name = $name;
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
     }
@@ -46,11 +42,6 @@ class TagEntity
     public function id(): UuidV7
     {
         return $this->id;
-    }
-
-    public function setId(UuidV7 $id): void
-    {
-        $this->id = $id;
     }
 
     public function name(): string
