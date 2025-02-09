@@ -41,7 +41,14 @@ use Symfony\Component\Validator\Constraints as Assert;
     processor: EntityToDtoProcessor::class,
     stateOptions: new DoctrineOptions(entityClass: TagEntity::class),
 )]
-#[UniqueEntity(fields: 'name', message: 'Tag with name <{{ value }}> already exists.', entityClass: TagEntity::class)]
+#[UniqueEntity(
+    fields: ['id', 'name'],
+    message: 'Tag with name <{{ value }}> already exists.',
+    entityClass: TagEntity::class,
+    repositoryMethod: 'uniqueName',
+    errorPath: 'name',
+    ignoreNull: false,
+)]
 final class TagResource
 {
     /** The ID of the tag. */

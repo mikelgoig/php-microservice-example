@@ -7,7 +7,7 @@ namespace App\Catalog\Tag;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV7;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: DoctrineEntityRepository::class)]
 #[ORM\Table(name: 'tags', schema: 'write')]
 #[ORM\HasLifecycleCallbacks]
 class TagEntity
