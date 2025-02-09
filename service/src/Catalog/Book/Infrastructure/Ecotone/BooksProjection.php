@@ -17,6 +17,7 @@ use Ecotone\Modelling\Attribute\EventHandler;
 final readonly class BooksProjection
 {
     private const string BOOKS_TABLE = 'read.books';
+    private const string BOOKS_TAGS_TABLE = 'read.books_tags';
 
     public function __construct(
         private DbalConnection $connection,
@@ -31,6 +32,13 @@ final readonly class BooksProjection
             'description' => $event->description,
             'created_at' => $event->occurredOn,
         ]);
+
+        foreach ($event->tags as $tagId) {
+            $this->connection->insert(self::BOOKS_TAGS_TABLE, [
+                'book_id' => $event->id,
+                'tag_id' => $tagId,
+            ]);
+        }
     }
 
     #[EventHandler]

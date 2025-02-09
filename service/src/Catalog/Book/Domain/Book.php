@@ -21,12 +21,15 @@ final class Book
     private BookId $id;
     private bool $isDeleted = false;
 
-    public static function create(string $id, string $name, ?string $description): self
+    /**
+     * @param list<string> $tags
+     */
+    public static function create(string $id, string $name, ?string $description, array $tags): self
     {
         $id = BookId::fromString($id);
 
         $self = new self();
-        $self->recordThat(new BookWasCreated($id->value, $name, $description));
+        $self->recordThat(new BookWasCreated($id->value, $name, $description, $tags));
         return $self;
     }
 

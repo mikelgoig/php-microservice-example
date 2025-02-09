@@ -10,10 +10,14 @@ final readonly class BookWasCreated
 {
     public string $occurredOn;
 
+    /**
+     * @param list<string> $tags
+     */
     public function __construct(
         public string $id,
         public string $name,
         public ?string $description,
+        public array $tags,
         ?string $occurredOn = null,
     ) {
         $this->occurredOn = $occurredOn ?? DateTimeFormatter::toAtomUtcString();

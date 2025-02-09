@@ -69,6 +69,31 @@ final class CreateBookTest extends ComponentTestCase
         self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }
 
+    public function test_can_create_book_with_tags(): void
+    {
+        $tagId = $this->createTag();
+
+        $response = self::createClient()->request('POST', '/api/books', [
+            'json' => [
+                'name' => 'Advanced Web Application Architecture',
+                'tags' => ["/api/tags/{$tagId}"],
+            ],
+        ]);
+
+        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
+        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
+        self::assertMatchesPattern([
+            '@context' => '/api/contexts/Book',
+            '@id' => '/api/books/@uuid@',
+            '@type' => 'Book',
+            'id' => '@uuid@',
+            'name' => 'Advanced Web Application Architecture',
+            'tags' => ["/api/tags/{$tagId}"],
+            'createdAt' => '@datetime@',
+        ], $response->toArray());
+        self::assertMatchesResourceItemJsonSchema(BookResource::class);
+    }
+
     public function test_cannot_create_book_providing_blank_data(): void
     {
         self::createClient()->request('POST', '/api/books', [

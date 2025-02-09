@@ -9,6 +9,7 @@ use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Book\Application\Create\CreateBookCommand;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
 use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
+use App\Catalog\Tag\Tag;
 use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\UuidV7;
 
@@ -34,7 +35,14 @@ final readonly class CreateBookProcessor implements ProcessorInterface
     ): BookResource {
         $bookId = new UuidV7();
         $this->commandBus->dispatch(
-            new CreateBookCommand($bookId->toString(), $data->name, $data->description ?? null),
+            new CreateBookCommand(
+                $bookId->toString(),
+                $data->name,
+                $data->description ?? null,
+                isset($data->tags)
+                    ? array_values(array_map(fn (Tag $tag) => $tag->id->toString(), iterator_to_array($data->tags)))
+                    : [],
+            ),
         );
         return $this->bookFinder->find($bookId, $context);
     }
