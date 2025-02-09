@@ -21,17 +21,13 @@ final class Version20241216175807 extends AbstractMigration
         SQL);
         $this->addSql(<<<SQL
             CREATE TABLE read.books (
-                id_primary SERIAL NOT NULL,
                 id UUID NOT NULL,
                 name VARCHAR(255) NOT NULL,
                 deleted BOOLEAN NOT NULL DEFAULT false,
                 created_at TIMESTAMP(6) WITHOUT TIME ZONE NOT NULL,
                 updated_at TIMESTAMP(6) WITHOUT TIME ZONE DEFAULT NULL,
-                PRIMARY KEY(id_primary)
+                PRIMARY KEY(id)
             );
-        SQL);
-        $this->addSql(<<<SQL
-            CREATE UNIQUE INDEX UNIQ_D5E58822BF396750 ON read.books (id);
         SQL);
         $this->addSql(<<<SQL
             CREATE UNIQUE INDEX UNIQ_D5E588225E237E06 ON read.books (name);

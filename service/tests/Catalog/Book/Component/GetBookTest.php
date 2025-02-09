@@ -6,6 +6,7 @@ namespace App\Tests\Catalog\Book\Component;
 
 use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
 use App\Tests\Catalog\Book\Factory\BookEntityFactory;
+use App\Tests\Catalog\Tag\Factory\TagEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +17,13 @@ final class GetBookTest extends ComponentTestCase
 {
     public function test_can_get_book_if_it_exists(): void
     {
+        $tag = TagEntityFactory::createOne([
+            'id' => new UuidV7('0194e774-de42-7ff1-940e-8578a4344747'),
+        ]);
         BookEntityFactory::createOne([
             'id' => new UuidV7('0194adb1-41b9-7ee2-9344-98ca0217ca03'),
             'name' => 'Advanced Web Application Architecture',
+            'tags' => [$tag],
         ]);
 
         self::createClient()->request('GET', '/api/books/0194adb1-41b9-7ee2-9344-98ca0217ca03');
@@ -31,6 +36,7 @@ final class GetBookTest extends ComponentTestCase
             '@type' => 'Book',
             'id' => '0194adb1-41b9-7ee2-9344-98ca0217ca03',
             'name' => 'Advanced Web Application Architecture',
+            'tags' => ['/api/tags/0194e774-de42-7ff1-940e-8578a4344747'],
         ]);
         self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }

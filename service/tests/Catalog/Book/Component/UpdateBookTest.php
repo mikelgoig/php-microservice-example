@@ -34,6 +34,7 @@ final class UpdateBookTest extends ComponentTestCase
             '@type' => 'Book',
             'id' => '@uuid@',
             'name' => 'Advanced Web Application Architecture',
+            'tags' => [],
             'createdAt' => '@datetime@',
             'updatedAt' => '@datetime@',
         ], $response->toArray());
