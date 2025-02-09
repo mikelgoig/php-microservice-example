@@ -16,7 +16,7 @@ use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use App\Catalog\Book\Domain\BookAlreadyExistsException;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
-use App\Catalog\Book\Infrastructure\Doctrine\Book;
+use App\Catalog\Book\Infrastructure\Doctrine\BookEntity;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\CreateBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\DeleteBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\UpdateBookProcessor;
@@ -37,7 +37,7 @@ use Symfony\Component\Validator\Constraints as Assert;
                 'id' => 'DESC',
             ],
             provider: EntityToDtoProvider::class,
-            stateOptions: new Options(Book::class),
+            stateOptions: new Options(BookEntity::class),
         ),
         // create book
         new Post(
@@ -57,7 +57,7 @@ use Symfony\Component\Validator\Constraints as Assert;
                 CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
             ],
             provider: GetBookProvider::class,
-            stateOptions: new Options(Book::class),
+            stateOptions: new Options(BookEntity::class),
         ),
         // delete book
         new Delete(

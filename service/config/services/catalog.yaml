@@ -10,7 +10,7 @@ services:
     resource: '../../src/Catalog/'
     exclude:
       # Doctrine entities
-      - '../../src/Catalog/Book/Infrastructure/Doctrine/Book.php'
+      - '../../src/Catalog/Book/Infrastructure/Doctrine/BookEntity.php'
       - '../../src/Catalog/Tag/TagEntity.php'
   
   # add more service definitions when explicit configuration is needed

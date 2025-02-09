@@ -12,7 +12,7 @@ use Symfony\Component\Uid\UuidV7;
 
 #[ORM\Entity(readOnly: true)]
 #[ORM\Table(name: 'books', schema: 'read')]
-class Book
+class BookEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]

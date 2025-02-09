@@ -10,13 +10,13 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Book>
+ * @extends ServiceEntityRepository<BookEntity>
  */
 final class DoctrineBookRepository extends ServiceEntityRepository implements BookReadModelRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Book::class);
+        parent::__construct($registry, BookEntity::class);
     }
 
     public function exists(Criteria $criteria): bool
