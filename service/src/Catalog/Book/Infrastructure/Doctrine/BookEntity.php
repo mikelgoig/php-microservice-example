@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Catalog\Book\Infrastructure\Doctrine;
 
-use App\Catalog\Tag\TagEntity;
+use App\Catalog\Tag\Tag;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -32,11 +32,11 @@ class BookEntity
     #[ORM\Column(type: 'datetime_immutable', precision: 6, nullable: true)]
     private ?\DateTimeImmutable $updatedAt;
 
-    /** @var Collection<int, TagEntity> */
+    /** @var Collection<int, Tag> */
     #[ORM\JoinTable(name: 'books_tags', schema: 'read')]
     #[ORM\JoinColumn(name: 'book_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
-    #[ORM\ManyToMany(targetEntity: TagEntity::class)]
+    #[ORM\ManyToMany(targetEntity: Tag::class)]
     private Collection $tags;
 
     public function __construct(UuidV7 $id, string $name, bool $deleted)
@@ -75,21 +75,21 @@ class BookEntity
     }
 
     /**
-     * @return Collection<int, TagEntity>
+     * @return Collection<int, Tag>
      */
     public function tags(): Collection
     {
         return $this->tags;
     }
 
-    public function addTag(TagEntity $tag): void
+    public function addTag(Tag $tag): void
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
         }
     }
 
-    public function removeTag(TagEntity $tag): void
+    public function removeTag(Tag $tag): void
     {
         $this->tags->removeElement($tag);
     }

@@ -7,13 +7,11 @@ namespace App\Tests;
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\Tests\Catalog\Book\Factory\BookFactory;
 use App\Tests\Catalog\Tag\Factory\TagFactory;
-use App\Tests\Shared\ApiPlatform\ApiResourceFinder;
 use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
 use Zenstruck\Foundry\Test as Zenstruck;
 
 abstract class ComponentTestCase extends ApiTestCase
 {
-    use ApiResourceFinder;
     use PHPMatcherAssertions;
     use Zenstruck\Factories;
     use Zenstruck\ResetDatabase;

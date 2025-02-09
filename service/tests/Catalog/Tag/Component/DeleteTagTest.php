@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Tag\Component;
 
-use App\Catalog\Tag\TagResource;
+use App\Catalog\Tag\Tag;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
-#[CoversClass(TagResource::class)]
+#[CoversClass(Tag::class)]
 final class DeleteTagTest extends ComponentTestCase
 {
     public function test_can_delete_tag_if_it_exists(): void

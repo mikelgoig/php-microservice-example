@@ -21,7 +21,7 @@ use App\Catalog\Book\Presentation\ApiPlatform\Processor\CreateBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\DeleteBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\UpdateBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Provider\GetBookProvider;
-use App\Catalog\Tag\TagResource;
+use App\Catalog\Tag\Tag;
 use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
@@ -97,10 +97,10 @@ final class BookResource
 
     /**
      * The tags associated to the book.
-     * @var list<TagResource> $tags
+     * @var iterable<Tag> $tags
      */
     #[ApiProperty(example: ['/api/tags/0194e718-170e-7552-92df-953e34e6a7ac'])]
-    public array $tags;
+    public iterable $tags;
 
     /** Indicates if the book has been deleted. */
     #[ApiProperty(readable: false, writable: false, default: false)]

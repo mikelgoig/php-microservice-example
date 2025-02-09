@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Tag\Factory;
 
-use App\Catalog\Tag\TagEntity;
+use App\Catalog\Tag\Tag;
 use Symfony\Component\Uid\UuidV7;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends PersistentProxyObjectFactory<TagEntity>
+ * @extends PersistentProxyObjectFactory<Tag>
  */
 final class TagEntityFactory extends PersistentProxyObjectFactory
 {
     public static function class(): string
     {
-        return TagEntity::class;
+        return Tag::class;
     }
 
     /**
