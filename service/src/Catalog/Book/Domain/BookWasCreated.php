@@ -13,6 +13,7 @@ final readonly class BookWasCreated
     public function __construct(
         public string $id,
         public string $name,
+        public ?string $description,
         ?string $occurredOn = null,
     ) {
         $this->occurredOn = $occurredOn ?? DateTimeFormatter::toAtomUtcString();

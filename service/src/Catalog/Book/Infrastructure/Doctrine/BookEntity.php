@@ -21,6 +21,9 @@ class BookEntity
     #[ORM\Column(type: 'string', length: 255, unique: true)]
     private string $name;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $description;
+
     #[ORM\Column(type: 'boolean', options: [
         'default' => false,
     ])]
@@ -39,10 +42,11 @@ class BookEntity
     #[ORM\ManyToMany(targetEntity: Tag::class)]
     private Collection $tags;
 
-    public function __construct(UuidV7 $id, string $name, bool $deleted)
+    public function __construct(UuidV7 $id, string $name, ?string $description, bool $deleted)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->description = $description;
         $this->deleted = $deleted;
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
@@ -57,6 +61,11 @@ class BookEntity
     public function name(): string
     {
         return $this->name;
+    }
+
+    public function description(): ?string
+    {
+        return $this->description;
     }
 
     public function isDeleted(): bool

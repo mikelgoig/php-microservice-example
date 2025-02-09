@@ -29,7 +29,7 @@ final readonly class CreateBookCommandHandler
     public function __invoke(CreateBookCommand $command): void
     {
         $this->bookChecker->ensureThatThereIsNoBookWithName($command->name);
-        $book = Book::create($command->id, $command->name);
+        $book = Book::create($command->id, $command->name, $command->description);
         $this->books->save($book);
     }
 }

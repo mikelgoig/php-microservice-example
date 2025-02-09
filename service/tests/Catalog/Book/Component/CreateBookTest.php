@@ -7,30 +7,65 @@ namespace App\Tests\Catalog\Book\Component;
 use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\HttpFoundation\Response;
 
 #[CoversClass(BookResource::class)]
 final class CreateBookTest extends ComponentTestCase
 {
-    public function test_can_create_book_using_valid_data(): void
+    /**
+     * @return array<string, list<array<string, mixed>>>
+     */
+    public static function createBookProvider(): array
+    {
+        return [
+            'only required data' => [
+                [
+                    'name' => 'Advanced Web Application Architecture',
+                ],
+                [
+                    '@context' => '/api/contexts/Book',
+                    '@id' => '/api/books/@uuid@',
+                    '@type' => 'Book',
+                    'id' => '@uuid@',
+                    'name' => 'Advanced Web Application Architecture',
+                    'tags' => [],
+                    'createdAt' => '@datetime@',
+                ],
+            ],
+            'with optional data' => [
+                [
+                    'name' => 'Advanced Web Application Architecture',
+                    'description' => 'A practical guide to build web applications in a sustainable manner.',
+                ],
+                [
+                    '@context' => '/api/contexts/Book',
+                    '@id' => '/api/books/@uuid@',
+                    '@type' => 'Book',
+                    'id' => '@uuid@',
+                    'name' => 'Advanced Web Application Architecture',
+                    'description' => 'A practical guide to build web applications in a sustainable manner.',
+                    'tags' => [],
+                    'createdAt' => '@datetime@',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $input
+     * @param array<string, mixed> $output
+     */
+    #[DataProvider('createBookProvider')]
+    public function test_can_create_book_using_valid_data(array $input, array $output): void
     {
         $response = self::createClient()->request('POST', '/api/books', [
-            'json' => [
-                'name' => 'Advanced Web Application Architecture',
-            ],
+            'json' => $input,
         ]);
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
         self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern([
-            '@context' => '/api/contexts/Book',
-            '@id' => '/api/books/@uuid@',
-            '@type' => 'Book',
-            'id' => '@uuid@',
-            'name' => 'Advanced Web Application Architecture',
-            'tags' => [],
-            'createdAt' => '@datetime@',
-        ], $response->toArray());
+        self::assertMatchesPattern($output, $response->toArray());
         self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }
 

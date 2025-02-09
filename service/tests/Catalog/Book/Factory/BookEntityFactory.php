@@ -26,6 +26,7 @@ final class BookEntityFactory extends PersistentProxyObjectFactory
         return [
             'id' => new UuidV7(),
             'name' => self::faker()->unique()->text(),
+            'description' => null,
             'deleted' => false,
         ];
     }

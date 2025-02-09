@@ -26,6 +26,7 @@ final readonly class BookEntityToResourceMapper implements MapperInterface
 
         $resource->id = $entity->id();
         $resource->name = $entity->name();
+        $resource->description = $entity->description();
         $resource->tags = $entity->tags();
         $resource->deleted = $entity->isDeleted();
         $resource->createdAt = $entity->createdAt();

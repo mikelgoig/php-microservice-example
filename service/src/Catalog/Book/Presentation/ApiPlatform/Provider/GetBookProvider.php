@@ -19,11 +19,11 @@ use Symfony\Component\Uid\Uuid;
 final readonly class GetBookProvider implements ProviderInterface
 {
     /**
-     * @param EntityToDtoProvider<BookEntity, BookResource> $entityToResourceProvider
+     * @param EntityToDtoProvider<BookEntity, BookResource> $entityToDtoProvider
      */
     public function __construct(
         #[Autowire(service: EntityToDtoProvider::class)]
-        private ProviderInterface $entityToResourceProvider,
+        private ProviderInterface $entityToDtoProvider,
     ) {}
 
     /**
@@ -31,7 +31,7 @@ final readonly class GetBookProvider implements ProviderInterface
      */
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): BookResource
     {
-        $book = $this->entityToResourceProvider->provide($operation, $uriVariables, $context);
+        $book = $this->entityToDtoProvider->provide($operation, $uriVariables, $context);
 
         if ($book === null) {
             $bookId = $uriVariables['id'];

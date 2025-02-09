@@ -27,6 +27,7 @@ final readonly class BooksProjection
         $this->connection->insert(self::BOOKS_TABLE, [
             'id' => $event->id,
             'name' => $event->name,
+            'description' => $event->description,
             'created_at' => $event->occurredOn,
         ]);
     }

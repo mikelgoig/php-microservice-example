@@ -23,6 +23,7 @@ final class Version20241216175807 extends AbstractMigration
             CREATE TABLE read.books (
                 id UUID NOT NULL,
                 name VARCHAR(255) NOT NULL,
+                description TEXT DEFAULT NULL,
                 deleted BOOLEAN NOT NULL DEFAULT false,
                 created_at TIMESTAMP(6) WITHOUT TIME ZONE NOT NULL,
                 updated_at TIMESTAMP(6) WITHOUT TIME ZONE DEFAULT NULL,

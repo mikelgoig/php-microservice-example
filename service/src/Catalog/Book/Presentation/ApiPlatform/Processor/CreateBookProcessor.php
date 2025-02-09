@@ -10,7 +10,7 @@ use App\Catalog\Book\Application\Create\CreateBookCommand;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
 use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
 use App\Shared\Application\Bus\CommandBus;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Uid\UuidV7;
 
 /**
  * @implements ProcessorInterface<BookResource, BookResource>
@@ -23,6 +23,7 @@ final readonly class CreateBookProcessor implements ProcessorInterface
     ) {}
 
     /**
+     * @param BookResource $data
      * @throws CouldNotFindBookException
      */
     public function process(
@@ -31,8 +32,10 @@ final readonly class CreateBookProcessor implements ProcessorInterface
         array $uriVariables = [],
         array $context = [],
     ): BookResource {
-        $bookId = Uuid::v7();
-        $this->commandBus->dispatch(new CreateBookCommand($bookId->toString(), $data->name));
+        $bookId = new UuidV7();
+        $this->commandBus->dispatch(
+            new CreateBookCommand($bookId->toString(), $data->name, $data->description ?? null),
+        );
         return $this->bookFinder->find($bookId, $context);
     }
 }

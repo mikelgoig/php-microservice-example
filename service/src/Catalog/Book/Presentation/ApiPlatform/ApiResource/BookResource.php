@@ -91,9 +91,14 @@ final class BookResource
 
     /** The name of the book. */
     #[Assert\NotBlank]
-    #[Assert\Length(min: 1, max: 255)]
+    #[Assert\Length(max: 255)]
     #[ApiProperty(example: 'Advanced Web Application Architecture')]
     public string $name;
+
+    /** The description of the book. */
+    #[Assert\NotBlank(allowNull: true)]
+    #[ApiProperty(required: false)]
+    public ?string $description;
 
     /**
      * The tags associated to the book.
