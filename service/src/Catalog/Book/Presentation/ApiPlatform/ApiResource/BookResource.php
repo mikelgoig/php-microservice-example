@@ -90,7 +90,7 @@ final class BookResource
     public UuidV7 $id;
 
     /** The name of the book. */
-    #[Assert\NotNull]
+    #[Assert\NotBlank]
     #[Assert\Length(min: 1, max: 255)]
     #[ApiProperty(example: 'Advanced Web Application Architecture')]
     public string $name;
@@ -103,7 +103,7 @@ final class BookResource
     public array $tags;
 
     /** Indicates if the book has been deleted. */
-    #[ApiProperty(readable: false, writable: false)]
+    #[ApiProperty(readable: false, writable: false, default: false)]
     public bool $deleted;
 
     /** The creation date of the resource. */

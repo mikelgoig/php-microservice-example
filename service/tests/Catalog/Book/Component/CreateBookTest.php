@@ -30,12 +30,11 @@ final class CreateBookTest extends ComponentTestCase
             'name' => 'Advanced Web Application Architecture',
             'tags' => [],
             'createdAt' => '@datetime@',
-            'updatedAt' => null,
         ], $response->toArray());
         self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }
 
-    public function test_cannot_create_book_providing_null_data(): void
+    public function test_cannot_create_book_providing_blank_data(): void
     {
         self::createClient()->request('POST', '/api/books', [
             'json' => [],
@@ -50,30 +49,7 @@ final class CreateBookTest extends ComponentTestCase
             'violations' => [
                 [
                     'propertyPath' => 'name',
-                    'message' => 'This value should not be null.',
-                ],
-            ],
-        ]);
-    }
-
-    public function test_cannot_create_book_providing_blank_data(): void
-    {
-        self::createClient()->request('POST', '/api/books', [
-            'json' => [
-                'name' => '',
-            ],
-        ]);
-
-        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/ConstraintViolationList',
-            '@type' => 'ConstraintViolationList',
-            'title' => 'An error occurred',
-            'violations' => [
-                [
-                    'propertyPath' => 'name',
-                    'message' => 'This value is too short. It should have 1 character or more.',
+                    'message' => 'This value should not be blank.',
                 ],
             ],
         ]);

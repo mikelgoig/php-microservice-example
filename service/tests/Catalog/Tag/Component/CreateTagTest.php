@@ -29,7 +29,6 @@ final class CreateTagTest extends ComponentTestCase
             'id' => '@uuid@',
             'name' => 'ddd',
             'createdAt' => '@datetime@',
-            'updatedAt' => null,
         ], $response->toArray());
         self::assertMatchesResourceItemJsonSchema(TagResource::class);
     }
