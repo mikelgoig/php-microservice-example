@@ -69,7 +69,11 @@ The project runs on a [Docker](https://www.docker.com)-based installer and runti
 
 ### ✅ Tests
 
-_TO DO_
+1. Run the whole test suite with:
+    
+    ```bash
+    make test
+    ```
 
 ## 👩‍💻 Project Explanation
 
