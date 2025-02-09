@@ -27,7 +27,6 @@ final class BookEntityFactory extends PersistentProxyObjectFactory
             'id' => new UuidV7(),
             'name' => self::faker()->unique()->text(),
             'deleted' => false,
-            'createdAt' => new \DateTimeImmutable(),
         ];
     }
 }

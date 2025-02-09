@@ -30,12 +30,12 @@ final readonly class BookEntityToResourceMapper implements MapperInterface
         $resource = $to;
         \assert($resource instanceof BookResource);
 
-        $resource->id = $entity->id;
-        $resource->name = $entity->name;
-        $resource->tags = $this->microMapper->mapMultiple($entity->tags, TagResource::class);
-        $resource->deleted = $entity->deleted;
-        $resource->createdAt = $entity->createdAt;
-        $resource->updatedAt = $entity->updatedAt;
+        $resource->id = $entity->id();
+        $resource->name = $entity->name();
+        $resource->tags = $this->microMapper->mapMultiple($entity->tags(), TagResource::class);
+        $resource->deleted = $entity->isDeleted();
+        $resource->createdAt = $entity->createdAt();
+        $resource->updatedAt = $entity->updatedAt();
         return $resource;
     }
 }
