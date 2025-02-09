@@ -11,7 +11,7 @@ aligned with a microservice.
 
 ## Catalog Context
 
-The Catalog Context is responsible for managing the books, including their categories, and their stock levels. It
+The Catalog Context is responsible for managing the books, including their tags, and their stock levels. It
 ensures accurate and up-to-date information about available books and their pricing.
 
 ![Catalog Context](bounded-context-diagrams/rendered/catalog_context.png)
@@ -20,11 +20,11 @@ ensures accurate and up-to-date information about available books and their pric
 
 - **Book:** Represents a book available for purchase.
 - **Stock:** Tracks the availability of a book, ensuring that inventory levels are accurate.
-- **Category:** Groups books for easier navigation and classification.
+- **Tag:** Tags books for easier navigation and classification.
 
 ### Responsibilities
 
-- Manage the creation, updating, and deletion of books and categories.
+- Manage the creation, updating, and deletion of books and tags.
 - Maintain accurate stock levels for all books.
 - Provide stock and pricing information to other contexts.
 

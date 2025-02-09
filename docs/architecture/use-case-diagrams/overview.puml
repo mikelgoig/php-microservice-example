@@ -9,13 +9,13 @@ package "Bookshop System" {
         usecase "Add New Book"
         usecase "Update Book Details"
         usecase "Remove Book"
-        usecase "Manage Categories"
+        usecase "Manage Tags"
         usecase "Add New Stock"
         usecase "Check Stock"
         usecase "Book Out Of Stock" #lightyellow
         usecase "Search Books"
-        usecase "Search Books By Category"
-        "Search Books By Category" -right-|> "Search Books"
+        usecase "Search Books By Tag"
+        "Search Books By Tag" -right-|> "Search Books"
         "Book Out Of Stock" .right.> "Check Stock" : <<extend>>
     }
 
@@ -35,7 +35,7 @@ Manager --> "Add New Book"
 Manager --> "Update Book Details"
 Manager --> "Remove Book"
 Manager --> "Add New Stock"
-Manager --> "Manage Categories"
+Manager --> "Manage Tags"
 
 Customer --> "Search Books"
 
