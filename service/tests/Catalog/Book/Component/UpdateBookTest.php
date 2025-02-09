@@ -8,19 +8,92 @@ use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
 use App\Tests\Catalog\Book\Factory\BookFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\HttpFoundation\Response;
 
 #[CoversClass(BookResource::class)]
 final class UpdateBookTest extends ComponentTestCase
 {
-    public function test_can_update_book_if_it_exists(): void
+    /**
+     * @return array<string, list<array<string, mixed>>>
+     */
+    public static function updateBookProvider(): array
     {
-        $bookId = $this->createBook();
+        return [
+            'updating name' => [
+                [
+                    'name' => 'Advanced Web Application Architecture',
+                    'description' => 'A practical guide to build web applications in a sustainable manner.',
+                ],
+                [
+                    'name' => 'New name!',
+                ],
+                [
+                    '@context' => '/api/contexts/Book',
+                    '@id' => '/api/books/@uuid@',
+                    '@type' => 'Book',
+                    'id' => '@uuid@',
+                    'name' => 'New name!',
+                    'description' => 'A practical guide to build web applications in a sustainable manner.',
+                    'tags' => [],
+                    'createdAt' => '@datetime@',
+                    'updatedAt' => '@datetime@',
+                ],
+            ],
+            'updating description' => [
+                [
+                    'name' => 'Advanced Web Application Architecture',
+                    'description' => 'A practical guide to build web applications in a sustainable manner.',
+                ],
+                [
+                    'description' => 'New description!',
+                ],
+                [
+                    '@context' => '/api/contexts/Book',
+                    '@id' => '/api/books/@uuid@',
+                    '@type' => 'Book',
+                    'id' => '@uuid@',
+                    'name' => 'Advanced Web Application Architecture',
+                    'description' => 'New description!',
+                    'tags' => [],
+                    'createdAt' => '@datetime@',
+                    'updatedAt' => '@datetime@',
+                ],
+            ],
+            'unsetting description' => [
+                [
+                    'name' => 'Advanced Web Application Architecture',
+                    'description' => 'A practical guide to build web applications in a sustainable manner.',
+                ],
+                [
+                    'description' => null,
+                ],
+                [
+                    '@context' => '/api/contexts/Book',
+                    '@id' => '/api/books/@uuid@',
+                    '@type' => 'Book',
+                    'id' => '@uuid@',
+                    'name' => 'Advanced Web Application Architecture',
+                    'tags' => [],
+                    'createdAt' => '@datetime@',
+                    'updatedAt' => '@datetime@',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $source
+     * @param array<string, mixed> $input
+     * @param array<string, mixed> $output
+     */
+    #[DataProvider('updateBookProvider')]
+    public function test_can_update_book_if_it_exists(array $source, array $input, array $output): void
+    {
+        $bookId = $this->createBook($source);
 
         $response = self::createClient()->request('PATCH', "/api/books/{$bookId}", [
-            'json' => [
-                'name' => 'Advanced Web Application Architecture',
-            ],
+            'json' => $input,
             'headers' => [
                 'content-type' => 'application/merge-patch+json',
             ],
@@ -28,16 +101,7 @@ final class UpdateBookTest extends ComponentTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern([
-            '@context' => '/api/contexts/Book',
-            '@id' => '/api/books/@uuid@',
-            '@type' => 'Book',
-            'id' => '@uuid@',
-            'name' => 'Advanced Web Application Architecture',
-            'tags' => [],
-            'createdAt' => '@datetime@',
-            'updatedAt' => '@datetime@',
-        ], $response->toArray());
+        self::assertMatchesPattern($output, $response->toArray());
         self::assertMatchesResourceItemJsonSchema(BookResource::class);
     }
 

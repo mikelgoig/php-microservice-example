@@ -9,8 +9,11 @@ use App\Shared\Application\Bus\Command;
 /** @see UpdateBookCommandHandler */
 final readonly class UpdateBookCommand implements Command
 {
+    /**
+     * @param array<string, mixed> $patchData
+     */
     public function __construct(
         public string $id,
-        public string $name,
+        public array $patchData,
     ) {}
 }

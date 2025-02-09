@@ -8,6 +8,7 @@ use App\Catalog\Book\Domain\Book;
 use App\Catalog\Book\Domain\BookWasCreated;
 use App\Catalog\Book\Domain\BookWasDeleted;
 use App\Catalog\Book\Domain\BookWasUpdated;
+use App\Shared\Domain\Dto\PatchData;
 use Doctrine\DBAL\Connection as DbalConnection;
 use Ecotone\EventSourcing\Attribute\Projection;
 use Ecotone\Modelling\Attribute\EventHandler;
@@ -46,8 +47,14 @@ final readonly class BooksProjection
     #[EventHandler]
     public function onBookWasUpdated(BookWasUpdated $event): void
     {
+        $patchData = new PatchData($event->patchData->getArrayCopy());
         $this->connection->update(self::BOOKS_TABLE, [
-            'name' => $event->name,
+            ...$patchData->hasKey('name') ? [
+                'name' => $patchData->value('name'),
+            ] : [],
+            ...$patchData->hasKey('description') ? [
+                'description' => $patchData->value('description'),
+            ] : [],
             'updated_at' => $event->occurredOn,
         ], [
             'id' => $event->id,

@@ -10,6 +10,7 @@ use App\Catalog\Book\Domain\BookId;
 use App\Catalog\Book\Domain\BookReadModelRepository;
 use App\Catalog\Book\Domain\BookRepository;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
+use App\Shared\Domain\Dto\PatchData;
 use Ecotone\Modelling\Attribute\CommandHandler;
 
 final readonly class UpdateBookCommandHandler
@@ -31,9 +32,16 @@ final readonly class UpdateBookCommandHandler
     public function __invoke(UpdateBookCommand $command): void
     {
         $bookId = BookId::fromString($command->id);
+        $patchData = new PatchData($command->patchData);
+
         $book = $this->books->ofId($bookId) ?? throw CouldNotFindBookException::withId($command->id);
-        $this->bookChecker->ensureThatThereIsNoBookWithName($command->name, $bookId);
-        $book->update($command->name);
+
+        if ($patchData->hasKey('name')) {
+            \assert(is_string($patchData->value('name')));
+            $this->bookChecker->ensureThatThereIsNoBookWithName($patchData->value('name'), $bookId);
+        }
+
+        $book->update($patchData);
         $this->books->save($book);
     }
 }

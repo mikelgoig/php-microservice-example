@@ -17,6 +17,7 @@ use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use App\Catalog\Book\Domain\BookAlreadyExistsException;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
 use App\Catalog\Book\Infrastructure\Doctrine\BookEntity;
+use App\Catalog\Book\Presentation\ApiPlatform\Input\UpdateBookInput;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\CreateBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\DeleteBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\UpdateBookProcessor;
@@ -78,6 +79,7 @@ use Symfony\Component\Validator\Constraints as Assert;
                 CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
                 BookAlreadyExistsException::class => Response::HTTP_CONFLICT,
             ],
+            input: UpdateBookInput::class,
             read: false,
             processor: UpdateBookProcessor::class,
         ),
@@ -97,7 +99,7 @@ final class BookResource
 
     /** The description of the book. */
     #[Assert\NotBlank(allowNull: true)]
-    #[ApiProperty(required: false)]
+    #[ApiProperty(required: false, example: 'A practical guide to build web applications in a sustainable manner.')]
     public ?string $description;
 
     /**
