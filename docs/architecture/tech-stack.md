@@ -5,7 +5,7 @@
 - **Programming Language:** [PHP 8.3](https://www.php.net)
 - **Framework:** [Symfony 7.2](https://symfony.com), [API Platform 4](https://api-platform.com)
   and [Ecotone](https://ecotone.tech)
-- **Testing Framework:** [PHPUnit 11](https://phpunit.de)
+- **Testing Framework:** [PHPUnit 12](https://phpunit.de)
 - **Database:** [PostgreSQL 17.2](https://postgresql.org)
 - **Message Queue:** [RabbitMQ](https://rabbitmq.com)
 - **Search Engine:** [Elasticsearch](https://elastic.co/elasticsearch)
