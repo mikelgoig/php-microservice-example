@@ -16,79 +16,35 @@ class BookEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]
-    private UuidV7 $id;
+    public UuidV7 $id;
 
     #[ORM\Column(type: 'string', length: 255, unique: true)]
-    private string $name;
+    public string $name;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $description;
+    public ?string $description;
 
     #[ORM\Column(type: 'boolean', options: [
         'default' => false,
     ])]
-    private bool $deleted;
+    public bool $deleted;
 
     #[ORM\Column(type: 'datetime_immutable', precision: 6)]
-    private \DateTimeImmutable $createdAt;
+    public \DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: 'datetime_immutable', precision: 6, nullable: true)]
-    private ?\DateTimeImmutable $updatedAt;
+    public ?\DateTimeImmutable $updatedAt;
 
     /** @var Collection<int, TagEntity> */
     #[ORM\JoinTable(name: 'books_tags', schema: 'read')]
     #[ORM\JoinColumn(name: 'book_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
     #[ORM\ManyToMany(targetEntity: TagEntity::class)]
-    private Collection $tags;
+    public Collection $tags;
 
-    public function __construct(UuidV7 $id, string $name, ?string $description, bool $deleted)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->deleted = $deleted;
-        $this->createdAt = new \DateTimeImmutable();
-        $this->updatedAt = null;
         $this->tags = new ArrayCollection();
-    }
-
-    public function id(): UuidV7
-    {
-        return $this->id;
-    }
-
-    public function name(): string
-    {
-        return $this->name;
-    }
-
-    public function description(): ?string
-    {
-        return $this->description;
-    }
-
-    public function isDeleted(): bool
-    {
-        return $this->deleted;
-    }
-
-    public function createdAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function updatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @return Collection<int, TagEntity>
-     */
-    public function tags(): Collection
-    {
-        return $this->tags;
     }
 
     public function addTag(TagEntity $tag): void
