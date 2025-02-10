@@ -53,4 +53,12 @@ abstract class ComponentTestCase extends ApiTestCase
         \assert(is_string($id));
         return $id;
     }
+
+    /**
+     * @param string $id The tag ID.
+     */
+    protected function deleteTag(string $id): void
+    {
+        self::createClient()->request('DELETE', "/api/tags/{$id}");
+    }
 }

@@ -18,6 +18,7 @@ use App\Catalog\Tag\Domain\CouldNotFindTagException;
 use App\Catalog\Tag\Domain\TagAlreadyExistsException;
 use App\Catalog\Tag\Infrastructure\Doctrine\TagEntity;
 use App\Catalog\Tag\Presentation\ApiPlatform\Create\CreateTagProcessor;
+use App\Catalog\Tag\Presentation\ApiPlatform\Delete\DeleteTagProcessor;
 use App\Catalog\Tag\Presentation\ApiPlatform\Get\GetTagProvider;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
@@ -54,7 +55,13 @@ use Symfony\Component\Validator\Constraints as Assert;
             stateOptions: new Options(TagEntity::class),
         ),
         // delete tag
-        new Delete(),
+        new Delete(
+            exceptionToStatus: [
+                CouldNotFindTagException::class => Response::HTTP_NOT_FOUND,
+            ],
+            read: false,
+            processor: DeleteTagProcessor::class,
+        ),
         // update tag
         new Patch(),
     ],

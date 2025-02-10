@@ -33,7 +33,25 @@ final class DeleteTagTest extends ComponentTestCase
             '@id' => '/api/errors/404',
             '@type' => 'Error',
             'title' => 'An error occurred',
-            'detail' => 'Not Found',
+            'detail' => 'Could not find tag <"0194e22a-484a-7aad-b3a0-6efb3c7d38d9">.',
+        ]);
+    }
+
+    public function test_cannot_delete_tag_if_its_already_deleted(): void
+    {
+        $tagId = $this->createTag();
+        $this->deleteTag($tagId);
+
+        self::createClient()->request('DELETE', "/api/tags/{$tagId}");
+
+        self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
+        self::assertJsonContains([
+            '@context' => '/api/contexts/Error',
+            '@id' => '/api/errors/404',
+            '@type' => 'Error',
+            'title' => 'An error occurred',
+            'detail' => "Could not find tag <\"{$tagId}\">.",
         ]);
     }
 }
