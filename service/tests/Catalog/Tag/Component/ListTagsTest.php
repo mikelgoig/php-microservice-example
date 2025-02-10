@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Tag\Component;
 
-use App\Catalog\Tag\Tag;
+use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Tests\Catalog\Tag\Factory\TagEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
-#[CoversClass(Tag::class)]
+#[CoversClass(TagResource::class)]
 final class ListTagsTest extends ComponentTestCase
 {
     public function test_can_list_tags_ordered_by_name_asc_by_default(): void
@@ -35,13 +35,13 @@ final class ListTagsTest extends ComponentTestCase
             '@type' => 'Collection',
             'totalItems' => 3,
             'member' => [
-                $this->findIriBy(Tag::class, [
+                $this->findIriBy(TagResource::class, [
                     'name' => 'clean-architecture',
                 ]),
-                $this->findIriBy(Tag::class, [
+                $this->findIriBy(TagResource::class, [
                     'name' => 'ddd',
                 ]),
-                $this->findIriBy(Tag::class, [
+                $this->findIriBy(TagResource::class, [
                     'name' => 'web-apis',
                 ]),
             ],

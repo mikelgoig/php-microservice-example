@@ -22,7 +22,7 @@ use App\Catalog\Book\Presentation\ApiPlatform\Processor\CreateBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\DeleteBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Processor\UpdateBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Provider\GetBookProvider;
-use App\Catalog\Tag\Tag;
+use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
@@ -104,7 +104,7 @@ final class BookResource
 
     /**
      * The tags associated to the book.
-     * @var iterable<Tag> $tags
+     * @var iterable<TagResource> $tags
      */
     #[ApiProperty(example: ['/api/tags/0194e718-170e-7552-92df-953e34e6a7ac'])]
     public iterable $tags;

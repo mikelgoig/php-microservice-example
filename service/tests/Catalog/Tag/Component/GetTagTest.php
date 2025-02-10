@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Tag\Component;
 
-use App\Catalog\Tag\Tag;
+use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Tests\Catalog\Tag\Factory\TagEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
 
-#[CoversClass(Tag::class)]
+#[CoversClass(TagResource::class)]
 final class GetTagTest extends ComponentTestCase
 {
     public function test_can_get_tag_if_it_exists(): void
@@ -32,7 +32,7 @@ final class GetTagTest extends ComponentTestCase
             'id' => '0194dcb5-043c-7992-845d-85904d5689df',
             'name' => 'ddd',
         ]);
-        self::assertMatchesResourceItemJsonSchema(Tag::class);
+        self::assertMatchesResourceItemJsonSchema(TagResource::class);
     }
 
     public function test_cannot_get_tag_if_it_does_not_exist(): void
@@ -46,7 +46,7 @@ final class GetTagTest extends ComponentTestCase
             '@id' => '/api/errors/404',
             '@type' => 'Error',
             'title' => 'An error occurred',
-            'detail' => 'Not Found',
+            'detail' => 'Could not find tag <"0194dcb5-cb71-722c-96e8-63d1018fbb89">.',
         ]);
     }
 }

@@ -42,7 +42,7 @@ final class Version20250208231537 extends AbstractMigration
             ALTER TABLE read.books_tags ADD CONSTRAINT FK_F213259C16A2B381 FOREIGN KEY (book_id) REFERENCES read.books (id) NOT DEFERRABLE INITIALLY IMMEDIATE;
         SQL);
         $this->addSql(<<<SQL
-            ALTER TABLE read.books_tags ADD CONSTRAINT FK_F213259CBAD26311 FOREIGN KEY (tag_id) REFERENCES write.tags (id) NOT DEFERRABLE INITIALLY IMMEDIATE;
+            ALTER TABLE read.books_tags ADD CONSTRAINT FK_F213259CBAD26311 FOREIGN KEY (tag_id) REFERENCES read.tags (id) NOT DEFERRABLE INITIALLY IMMEDIATE;
         SQL);
     }
 

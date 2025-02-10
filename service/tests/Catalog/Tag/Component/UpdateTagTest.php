@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Tag\Component;
 
-use App\Catalog\Tag\Tag;
+use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Tests\Catalog\Tag\Factory\TagFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\HttpFoundation\Response;
 
-#[CoversClass(Tag::class)]
+#[CoversClass(TagResource::class)]
 final class UpdateTagTest extends ComponentTestCase
 {
     public function test_can_update_tag_if_it_exists(): void
@@ -37,7 +37,7 @@ final class UpdateTagTest extends ComponentTestCase
             'createdAt' => '@datetime@',
             'updatedAt' => '@datetime@',
         ], $response->toArray());
-        self::assertMatchesResourceItemJsonSchema(Tag::class);
+        self::assertMatchesResourceItemJsonSchema(TagResource::class);
     }
 
     public function test_can_update_tag_using_merge_patch(): void
@@ -63,7 +63,7 @@ final class UpdateTagTest extends ComponentTestCase
             'name' => 'ddd',
             'createdAt' => '@datetime@',
         ], $response->toArray());
-        self::assertMatchesResourceItemJsonSchema(Tag::class);
+        self::assertMatchesResourceItemJsonSchema(TagResource::class);
     }
 
     public function test_cannot_update_tag_if_it_does_not_exist(): void

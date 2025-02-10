@@ -5,10 +5,8 @@ api_platform:
   path_segment_name_generator: api_platform.metadata.path_segment_name_generator.dash
   mapping:
     paths:
-      # Books
       - '%kernel.project_dir%/src/Catalog/Book/Presentation/ApiPlatform/'
-      # Tags
-      - '%kernel.project_dir%/src/Catalog/Tag/'
+      - '%kernel.project_dir%/src/Catalog/Tag/Presentation/ApiPlatform/'
   exception_to_status:
     Webmozart\Assert\InvalidArgumentException: 422
   # The list of enabled formats. The first one will be the default.
