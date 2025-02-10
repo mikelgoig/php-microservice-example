@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Book\Presentation\ApiPlatform\Input;
+namespace App\Catalog\Book\Presentation\ApiPlatform\Update;
 
 use ApiPlatform\Metadata\ApiProperty;
 use Symfony\Component\Validator\Constraints as Assert;

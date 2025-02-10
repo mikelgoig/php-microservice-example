@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Book\Presentation\ApiPlatform\Processor;
+namespace App\Catalog\Book\Presentation\ApiPlatform;
 
 use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
-use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
-use App\Catalog\Book\Presentation\ApiPlatform\Provider\GetBookProvider;
+use App\Catalog\Book\Presentation\ApiPlatform\Get\GetBookProvider;
 use Symfony\Component\Uid\Uuid;
 
 final readonly class BookFinder

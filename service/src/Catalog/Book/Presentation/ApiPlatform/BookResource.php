@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Book\Presentation\ApiPlatform\ApiResource;
+namespace App\Catalog\Book\Presentation\ApiPlatform;
 
 use ApiPlatform\Doctrine\Orm\State\Options;
 use ApiPlatform\Metadata\ApiProperty;
@@ -17,11 +17,11 @@ use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use App\Catalog\Book\Domain\BookAlreadyExistsException;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
 use App\Catalog\Book\Infrastructure\Doctrine\BookEntity;
-use App\Catalog\Book\Presentation\ApiPlatform\Input\UpdateBookInput;
-use App\Catalog\Book\Presentation\ApiPlatform\Processor\CreateBookProcessor;
-use App\Catalog\Book\Presentation\ApiPlatform\Processor\DeleteBookProcessor;
-use App\Catalog\Book\Presentation\ApiPlatform\Processor\UpdateBookProcessor;
-use App\Catalog\Book\Presentation\ApiPlatform\Provider\GetBookProvider;
+use App\Catalog\Book\Presentation\ApiPlatform\Create\CreateBookProcessor;
+use App\Catalog\Book\Presentation\ApiPlatform\Delete\DeleteBookProcessor;
+use App\Catalog\Book\Presentation\ApiPlatform\Get\GetBookProvider;
+use App\Catalog\Book\Presentation\ApiPlatform\Update\UpdateBookInput;
+use App\Catalog\Book\Presentation\ApiPlatform\Update\UpdateBookProcessor;
 use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\HttpFoundation\Response;

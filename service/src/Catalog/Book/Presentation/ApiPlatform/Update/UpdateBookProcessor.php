@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Book\Presentation\ApiPlatform\Processor;
+namespace App\Catalog\Book\Presentation\ApiPlatform\Update;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Catalog\Book\Application\Update\UpdateBookCommand;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
-use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
-use App\Catalog\Book\Presentation\ApiPlatform\Input\UpdateBookInput;
+use App\Catalog\Book\Presentation\ApiPlatform\BookFinder;
+use App\Catalog\Book\Presentation\ApiPlatform\BookResource;
 use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\Uuid;
 

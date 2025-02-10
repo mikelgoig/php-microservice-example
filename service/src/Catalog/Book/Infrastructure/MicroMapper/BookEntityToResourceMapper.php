@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Catalog\Book\Infrastructure\MicroMapper;
 
 use App\Catalog\Book\Infrastructure\Doctrine\BookEntity;
-use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
+use App\Catalog\Book\Presentation\ApiPlatform\BookResource;
 use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use Symfonycasts\MicroMapper\AsMapper;
 use Symfonycasts\MicroMapper\MapperInterface;

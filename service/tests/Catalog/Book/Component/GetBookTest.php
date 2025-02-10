@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Book\Component;
 
-use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
+use App\Catalog\Book\Presentation\ApiPlatform\BookResource;
 use App\Tests\Catalog\Book\Factory\BookEntityFactory;
 use App\Tests\Catalog\Tag\Factory\TagEntityFactory;
 use App\Tests\ComponentTestCase;

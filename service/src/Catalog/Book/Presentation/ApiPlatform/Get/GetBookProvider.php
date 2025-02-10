@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Book\Presentation\ApiPlatform\Provider;
+namespace App\Catalog\Book\Presentation\ApiPlatform\Get;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
 use App\Catalog\Book\Infrastructure\Doctrine\BookEntity;
-use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
+use App\Catalog\Book\Presentation\ApiPlatform\BookResource;
 use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Uid\Uuid;
