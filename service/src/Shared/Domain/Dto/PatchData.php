@@ -13,13 +13,18 @@ final readonly class PatchData
         public array $data,
     ) {}
 
+    public function value(string $key): mixed
+    {
+        return $this->data[$key];
+    }
+
     public function hasKey(string $key): bool
     {
         return array_key_exists($key, $this->data);
     }
 
-    public function value(string $key): mixed
+    public function isEmpty(): bool
     {
-        return $this->data[$key];
+        return count($this->data) === 0;
     }
 }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Catalog\Book\Application\Update;
+namespace App\Catalog\Tag\Application\Update;
 
 use App\Shared\Application\Bus\Command;
 
 /** @see UpdateTagCommandHandler */
-final readonly class UpdateBookCommand implements Command
+final readonly class UpdateTagCommand implements Command
 {
     /**
      * @param array<string, mixed> $patchData

@@ -20,6 +20,9 @@ use App\Catalog\Tag\Infrastructure\Doctrine\TagEntity;
 use App\Catalog\Tag\Presentation\ApiPlatform\Create\CreateTagProcessor;
 use App\Catalog\Tag\Presentation\ApiPlatform\Delete\DeleteTagProcessor;
 use App\Catalog\Tag\Presentation\ApiPlatform\Get\GetTagProvider;
+use App\Catalog\Tag\Presentation\ApiPlatform\Update\UpdateTagInput;
+use App\Catalog\Tag\Presentation\ApiPlatform\Update\UpdateTagProcessor;
+use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -33,6 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
             order: [
                 'name' => 'ASC',
             ],
+            provider: EntityToDtoProvider::class,
         ),
         // create tag
         new Post(
@@ -52,7 +56,6 @@ use Symfony\Component\Validator\Constraints as Assert;
                 CouldNotFindTagException::class => Response::HTTP_NOT_FOUND,
             ],
             provider: GetTagProvider::class,
-            stateOptions: new Options(TagEntity::class),
         ),
         // delete tag
         new Delete(
@@ -63,8 +66,22 @@ use Symfony\Component\Validator\Constraints as Assert;
             processor: DeleteTagProcessor::class,
         ),
         // update tag
-        new Patch(),
+        new Patch(
+            openapi: new OpenApiOperation(
+                responses: [
+                    Response::HTTP_CONFLICT => new OpenApiResponse('Resource already exists'),
+                ],
+            ),
+            exceptionToStatus: [
+                CouldNotFindTagException::class => Response::HTTP_NOT_FOUND,
+                TagAlreadyExistsException::class => Response::HTTP_CONFLICT,
+            ],
+            input: UpdateTagInput::class,
+            read: false,
+            processor: UpdateTagProcessor::class,
+        ),
     ],
+    stateOptions: new Options(TagEntity::class),
 )]
 final class TagResource
 {
