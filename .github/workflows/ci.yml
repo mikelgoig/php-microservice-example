@@ -62,6 +62,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
       - name: Run Easy Coding Standard (ECS)
