@@ -12,6 +12,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  composer:
+    name: Composer
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Validate composer.json and composer.lock
+        run: composer validate --strict
   tests:
     name: Tests
     runs-on: ubuntu-latest

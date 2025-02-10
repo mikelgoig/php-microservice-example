@@ -1,4 +1,6 @@
 {
+    "name": "mikelgoig/php-sandbox-project",
+    "description": "Sandbox project of a PHP microservice using Hexagonal Architecture, CQRS, DDD and Event Sourcing.",
     "type": "project",
     "license": "proprietary",
     "require": {
