@@ -15,6 +15,9 @@ jobs:
   composer:
     name: Composer
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./service
     steps:
       -
         name: Checkout
