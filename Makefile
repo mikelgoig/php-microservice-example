@@ -139,7 +139,7 @@ test-ff: test
 
 ## —— Analysis 🔎 ——————————————————————————————————————————————————————————————
 .PHONY: lint
-lint: ecs phpstan ## Analyze code and show errors (ECS, PHPStan)
+lint: phpstan ecs ## Analyze code and show errors (ECS, PHPStan)
 
 .PHONY: lint-fix
 lint-fix: ecs-fix ## Analyze code and fix errors (ECS)
