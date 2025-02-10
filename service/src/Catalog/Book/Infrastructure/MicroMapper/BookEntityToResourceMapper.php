@@ -6,12 +6,18 @@ namespace App\Catalog\Book\Infrastructure\MicroMapper;
 
 use App\Catalog\Book\Infrastructure\Doctrine\BookEntity;
 use App\Catalog\Book\Presentation\ApiPlatform\ApiResource\BookResource;
+use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use Symfonycasts\MicroMapper\AsMapper;
 use Symfonycasts\MicroMapper\MapperInterface;
+use Symfonycasts\MicroMapper\MicroMapperInterface;
 
 #[AsMapper(from: BookEntity::class, to: BookResource::class)]
 final readonly class BookEntityToResourceMapper implements MapperInterface
 {
+    public function __construct(
+        private MicroMapperInterface $microMapper,
+    ) {}
+
     public function load(object $from, string $toClass, array $context): BookResource
     {
         return new BookResource();
@@ -27,7 +33,7 @@ final readonly class BookEntityToResourceMapper implements MapperInterface
         $resource->id = $entity->id();
         $resource->name = $entity->name();
         $resource->description = $entity->description();
-        $resource->tags = $entity->tags();
+        $resource->tags = $this->microMapper->mapMultiple($entity->tags(), TagResource::class);
         $resource->deleted = $entity->isDeleted();
         $resource->createdAt = $entity->createdAt();
         $resource->updatedAt = $entity->updatedAt();

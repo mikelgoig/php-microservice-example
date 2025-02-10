@@ -40,7 +40,9 @@ final readonly class CreateBookProcessor implements ProcessorInterface
                 $data->name,
                 $data->description ?? null,
                 isset($data->tags)
-                    ? array_values(array_map(fn (TagResource $tag) => $tag->id->toString(), iterator_to_array($data->tags)))
+                    ? array_values(
+                        array_map(fn (TagResource $tag) => $tag->id->toString(), iterator_to_array($data->tags)),
+                    )
                     : [],
             ),
         );

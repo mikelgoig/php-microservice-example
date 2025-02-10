@@ -89,18 +89,16 @@ final class CreateTagTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
+        self::assertResponseStatusCodeSame(Response::HTTP_CONFLICT);
         self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
         self::assertJsonContains([
-            '@context' => '/api/contexts/ConstraintViolationList',
-            '@type' => 'ConstraintViolationList',
+            '@context' => '/api/contexts/Error',
+            '@id' => '/api/errors/409',
+            '@type' => 'Error',
             'title' => 'An error occurred',
-            'violations' => [
-                [
-                    'propertyPath' => 'name',
-                    'message' => 'Tag with name <"ddd"> already exists.',
-                ],
-            ],
+            'detail' => 'Tag with name <"ddd"> already exists.',
+            'type' => '/errors/409',
+            'status' => 409,
         ]);
     }
 }
