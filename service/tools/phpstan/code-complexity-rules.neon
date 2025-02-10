@@ -12,10 +12,4 @@ services:
         class: Symplify\PHPStanRules\Rules\Complexity\ForbiddenNewArgumentRule
         tags: [phpstan.rules.rule]
         arguments:
-            forbiddenTypes:
-                - App\Catalog\Book\Infrastructure\Doctrine\DoctrineBookRepository
-                - App\Catalog\Book\Infrastructure\Ecotone\EcotoneBookRepository
-                - App\Catalog\Book\Presentation\ApiPlatform\BookFinder
-                - App\Catalog\Book\Presentation\ApiPlatform\Get\GetBookProvider
-                - App\Shared\Infrastructure\ApiPlatform\Processor\EntityToDtoProcessor
-                - App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider
+            forbiddenTypes: []
