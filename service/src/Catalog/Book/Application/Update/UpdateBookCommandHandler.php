@@ -36,6 +36,10 @@ final readonly class UpdateBookCommandHandler
 
         $book = $this->books->ofId($bookId) ?? throw CouldNotFindBookException::withId($command->id);
 
+        if ($patchData->isEmpty()) {
+            return;
+        }
+
         if ($patchData->hasKey('name')) {
             \assert(is_string($patchData->value('name')));
             $this->bookChecker->ensureThatThereIsNoBookWithName($patchData->value('name'), $bookId);

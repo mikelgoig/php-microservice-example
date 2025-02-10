@@ -20,6 +20,23 @@ final class UpdateBookTest extends ComponentTestCase
     public static function updateBookProvider(): array
     {
         return [
+            'do not updating anything' => [
+                [
+                    'name' => 'Advanced Web Application Architecture',
+                ],
+                [
+                    // nothing
+                ],
+                [
+                    '@context' => '/api/contexts/Book',
+                    '@id' => '/api/books/@uuid@',
+                    '@type' => 'Book',
+                    'id' => '@uuid@',
+                    'name' => 'Advanced Web Application Architecture',
+                    'tags' => [],
+                    'createdAt' => '@datetime@',
+                ],
+            ],
             'updating name' => [
                 [
                     'name' => 'Advanced Web Application Architecture',
