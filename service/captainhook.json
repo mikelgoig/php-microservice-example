@@ -14,13 +14,16 @@
     "enabled": true,
     "actions": [
       {
-        "action": "make test-ff"
+        "action": "make composer-validate"
+      },
+      {
+        "action": "make db-validate"
       },
       {
         "action": "make lint"
       },
       {
-        "action": "make db-validate"
+        "action": "make test-ff"
       }
     ]
   }

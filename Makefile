@@ -64,13 +64,18 @@ composer: ## Run composer, pass the parameter "c=" to run a given command, examp
 
 .PHONY: composer-install
 composer-install: ## Install Composer dependencies according to the current composer.lock file
-composer-install: c = install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction
+composer-install: c = install --prefer-dist --no-progress --no-interaction
 composer-install: composer
 
 .PHONY: composer-update
 composer-update: ## Update Composer dependencies
 composer-update: c = update
 composer-update: composer
+
+.PHONY: composer-validate
+composer-validate: ## Validate composer.json and composer.lock
+composer-validate: c = validate --strict
+composer-validate: composer
 
 ## —— Symfony 🎵 ———————————————————————————————————————————————————————————————
 .PHONY: sf
@@ -134,20 +139,10 @@ test-ff: test
 
 ## —— Analysis 🔎 ——————————————————————————————————————————————————————————————
 .PHONY: lint
-lint: phpstan ecs ## Analyze code and show errors (PHPStan, ECS)
+lint: ecs phpstan ## Analyze code and show errors (ECS, PHPStan)
 
 .PHONY: lint-fix
 lint-fix: ecs-fix ## Analyze code and fix errors (ECS)
-
-.PHONY: phpstan
-phpstan: ## Run PHPStan and show errors
-	@$(eval c ?=)
-	@$(SYMFONY) debug:container --quiet
-	@$(PHP) vendor/bin/phpstan analyse --memory-limit=-1 $(c)
-
-.PHONY: phpstan-cc
-phpstan-cc: ## Clear PHPStan cache
-	@$(PHP_CONT) rm -rf var/cache/phpstan
 
 .PHONY: ecs
 ecs: ## Run Easy Coding Standard (ECS) and show errors
@@ -161,6 +156,16 @@ ecs-fix: ## Run Easy Coding Standard (ECS) and fix errors
 .PHONY: ecs-list
 ecs-list: ## List Easy Coding Standard (ECS) used rules
 	@$(PHP) vendor/bin/ecs list-checkers
+
+.PHONY: phpstan
+phpstan: ## Run PHPStan and show errors
+	@$(eval c ?=)
+	@$(SYMFONY) debug:container --quiet
+	@$(PHP) vendor/bin/phpstan analyse --memory-limit=-1 $(c)
+
+.PHONY: phpstan-cc
+phpstan-cc: ## Clear PHPStan cache
+	@$(PHP_CONT) rm -rf var/cache/phpstan
 
 ## —— Git Hooks ☠️ ————————————————————————————————————————————————————————————
 .PHONY: git-hooks-install
