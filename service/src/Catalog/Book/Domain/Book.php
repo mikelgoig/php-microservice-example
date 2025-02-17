@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Catalog\Book\Domain;
 
-use App\Shared\Domain\Dto\PatchData;
+use App\Shared\Domain\ValueObject\PatchData;
 use Ecotone\Modelling\Attribute\EventSourcingAggregate;
 use Ecotone\Modelling\Attribute\EventSourcingHandler;
 use Ecotone\Modelling\Attribute\Identifier;
@@ -24,10 +24,8 @@ final class Book
     /**
      * @param list<string> $tags
      */
-    public static function create(string $id, string $name, ?string $description, array $tags): self
+    public static function create(BookId $id, string $name, ?string $description, array $tags): self
     {
-        $id = BookId::fromString($id);
-
         $self = new self();
         $self->recordThat(new BookWasCreated($id->value, $name, $description, $tags));
         return $self;
@@ -35,7 +33,7 @@ final class Book
 
     public function update(PatchData $patchData): void
     {
-        $this->recordThat(new BookWasUpdated($this->id->value, new \ArrayObject($patchData->data)));
+        $this->recordThat(new BookWasUpdated($this->id->value, $patchData->data));
     }
 
     public function delete(): void

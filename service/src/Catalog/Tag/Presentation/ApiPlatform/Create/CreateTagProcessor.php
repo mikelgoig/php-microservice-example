@@ -14,7 +14,7 @@ use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\UuidV7;
 
 /**
- * @implements ProcessorInterface<TagResource, TagResource>
+ * @implements ProcessorInterface<CreateTagInput, TagResource>
  */
 final readonly class CreateTagProcessor implements ProcessorInterface
 {
@@ -24,7 +24,7 @@ final readonly class CreateTagProcessor implements ProcessorInterface
     ) {}
 
     /**
-     * @param TagResource $data
+     * @param CreateTagInput $data
      * @throws CouldNotFindTagException
      */
     public function process(

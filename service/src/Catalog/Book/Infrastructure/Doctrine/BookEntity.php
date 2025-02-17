@@ -7,32 +7,34 @@ namespace App\Catalog\Book\Infrastructure\Doctrine;
 use App\Catalog\Tag\Infrastructure\Doctrine\TagEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\UuidV7;
+use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(readOnly: true)]
 #[ORM\Table(name: 'books', schema: 'read')]
 class BookEntity
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    public UuidV7 $id;
+    #[ORM\Column(type: UuidType::NAME, unique: true)]
+    public Uuid $id;
 
-    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
     public string $name;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     public ?string $description;
 
-    #[ORM\Column(type: 'boolean', options: [
+    #[ORM\Column(type: Types::BOOLEAN, options: [
         'default' => false,
     ])]
     public bool $deleted;
 
-    #[ORM\Column(type: 'datetime_immutable', precision: 6)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, precision: 6)]
     public \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: 'datetime_immutable', precision: 6, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, precision: 6, nullable: true)]
     public ?\DateTimeImmutable $updatedAt;
 
     /** @var Collection<int, TagEntity> */
@@ -47,6 +49,17 @@ class BookEntity
         $this->tags = new ArrayCollection();
     }
 
+    /**
+     * Used in tests by the entity factory.
+     */
+    public function setId(string $id): void
+    {
+        $this->id = Uuid::fromString($id);
+    }
+
+    /**
+     * Used in tests by the entity factory.
+     */
     public function addTag(TagEntity $tag): void
     {
         if (!$this->tags->contains($tag)) {
@@ -54,6 +67,9 @@ class BookEntity
         }
     }
 
+    /**
+     * Used in tests by the entity factory.
+     */
     public function removeTag(TagEntity $tag): void
     {
         $this->tags->removeElement($tag);

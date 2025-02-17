@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace App\Catalog\Tag\Presentation\ApiPlatform;
 
+use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
-use App\Catalog\Tag\Domain\CouldNotFindTagException;
-use App\Catalog\Tag\Presentation\ApiPlatform\Get\GetTagProvider;
+use App\Catalog\Tag\Infrastructure\Doctrine\TagEntity;
+use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\Uid\Uuid;
 
 final readonly class TagFinder
 {
-    private const string GET_TAG_OPERATION = '_api_/tags/{id}{._format}_get';
-
+    /**
+     * @param EntityToDtoProvider<TagEntity, TagResource> $entityToDtoProvider
+     */
     public function __construct(
         private ResourceMetadataCollectionFactoryInterface $resourceMetadataCollectionFactory,
-        private GetTagProvider $getTagProvider,
+        private EntityToDtoProvider $entityToDtoProvider,
     ) {}
 
     /**
@@ -23,16 +25,11 @@ final readonly class TagFinder
      */
     public function find(Uuid $tagId, array $context): TagResource
     {
-        $operation = $this->resourceMetadataCollectionFactory->create(TagResource::class)->getOperation(
-            self::GET_TAG_OPERATION,
-        );
+        $operation = $this->resourceMetadataCollectionFactory->create(TagResource::class)->getOperation();
+        \assert($operation instanceof Get);
 
-        try {
-            return $this->getTagProvider->provide($operation, [
-                'id' => $tagId,
-            ], $context);
-        } catch (CouldNotFindTagException) {
-            throw new \RuntimeException('Tag does not exist in the projection table.');
-        }
+        return $this->entityToDtoProvider->provide($operation, [
+            'id' => $tagId,
+        ], $context) ?? throw new \RuntimeException('Tag does not exist in the projection table.');
     }
 }

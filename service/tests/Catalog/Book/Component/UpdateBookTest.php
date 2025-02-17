@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Catalog\Book\Component;
 
 use App\Catalog\Book\Presentation\ApiPlatform\BookResource;
-use App\Tests\Catalog\Book\Factory\BookFactory;
+use App\Tests\Catalog\Book\Factory\UpdateBookInputFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Symfony\Component\HttpFoundation\Response;
 
 #[CoversClass(BookResource::class)]
 final class UpdateBookTest extends ComponentTestCase
@@ -34,6 +33,7 @@ final class UpdateBookTest extends ComponentTestCase
                     'id' => '@uuid@',
                     'name' => 'Advanced Web Application Architecture',
                     'tags' => [],
+                    'deleted' => false,
                     'createdAt' => '@datetime@',
                 ],
             ],
@@ -53,6 +53,7 @@ final class UpdateBookTest extends ComponentTestCase
                     'name' => 'New name!',
                     'description' => 'A practical guide to build web applications in a sustainable manner.',
                     'tags' => [],
+                    'deleted' => false,
                     'createdAt' => '@datetime@',
                     'updatedAt' => '@datetime@',
                 ],
@@ -73,6 +74,7 @@ final class UpdateBookTest extends ComponentTestCase
                     'name' => 'Advanced Web Application Architecture',
                     'description' => 'New description!',
                     'tags' => [],
+                    'deleted' => false,
                     'createdAt' => '@datetime@',
                     'updatedAt' => '@datetime@',
                 ],
@@ -92,6 +94,7 @@ final class UpdateBookTest extends ComponentTestCase
                     'id' => '@uuid@',
                     'name' => 'Advanced Web Application Architecture',
                     'tags' => [],
+                    'deleted' => false,
                     'createdAt' => '@datetime@',
                     'updatedAt' => '@datetime@',
                 ],
@@ -107,7 +110,7 @@ final class UpdateBookTest extends ComponentTestCase
     #[DataProvider('updateBookProvider')]
     public function test_can_update_book_if_it_exists(array $source, array $input, array $output): void
     {
-        $bookId = $this->createBook($source);
+        $bookId = self::createBook($source);
 
         $response = self::createClient()->request('PATCH', "/api/books/{$bookId}", [
             'json' => $input,
@@ -116,41 +119,31 @@ final class UpdateBookTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern($output, $response->toArray());
-        self::assertMatchesResourceItemJsonSchema(BookResource::class);
+        self::assertResponseIsOk($response, BookResource::class, $output);
     }
 
     public function test_cannot_update_book_if_it_does_not_exist(): void
     {
-        self::createClient()->request('PATCH', '/api/books/0194adb1-41b9-7ee2-9344-98ca0217ca03', [
-            'json' => BookFactory::createOne(),
+        $nonExistingBookId = '0194adb1-41b9-7ee2-9344-98ca0217ca03';
+        self::createClient()->request('PATCH', "/api/books/{$nonExistingBookId}", [
+            'json' => UpdateBookInputFactory::createOne(),
             'headers' => [
                 'content-type' => 'application/merge-patch+json',
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/Error',
-            '@id' => '/api/errors/404',
-            '@type' => 'Error',
-            'title' => 'An error occurred',
-            'detail' => 'Could not find book <"0194adb1-41b9-7ee2-9344-98ca0217ca03">.',
-        ]);
+        self::assertResponseIsNotFound("Could not find book <\"{$nonExistingBookId}\">.");
     }
 
     public function test_cannot_update_book_if_book_with_name_already_exists(): void
     {
-        $this->createBook([
+        self::createBook([
             'name' => 'Advanced Web Application Architecture',
         ]);
-        $bookId = $this->createBook();
 
+        $bookId = self::createBook();
         self::createClient()->request('PATCH', "/api/books/{$bookId}", [
-            'json' => BookFactory::createOne([
+            'json' => UpdateBookInputFactory::createOne([
                 'name' => 'Advanced Web Application Architecture',
             ]),
             'headers' => [
@@ -158,16 +151,6 @@ final class UpdateBookTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_CONFLICT);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/Error',
-            '@id' => '/api/errors/409',
-            '@type' => 'Error',
-            'title' => 'An error occurred',
-            'detail' => 'Book with name <"Advanced Web Application Architecture"> already exists.',
-            'type' => '/errors/409',
-            'status' => 409,
-        ]);
+        self::assertResponseIsConflict('Book with name <"Advanced Web Application Architecture"> already exists.');
     }
 }

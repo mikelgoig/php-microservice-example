@@ -31,9 +31,6 @@
     - Adds database migrations functionality to Symfony, enabling version control for database schemas.
 - [`doctrine/orm`](https://github.com/doctrine/orm) (installed by `api-platform/api-pack`):
     - The Doctrine ORM (Object-Relational Mapper). Mainly used for mapping database tables/entities to PHP classes.
-- [`ecotone/jms-converter`](https://github.com/ecotoneframework/jms-converter) (supplements `ecotone/symfony-bundle`):
-    - Allows serialization and deserialization of messages in a standardized format, enabling communication between
-      different systems or components.
 - [`ecotone/pdo-event-sourcing`](https://github.com/ecotoneframework/pdo-event-sourcing) (supplements
   `ecotone/symfony-bundle`):
     - Implements event sourcing using PDO (PHP Data Objects).

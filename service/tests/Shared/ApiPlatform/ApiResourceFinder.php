@@ -21,7 +21,7 @@ trait ApiResourceFinder
     /**
      * @param array<mixed> $criteria
      */
-    protected function findIriBy(string $resourceClass, array $criteria): ?string
+    protected function findIriBy(string $resourceClass, array $criteria): string
     {
         $container = static::getContainer();
 
@@ -45,15 +45,13 @@ trait ApiResourceFinder
          * @var array<string, mixed> $criteria
          * @phpstan-ignore-next-line
          */
-        $entity = $objectManager->getRepository($entityClass)->findOneBy($criteria);
-
-        if ($entity === null) {
-            return null;
-        }
+        $entity = $objectManager->getRepository($entityClass)->findOneBy($criteria)
+            ?? throw new \RuntimeException(\sprintf('Entity of class "%s" not found.', $entityClass));
 
         $microMapper = $container->get(MicroMapperInterface::class);
         $resource = $microMapper->map($entity, $resourceClass);
-        return $this->getIriFromResource($resource);
+        return $this->getIriFromResource($resource)
+            ?? throw new \RuntimeException(\sprintf('Cannot get IRI from resource "%s".', $resourceClass));
     }
 
     /**

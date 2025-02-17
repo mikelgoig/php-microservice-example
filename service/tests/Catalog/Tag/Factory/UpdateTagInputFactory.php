@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Catalog\Tag\Factory;
 
+use App\Catalog\Tag\Presentation\ApiPlatform\Update\UpdateTagInput;
 use Zenstruck\Foundry\ArrayFactory;
 
-final class TagFactory extends ArrayFactory
+/** @see UpdateTagInput */
+final class UpdateTagInputFactory extends ArrayFactory
 {
     /**
      * @return array<string, mixed>

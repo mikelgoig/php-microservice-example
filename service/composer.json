@@ -13,7 +13,6 @@
         "doctrine/doctrine-bundle": "^2.13.2",
         "doctrine/doctrine-migrations-bundle": "^3.4.1",
         "doctrine/orm": "^3.3.2",
-        "ecotone/jms-converter": "^1.245.0",
         "ecotone/pdo-event-sourcing": "^1.245.0",
         "ecotone/symfony-bundle": "^1.245.0",
         "eqs/health-check-provider": "^0.1.1",

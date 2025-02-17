@@ -8,7 +8,6 @@ use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Tests\Catalog\Tag\Factory\TagEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Component\HttpFoundation\Response;
 
 #[CoversClass(TagResource::class)]
 final class ListTagsTest extends ComponentTestCase
@@ -25,11 +24,9 @@ final class ListTagsTest extends ComponentTestCase
             'name' => 'ddd',
         ]);
 
-        self::createClient()->request('GET', '/api/tags');
+        $response = self::createClient()->request('GET', '/api/tags');
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertJsonContains([
+        self::assertResponseIsOkCollection($response, [
             '@context' => '/api/contexts/Tag',
             '@id' => '/api/tags',
             '@type' => 'Collection',
@@ -54,9 +51,7 @@ final class ListTagsTest extends ComponentTestCase
 
         $response = self::createClient()->request('GET', '/api/tags');
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern([
+        self::assertResponseIsOkCollection($response, [
             '@context' => '/api/contexts/Tag',
             '@id' => '/api/tags',
             '@type' => 'Collection',
@@ -69,7 +64,7 @@ final class ListTagsTest extends ComponentTestCase
                 'last' => '/api/tags?page=4',
                 'next' => '/api/tags?page=2',
             ],
-        ], $response->toArray());
+        ]);
         self::assertIsArray($response->toArray()['member']);
         self::assertCount(30, $response->toArray()['member']);
     }

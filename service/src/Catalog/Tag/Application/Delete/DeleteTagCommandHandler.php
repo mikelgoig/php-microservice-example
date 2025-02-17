@@ -22,7 +22,7 @@ final readonly class DeleteTagCommandHandler
     public function __invoke(DeleteTagCommand $command): void
     {
         $tagId = TagId::fromString($command->id);
-        $tag = $this->tags->ofId($tagId) ?? throw CouldNotFindTagException::withId($command->id);
+        $tag = $this->tags->ofId($tagId) ?? throw CouldNotFindTagException::withId($tagId);
         $tag->delete();
         $this->tags->save($tag);
     }

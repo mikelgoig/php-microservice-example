@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Catalog\Tag\Domain;
 
-use App\Shared\Domain\Dto\PatchData;
+use App\Shared\Domain\ValueObject\PatchData;
 use Ecotone\Modelling\Attribute\EventSourcingAggregate;
 use Ecotone\Modelling\Attribute\EventSourcingHandler;
 use Ecotone\Modelling\Attribute\Identifier;
@@ -21,10 +21,8 @@ final class Tag
     private TagId $id;
     private bool $isDeleted = false;
 
-    public static function create(string $id, string $name): self
+    public static function create(TagId $id, string $name): self
     {
-        $id = TagId::fromString($id);
-
         $self = new self();
         $self->recordThat(new TagWasCreated($id->value, $name));
         return $self;
@@ -32,7 +30,7 @@ final class Tag
 
     public function update(PatchData $patchData): void
     {
-        $this->recordThat(new TagWasUpdated($this->id->value, new \ArrayObject($patchData->data)));
+        $this->recordThat(new TagWasUpdated($this->id->value, $patchData->data));
     }
 
     public function delete(): void

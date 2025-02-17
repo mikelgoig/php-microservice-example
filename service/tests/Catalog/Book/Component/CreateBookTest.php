@@ -8,7 +8,6 @@ use App\Catalog\Book\Presentation\ApiPlatform\BookResource;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Symfony\Component\HttpFoundation\Response;
 
 #[CoversClass(BookResource::class)]
 final class CreateBookTest extends ComponentTestCase
@@ -30,6 +29,7 @@ final class CreateBookTest extends ComponentTestCase
                     'id' => '@uuid@',
                     'name' => 'Advanced Web Application Architecture',
                     'tags' => [],
+                    'deleted' => false,
                     'createdAt' => '@datetime@',
                 ],
             ],
@@ -46,6 +46,7 @@ final class CreateBookTest extends ComponentTestCase
                     'name' => 'Advanced Web Application Architecture',
                     'description' => 'A practical guide to build web applications in a sustainable manner.',
                     'tags' => [],
+                    'deleted' => false,
                     'createdAt' => '@datetime@',
                 ],
             ],
@@ -63,15 +64,12 @@ final class CreateBookTest extends ComponentTestCase
             'json' => $input,
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern($output, $response->toArray());
-        self::assertMatchesResourceItemJsonSchema(BookResource::class);
+        self::assertResponseIsCreated($response, BookResource::class, $output);
     }
 
     public function test_can_create_book_with_tags(): void
     {
-        $tagId = $this->createTag();
+        $tagId = self::createTag();
 
         $response = self::createClient()->request('POST', '/api/books', [
             'json' => [
@@ -80,37 +78,28 @@ final class CreateBookTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern([
+        self::assertResponseIsCreated($response, BookResource::class, [
             '@context' => '/api/contexts/Book',
             '@id' => '/api/books/@uuid@',
             '@type' => 'Book',
             'id' => '@uuid@',
             'name' => 'Advanced Web Application Architecture',
             'tags' => ["/api/tags/{$tagId}"],
+            'deleted' => false,
             'createdAt' => '@datetime@',
-        ], $response->toArray());
-        self::assertMatchesResourceItemJsonSchema(BookResource::class);
+        ]);
     }
 
-    public function test_cannot_create_book_providing_blank_data(): void
+    public function test_cannot_create_book_if_data_is_blank(): void
     {
         self::createClient()->request('POST', '/api/books', [
             'json' => [],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/ConstraintViolationList',
-            '@type' => 'ConstraintViolationList',
-            'title' => 'An error occurred',
-            'violations' => [
-                [
-                    'propertyPath' => 'name',
-                    'message' => 'This value should not be blank.',
-                ],
+        self::assertResponseIsUnprocessableEntity([
+            [
+                'propertyPath' => 'name',
+                'message' => 'This value should not be blank.',
             ],
         ]);
     }
@@ -123,24 +112,17 @@ final class CreateBookTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/ConstraintViolationList',
-            '@type' => 'ConstraintViolationList',
-            'title' => 'An error occurred',
-            'violations' => [
-                [
-                    'propertyPath' => 'name',
-                    'message' => 'This value is too long. It should have 255 characters or less.',
-                ],
+        self::assertResponseIsUnprocessableEntity([
+            [
+                'propertyPath' => 'name',
+                'message' => 'This value is too long. It should have 255 characters or less.',
             ],
         ]);
     }
 
     public function test_cannot_create_book_if_book_with_name_already_exists(): void
     {
-        $this->createBook([
+        self::createBook([
             'name' => 'Advanced Web Application Architecture',
         ]);
 
@@ -150,16 +132,6 @@ final class CreateBookTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_CONFLICT);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/Error',
-            '@id' => '/api/errors/409',
-            '@type' => 'Error',
-            'title' => 'An error occurred',
-            'detail' => 'Book with name <"Advanced Web Application Architecture"> already exists.',
-            'type' => '/errors/409',
-            'status' => 409,
-        ]);
+        self::assertResponseIsConflict('Book with name <"Advanced Web Application Architecture"> already exists.');
     }
 }

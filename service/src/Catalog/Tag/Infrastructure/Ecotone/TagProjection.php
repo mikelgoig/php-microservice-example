@@ -8,13 +8,13 @@ use App\Catalog\Tag\Domain\Tag;
 use App\Catalog\Tag\Domain\TagWasCreated;
 use App\Catalog\Tag\Domain\TagWasDeleted;
 use App\Catalog\Tag\Domain\TagWasUpdated;
-use App\Shared\Domain\Dto\PatchData;
+use App\Shared\Domain\ValueObject\PatchData;
 use Doctrine\DBAL\Connection as DbalConnection;
 use Ecotone\EventSourcing\Attribute\Projection;
 use Ecotone\Modelling\Attribute\EventHandler;
 
 #[Projection(name: 'tags', fromStreams: Tag::class)]
-final readonly class TagsProjection
+final readonly class TagProjection
 {
     private const string TAGS_TABLE = 'read.tags';
 
@@ -46,7 +46,7 @@ final readonly class TagsProjection
     #[EventHandler]
     public function onTagWasUpdated(TagWasUpdated $event): void
     {
-        $patchData = new PatchData($event->patchData->getArrayCopy());
+        $patchData = new PatchData($event->patchData);
         $this->connection->update(self::TAGS_TABLE, [
             ...$patchData->hasKey('name') ? [
                 'name' => $patchData->value('name'),

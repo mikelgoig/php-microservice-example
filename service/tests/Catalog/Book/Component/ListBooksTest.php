@@ -8,7 +8,6 @@ use App\Catalog\Book\Presentation\ApiPlatform\BookResource;
 use App\Tests\Catalog\Book\Factory\BookEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\UuidV7;
 
 #[CoversClass(BookResource::class)]
@@ -25,11 +24,9 @@ final class ListBooksTest extends ComponentTestCase
             'name' => 'Domain-Driven Design in PHP',
         ]);
 
-        self::createClient()->request('GET', '/api/books');
+        $response = self::createClient()->request('GET', '/api/books');
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertJsonContains([
+        self::assertResponseIsOkCollection($response, [
             '@context' => '/api/contexts/Book',
             '@id' => '/api/books',
             '@type' => 'Collection',
@@ -47,9 +44,7 @@ final class ListBooksTest extends ComponentTestCase
 
         $response = self::createClient()->request('GET', '/api/books');
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern([
+        self::assertResponseIsOkCollection($response, [
             '@context' => '/api/contexts/Book',
             '@id' => '/api/books',
             '@type' => 'Collection',
@@ -62,7 +57,7 @@ final class ListBooksTest extends ComponentTestCase
                 'last' => '/api/books?page=4',
                 'next' => '/api/books?page=2',
             ],
-        ], $response->toArray());
+        ]);
         self::assertIsArray($response->toArray()['member']);
         self::assertCount(30, $response->toArray()['member']);
     }

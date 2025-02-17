@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
-use App\Tests\Catalog\Book\Factory\BookFactory;
-use App\Tests\Catalog\Tag\Factory\TagFactory;
-use App\Tests\Shared\ApiPlatform\ApiResourceFinder;
-use Coduo\PHPMatcher\PHPUnit\PHPMatcherAssertions;
+use App\Tests\Catalog\Book\Factory\CreateBookInputFactory;
+use App\Tests\Catalog\Tag\Factory\CreateTagInputFactory;
+use App\Tests\Shared\ApiPlatform as ApiPlatform;
 use Zenstruck\Foundry\Test as Zenstruck;
 
 abstract class ComponentTestCase extends ApiTestCase
 {
-    use ApiResourceFinder;
-    use PHPMatcherAssertions;
+    use ApiPlatform\ApiResourceFinder;
+    use ApiPlatform\ApiTestAssertions;
     use Zenstruck\Factories;
     use Zenstruck\ResetDatabase;
 
@@ -22,10 +21,10 @@ abstract class ComponentTestCase extends ApiTestCase
      * @param array<string, mixed> $attributes
      * @return string The book ID.
      */
-    protected function createBook(array $attributes = []): string
+    protected static function createBook(array $attributes = []): string
     {
         $resource = self::createClient()->request('POST', '/api/books', [
-            'json' => BookFactory::createOne($attributes),
+            'json' => CreateBookInputFactory::createOne($attributes),
         ]);
 
         $id = $resource->toArray()['id'];
@@ -36,7 +35,7 @@ abstract class ComponentTestCase extends ApiTestCase
     /**
      * @param string $id The book ID.
      */
-    protected function deleteBook(string $id): void
+    protected static function deleteBook(string $id): void
     {
         self::createClient()->request('DELETE', "/api/books/{$id}");
     }
@@ -45,10 +44,10 @@ abstract class ComponentTestCase extends ApiTestCase
      * @param array<string, mixed> $attributes
      * @return string The tag ID.
      */
-    protected function createTag(array $attributes = []): string
+    protected static function createTag(array $attributes = []): string
     {
         $resource = self::createClient()->request('POST', '/api/tags', [
-            'json' => TagFactory::createOne($attributes),
+            'json' => CreateTagInputFactory::createOne($attributes),
         ]);
 
         $id = $resource->toArray()['id'];
@@ -59,7 +58,7 @@ abstract class ComponentTestCase extends ApiTestCase
     /**
      * @param string $id The tag ID.
      */
-    protected function deleteTag(string $id): void
+    protected static function deleteTag(string $id): void
     {
         self::createClient()->request('DELETE', "/api/tags/{$id}");
     }

@@ -6,7 +6,8 @@ namespace App\Catalog\Tag\Presentation\ApiPlatform;
 
 use ApiPlatform\Doctrine\Orm\State\Options;
 use ApiPlatform\Metadata\ApiProperty;
-use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiResource as ReadApiResource;
+use ApiPlatform\Metadata\ApiResource as WriteApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -17,27 +18,34 @@ use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use App\Catalog\Tag\Domain\CouldNotFindTagException;
 use App\Catalog\Tag\Domain\TagAlreadyExistsException;
 use App\Catalog\Tag\Infrastructure\Doctrine\TagEntity;
+use App\Catalog\Tag\Presentation\ApiPlatform\Create\CreateTagInput;
 use App\Catalog\Tag\Presentation\ApiPlatform\Create\CreateTagProcessor;
 use App\Catalog\Tag\Presentation\ApiPlatform\Delete\DeleteTagProcessor;
-use App\Catalog\Tag\Presentation\ApiPlatform\Get\GetTagProvider;
 use App\Catalog\Tag\Presentation\ApiPlatform\Update\UpdateTagInput;
 use App\Catalog\Tag\Presentation\ApiPlatform\Update\UpdateTagProcessor;
 use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Uid\UuidV7;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Uid\Uuid;
 
 /** A tag. */
-#[ApiResource(
+#[ReadApiResource(
     shortName: 'Tag',
     operations: [
+        // get tag
+        new Get(),
         // list tags
         new GetCollection(
             order: [
                 'name' => 'ASC',
             ],
-            provider: EntityToDtoProvider::class,
         ),
+    ],
+    provider: EntityToDtoProvider::class,
+    stateOptions: new Options(TagEntity::class),
+)]
+#[WriteApiResource(
+    shortName: 'Tag',
+    operations: [
         // create tag
         new Post(
             openapi: new OpenApiOperation(
@@ -48,20 +56,16 @@ use Symfony\Component\Validator\Constraints as Assert;
             exceptionToStatus: [
                 TagAlreadyExistsException::class => Response::HTTP_CONFLICT,
             ],
+            input: CreateTagInput::class,
             processor: CreateTagProcessor::class,
-        ),
-        // get tag
-        new Get(
-            exceptionToStatus: [
-                CouldNotFindTagException::class => Response::HTTP_NOT_FOUND,
-            ],
-            provider: GetTagProvider::class,
         ),
         // delete tag
         new Delete(
+            status: Response::HTTP_OK,
             exceptionToStatus: [
                 CouldNotFindTagException::class => Response::HTTP_NOT_FOUND,
             ],
+            output: TagResource::class,
             read: false,
             processor: DeleteTagProcessor::class,
         ),
@@ -81,29 +85,23 @@ use Symfony\Component\Validator\Constraints as Assert;
             processor: UpdateTagProcessor::class,
         ),
     ],
-    stateOptions: new Options(TagEntity::class),
 )]
 final class TagResource
 {
     /** The ID of the tag. */
-    #[ApiProperty(writable: false, identifier: true)]
-    public UuidV7 $id;
+    #[ApiProperty(identifier: true)]
+    public Uuid $id;
 
     /** The name of the tag. */
-    #[Assert\NotBlank]
-    #[Assert\Length(max: 255)]
     #[ApiProperty(example: 'ddd')]
     public string $name;
 
     /** Indicates if the book has been deleted. */
-    #[ApiProperty(readable: false, writable: false, default: false)]
     public bool $deleted;
 
     /** The creation date of the resource. */
-    #[ApiProperty(writable: false)]
     public \DateTimeImmutable $createdAt;
 
     /** The update date of the resource. */
-    #[ApiProperty(writable: false)]
     public ?\DateTimeImmutable $updatedAt;
 }

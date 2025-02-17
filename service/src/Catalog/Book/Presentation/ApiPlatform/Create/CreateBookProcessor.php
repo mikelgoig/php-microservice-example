@@ -15,7 +15,7 @@ use App\Shared\Application\Bus\CommandBus;
 use Symfony\Component\Uid\UuidV7;
 
 /**
- * @implements ProcessorInterface<BookResource, BookResource>
+ * @implements ProcessorInterface<CreateBookInput, BookResource>
  */
 final readonly class CreateBookProcessor implements ProcessorInterface
 {
@@ -25,7 +25,7 @@ final readonly class CreateBookProcessor implements ProcessorInterface
     ) {}
 
     /**
-     * @param BookResource $data
+     * @param CreateBookInput $data
      * @throws CouldNotFindBookException
      */
     public function process(
@@ -39,12 +39,10 @@ final readonly class CreateBookProcessor implements ProcessorInterface
             new CreateBookCommand(
                 $bookId->toString(),
                 $data->name,
-                $data->description ?? null,
-                isset($data->tags)
-                    ? array_values(
-                        array_map(fn (TagResource $tag) => $tag->id->toString(), iterator_to_array($data->tags)),
-                    )
-                    : [],
+                $data->description,
+                array_values(
+                    array_map(fn (TagResource $tag) => $tag->id->toString(), iterator_to_array($data->tags)),
+                ),
             ),
         );
         return $this->bookFinder->find($bookId, $context);

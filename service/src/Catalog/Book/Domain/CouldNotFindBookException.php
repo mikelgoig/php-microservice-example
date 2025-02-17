@@ -6,7 +6,7 @@ namespace App\Catalog\Book\Domain;
 
 final class CouldNotFindBookException extends \DomainException
 {
-    public static function withId(string $id): self
+    public static function withId(BookId $id): self
     {
         return new self("Could not find book <\"{$id}\">.");
     }

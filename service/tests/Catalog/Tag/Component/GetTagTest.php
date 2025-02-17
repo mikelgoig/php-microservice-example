@@ -8,8 +8,6 @@ use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Tests\Catalog\Tag\Factory\TagEntityFactory;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Uid\UuidV7;
 
 #[CoversClass(TagResource::class)]
 final class GetTagTest extends ComponentTestCase
@@ -17,36 +15,28 @@ final class GetTagTest extends ComponentTestCase
     public function test_can_get_tag_if_it_exists(): void
     {
         TagEntityFactory::createOne([
-            'id' => new UuidV7('0194dcb5-043c-7992-845d-85904d5689df'),
+            'id' => '0194dcb5-043c-7992-845d-85904d5689df',
             'name' => 'ddd',
         ]);
 
-        self::createClient()->request('GET', '/api/tags/0194dcb5-043c-7992-845d-85904d5689df');
+        $response = self::createClient()->request('GET', '/api/tags/0194dcb5-043c-7992-845d-85904d5689df');
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertJsonContains([
+        self::assertResponseIsOk($response, TagResource::class, [
             '@context' => '/api/contexts/Tag',
             '@id' => '/api/tags/0194dcb5-043c-7992-845d-85904d5689df',
             '@type' => 'Tag',
             'id' => '0194dcb5-043c-7992-845d-85904d5689df',
             'name' => 'ddd',
+            'deleted' => false,
+            'createdAt' => '@datetime@',
         ]);
-        self::assertMatchesResourceItemJsonSchema(TagResource::class);
     }
 
     public function test_cannot_get_tag_if_it_does_not_exist(): void
     {
-        self::createClient()->request('GET', '/api/tags/0194dcb5-cb71-722c-96e8-63d1018fbb89');
+        $nonExistingTagId = '0194dcb5-cb71-722c-96e8-63d1018fbb89';
+        self::createClient()->request('GET', "/api/tags/{$nonExistingTagId}");
 
-        self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/Error',
-            '@id' => '/api/errors/404',
-            '@type' => 'Error',
-            'title' => 'An error occurred',
-            'detail' => 'Could not find tag <"0194dcb5-cb71-722c-96e8-63d1018fbb89">.',
-        ]);
+        self::assertResponseIsNotFound();
     }
 }

@@ -7,7 +7,6 @@ namespace App\Tests\Catalog\Tag\Component;
 use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Tests\ComponentTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Component\HttpFoundation\Response;
 
 #[CoversClass(TagResource::class)]
 final class CreateTagTest extends ComponentTestCase
@@ -20,36 +19,27 @@ final class CreateTagTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
-        self::assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-        self::assertMatchesPattern([
+        self::assertResponseIsCreated($response, TagResource::class, [
             '@context' => '/api/contexts/Tag',
             '@id' => '/api/tags/@uuid@',
             '@type' => 'Tag',
             'id' => '@uuid@',
             'name' => 'ddd',
+            'deleted' => false,
             'createdAt' => '@datetime@',
-        ], $response->toArray());
-        self::assertMatchesResourceItemJsonSchema(TagResource::class);
+        ]);
     }
 
-    public function test_cannot_create_tag_providing_blank_data(): void
+    public function test_cannot_create_tag_if_data_is_blank(): void
     {
         self::createClient()->request('POST', '/api/tags', [
             'json' => [],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/ConstraintViolationList',
-            '@type' => 'ConstraintViolationList',
-            'title' => 'An error occurred',
-            'violations' => [
-                [
-                    'propertyPath' => 'name',
-                    'message' => 'This value should not be blank.',
-                ],
+        self::assertResponseIsUnprocessableEntity([
+            [
+                'propertyPath' => 'name',
+                'message' => 'This value should not be blank.',
             ],
         ]);
     }
@@ -62,24 +52,17 @@ final class CreateTagTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_UNPROCESSABLE_ENTITY);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/ConstraintViolationList',
-            '@type' => 'ConstraintViolationList',
-            'title' => 'An error occurred',
-            'violations' => [
-                [
-                    'propertyPath' => 'name',
-                    'message' => 'This value is too long. It should have 255 characters or less.',
-                ],
+        self::assertResponseIsUnprocessableEntity([
+            [
+                'propertyPath' => 'name',
+                'message' => 'This value is too long. It should have 255 characters or less.',
             ],
         ]);
     }
 
     public function test_cannot_create_tag_if_tag_with_name_already_exists(): void
     {
-        $this->createTag([
+        self::createTag([
             'name' => 'ddd',
         ]);
 
@@ -89,16 +72,6 @@ final class CreateTagTest extends ComponentTestCase
             ],
         ]);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_CONFLICT);
-        self::assertResponseHeaderSame('content-type', 'application/problem+json; charset=utf-8');
-        self::assertJsonContains([
-            '@context' => '/api/contexts/Error',
-            '@id' => '/api/errors/409',
-            '@type' => 'Error',
-            'title' => 'An error occurred',
-            'detail' => 'Tag with name <"ddd"> already exists.',
-            'type' => '/errors/409',
-            'status' => 409,
-        ]);
+        self::assertResponseIsConflict('Tag with name <"ddd"> already exists.');
     }
 }

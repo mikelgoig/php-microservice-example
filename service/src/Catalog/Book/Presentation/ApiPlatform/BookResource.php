@@ -6,7 +6,8 @@ namespace App\Catalog\Book\Presentation\ApiPlatform;
 
 use ApiPlatform\Doctrine\Orm\State\Options;
 use ApiPlatform\Metadata\ApiProperty;
-use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiResource as ReadApiResource;
+use ApiPlatform\Metadata\ApiResource as WriteApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -17,29 +18,35 @@ use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
 use App\Catalog\Book\Domain\BookAlreadyExistsException;
 use App\Catalog\Book\Domain\CouldNotFindBookException;
 use App\Catalog\Book\Infrastructure\Doctrine\BookEntity;
+use App\Catalog\Book\Presentation\ApiPlatform\Create\CreateBookInput;
 use App\Catalog\Book\Presentation\ApiPlatform\Create\CreateBookProcessor;
 use App\Catalog\Book\Presentation\ApiPlatform\Delete\DeleteBookProcessor;
-use App\Catalog\Book\Presentation\ApiPlatform\Get\GetBookProvider;
 use App\Catalog\Book\Presentation\ApiPlatform\Update\UpdateBookInput;
 use App\Catalog\Book\Presentation\ApiPlatform\Update\UpdateBookProcessor;
 use App\Catalog\Tag\Presentation\ApiPlatform\TagResource;
 use App\Shared\Infrastructure\ApiPlatform\Provider\EntityToDtoProvider;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Uid\UuidV7;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Uid\Uuid;
 
 /** A book. */
-#[ApiResource(
+#[ReadApiResource(
     shortName: 'Book',
     operations: [
+        // get book
+        new Get(),
         // list books
         new GetCollection(
             order: [
                 'id' => 'DESC',
             ],
-            provider: EntityToDtoProvider::class,
-            stateOptions: new Options(BookEntity::class),
         ),
+    ],
+    provider: EntityToDtoProvider::class,
+    stateOptions: new Options(BookEntity::class),
+)]
+#[WriteApiResource(
+    shortName: 'Book',
+    operations: [
         // create book
         new Post(
             openapi: new OpenApiOperation(
@@ -50,21 +57,16 @@ use Symfony\Component\Validator\Constraints as Assert;
             exceptionToStatus: [
                 BookAlreadyExistsException::class => Response::HTTP_CONFLICT,
             ],
+            input: CreateBookInput::class,
             processor: CreateBookProcessor::class,
-        ),
-        // get book
-        new Get(
-            exceptionToStatus: [
-                CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
-            ],
-            provider: GetBookProvider::class,
-            stateOptions: new Options(BookEntity::class),
         ),
         // delete book
         new Delete(
+            status: Response::HTTP_OK,
             exceptionToStatus: [
                 CouldNotFindBookException::class => Response::HTTP_NOT_FOUND,
             ],
+            output: BookResource::class,
             read: false,
             processor: DeleteBookProcessor::class,
         ),
@@ -88,18 +90,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class BookResource
 {
     /** The ID of the book. */
-    #[ApiProperty(writable: false, identifier: true)]
-    public UuidV7 $id;
+    #[ApiProperty(identifier: true)]
+    public Uuid $id;
 
     /** The name of the book. */
-    #[Assert\NotBlank]
-    #[Assert\Length(max: 255)]
     #[ApiProperty(example: 'Advanced Web Application Architecture')]
     public string $name;
 
     /** The description of the book. */
-    #[Assert\NotBlank(allowNull: true)]
-    #[ApiProperty(required: false, example: 'A practical guide to build web applications in a sustainable manner.')]
+    #[ApiProperty(example: 'A practical guide to build web applications in a sustainable manner.')]
     public ?string $description;
 
     /**
@@ -110,14 +109,11 @@ final class BookResource
     public iterable $tags;
 
     /** Indicates if the book has been deleted. */
-    #[ApiProperty(readable: false, writable: false, default: false)]
     public bool $deleted;
 
     /** The creation date of the resource. */
-    #[ApiProperty(writable: false)]
     public \DateTimeInterface $createdAt;
 
     /** The update date of the resource. */
-    #[ApiProperty(writable: false)]
     public ?\DateTimeInterface $updatedAt;
 }

@@ -22,7 +22,7 @@ final readonly class DeleteBookCommandHandler
     public function __invoke(DeleteBookCommand $command): void
     {
         $bookId = BookId::fromString($command->id);
-        $book = $this->books->ofId($bookId) ?? throw CouldNotFindBookException::withId($command->id);
+        $book = $this->books->ofId($bookId) ?? throw CouldNotFindBookException::withId($bookId);
         $book->delete();
         $this->books->save($book);
     }

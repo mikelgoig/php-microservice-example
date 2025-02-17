@@ -10,7 +10,7 @@ use App\Catalog\Tag\Domain\TagChecker;
 use App\Catalog\Tag\Domain\TagId;
 use App\Catalog\Tag\Domain\TagReadModelRepository;
 use App\Catalog\Tag\Domain\TagRepository;
-use App\Shared\Domain\Dto\PatchData;
+use App\Shared\Domain\ValueObject\PatchData;
 use Ecotone\Modelling\Attribute\CommandHandler;
 
 final readonly class UpdateTagCommandHandler
@@ -34,7 +34,7 @@ final readonly class UpdateTagCommandHandler
         $tagId = TagId::fromString($command->id);
         $patchData = new PatchData($command->patchData);
 
-        $tag = $this->tags->ofId($tagId) ?? throw CouldNotFindTagException::withId($command->id);
+        $tag = $this->tags->ofId($tagId) ?? throw CouldNotFindTagException::withId($tagId);
 
         if ($patchData->isEmpty()) {
             return;

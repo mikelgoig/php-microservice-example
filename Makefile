@@ -37,6 +37,9 @@ up: ## Start the docker hub in detached mode (no logs)
 	POSTGRES_PORT=50357 \
 	$(DOCKER_COMP) up --detach
 
+up-debug: ## Start the docker hub in debug mode
+	@XDEBUG_MODE=debug make up
+
 .PHONY: start
 start: build up git-hooks-install ## Build and start the containers
 
@@ -86,6 +89,10 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 .PHONY: cc
 cc: c = c:c ## Clear the cache
 cc: sf
+
+.PHONY: cc-test
+cc-test: c = c:c --env=test ## Clear the cache
+cc-test: sf
 
 ## —— Doctrine 💾 ——————————————————————————————————————————————————————————————
 .PHONY: db

@@ -7,6 +7,7 @@ namespace App\Catalog\Tag\Application\Create;
 use App\Catalog\Tag\Domain\Tag;
 use App\Catalog\Tag\Domain\TagAlreadyExistsException;
 use App\Catalog\Tag\Domain\TagChecker;
+use App\Catalog\Tag\Domain\TagId;
 use App\Catalog\Tag\Domain\TagReadModelRepository;
 use App\Catalog\Tag\Domain\TagRepository;
 use Ecotone\Modelling\Attribute\CommandHandler;
@@ -28,8 +29,11 @@ final readonly class CreateTagCommandHandler
     #[CommandHandler]
     public function __invoke(CreateTagCommand $command): void
     {
-        $this->tagChecker->ensureThatThereIsNoTagWithName($command->name);
-        $tag = Tag::create($command->id, $command->name);
+        $id = TagId::fromString($command->id);
+        $name = $command->name;
+
+        $this->tagChecker->ensureThatThereIsNoTagWithName($name);
+        $tag = Tag::create($id, $name);
         $this->tags->save($tag);
     }
 }
